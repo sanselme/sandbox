@@ -2,19 +2,11 @@ package main
 
 import "fmt"
 
-type Equalizer[T any] interface {
-	Equal(other T) bool
-}
-
 type Id int
 
-func (i Id) Equal(other Id) bool {
-	return i == other
-}
-
-func Has[T Equalizer[T]](list []T, value T) bool {
+func Has[T ~int](list []T, value T) bool {
 	for _, v := range list {
-		if value.Equal(v) {
+		if v == value {
 			return true
 		}
 	}
