@@ -2,27 +2,17 @@ package main
 
 import "fmt"
 
-type Set[T comparable] map[T]struct{}
-
-func (s Set[T]) Has(value T) bool {
-  _, ok := s[value]
-  return ok
-}
-
-func NewSet[T comparable](values ...T) Set[T] {
-  set := make(Set[T], len(values))
-  for _, v := range values {
-    set[v] = struct{}{}
+func Has[T any](list []T, value T, equal func(a, b T) bool) bool {
+  for _, v := range list {
+    if equal(v, value) {
+      return true
+    }
   }
-  return set
+  return false
 }
 
 func main() {
-  intSet := NewSet(1, 2, 3)
-  fmt.Printf("Has 2 %v\n", intSet.Has(2))
-  fmt.Printf("Has 5 %v\n", intSet.Has(5))
+  equalInt := func(a, b int) bool { return a == b }
 
-  strSet := NewSet("a", "b", "c")
-  fmt.Printf("Has b %v\n", strSet.Has("b"))
-  fmt.Printf("Has d %v\n", strSet.Has("d"))
+  fmt.Printf("Has 2 %v\n", Has([]int{1, 2}, 2, equalInt))
 }
