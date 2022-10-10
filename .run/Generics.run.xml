@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Generics" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="sandbox" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="PACKAGE" />
+    <package value="sandbox/cmd/generics" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/cmd/generics/main.go" />
+    <method v="2" />
+  </configuration>
+</component>
