@@ -2,9 +2,19 @@ package main
 
 import "fmt"
 
-func Has[T comparable](list []T, value T) bool {
+type Equalizer[T any] interface {
+	Equal(other T) bool
+}
+
+type Id int
+
+func (i Id) Equal(other Id) bool {
+	return i == other
+}
+
+func Has[T Equalizer[T]](list []T, value T) bool {
 	for _, v := range list {
-		if v == value {
+		if value.Equal(v) {
 			return true
 		}
 	}
@@ -12,5 +22,5 @@ func Has[T comparable](list []T, value T) bool {
 }
 
 func main() {
-	fmt.Printf("Has 2 %v\n", Has([]int{1, 2}, 2))
+	fmt.Printf("Has 2 %v\n", Has([]Id{1, 2}, 2))
 }
