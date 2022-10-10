@@ -74,6 +74,9 @@ repl-temp-*
 out
 gen
 
+# Fleet project files
+.fleet
+
 # VSCode project files
 .vscode
 

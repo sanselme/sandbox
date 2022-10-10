@@ -1,5 +1,16 @@
 # sandbox
 
+[![Lint Code Base](https://github.com/sanselme/sandbox/actions/workflows/super-linter.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/super-linter.yml)
+[![Dependency Review](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml)
+[![CodeQL](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml)
+
+[![Go](https://github.com/sanselme/sandbox/actions/workflows/go.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go.yml)
+
+[![Docker](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml)
+[![Helm](https://github.com/sanselme/sandbox/actions/workflows/helm.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/helm.yml)
+
+[![GitHub Pages](https://github.com/sanselme/sandbox/actions/workflows/pages.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/pages.yml)
+
 Collection of demo/sandbox/tutorial projects
 
 ---
