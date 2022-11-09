@@ -4,7 +4,7 @@
 [![Dependency Review](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml)
 [![CodeQL](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml)
 
-[![Go](https://github.com/sanselme/sandbox/actions/workflows/go.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go.yml)
+[![Go](https://github.com/sanselme/sandbox/actions/workflows/go.yaml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go.yaml)
 
 [![Docker](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml)
 [![Helm](https://github.com/sanselme/sandbox/actions/workflows/helm.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/helm.yml)
