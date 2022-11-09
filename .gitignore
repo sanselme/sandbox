@@ -89,3 +89,4 @@ ssh/
 tls/
 
 *.env
+*.pb.*
