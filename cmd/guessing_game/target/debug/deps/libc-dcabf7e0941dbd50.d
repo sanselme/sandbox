@@ -1,0 +1,14 @@
+/Users/schubert/Downloads/WIP/sandbox/src/guessing_game/target/debug/deps/libc-dcabf7e0941dbd50.rmeta: /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/lib.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/macros.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/fixed_width_ints.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/align.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/align.rs
+
+/Users/schubert/Downloads/WIP/sandbox/src/guessing_game/target/debug/deps/libc-dcabf7e0941dbd50.d: /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/lib.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/macros.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/fixed_width_ints.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/mod.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/align.rs /opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/align.rs
+
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/lib.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/macros.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/fixed_width_ints.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/mod.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/mod.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/mod.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/mod.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/mod.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/bsd/apple/b64/aarch64/align.rs:
+/opt/rust/registry/src/github.com-1ecc6299db9ec823/libc-0.2.138/src/unix/align.rs:

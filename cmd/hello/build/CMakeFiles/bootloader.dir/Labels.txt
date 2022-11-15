@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/CMakeFiles/bootloader
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/CMakeFiles/bootloader.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/CMakeFiles/bootloader-complete.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/schubert/Downloads/WIP/sandbox/src/hello/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
