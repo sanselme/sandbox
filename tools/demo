@@ -19,11 +19,11 @@ set -eux
 
 # start server
 echo "starting server in background..."
-${PWD}/bin/greeterd &
+"${PWD}/bin/greeterd" &
 
 # run client
 echo "running client..."
-${PWD}/bin/greeterctl
+"${PWD}/bin/greeterctl"
 
 # FIXME: cleanup
 killall greeterd

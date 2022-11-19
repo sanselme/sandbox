@@ -17,10 +17,10 @@
 
 set -eux
 
-: ${API_VERSION:="v1"}
+: "${API_VERSION:=v1}"
 
 # generating protobuf
 protoc -I ${API_VERSION} \
-  --go_out=${PWD} \
-  --go-grpc_out=require_unimplemented_servers=false:${PWD} \
+  --go_out="${PWD}" \
+  --go-grpc_out="require_unimplemented_servers=false:${PWD}" \
   api/${API_VERSION}/*.proto
