@@ -18,12 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package main
 
 import (
-  "context"
-  "fmt"
-  "google.golang.org/grpc"
-  v1 "greeter/api/v1"
-  "log"
-  "net"
+	"context"
+	"fmt"
+	"log"
+	"net"
+
+	v1 "github.com/sanselme/sandbox/api/v1"
+
+	"google.golang.org/grpc"
 )
 
 type server struct{}
