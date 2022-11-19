@@ -18,7 +18,7 @@
 set -eux
 
 # build server
-go build -o bin/greeterd ${PWD}/cmd/server
+go build -o bin/greeterd "${PWD}/cmd/server"
 
 # build client
-go build -o bin/greeterctl ${PWD}/cmd/client
+go build -o bin/greeterctl "${PWD}/cmd/client"

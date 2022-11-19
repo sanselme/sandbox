@@ -80,6 +80,9 @@ gen
 # VSCode project files
 .vscode
 
+# jfrog files
+.jfrog
+
 # Project Builder files
 bin/*
 !bin/.gitkeep
