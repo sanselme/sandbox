@@ -4,12 +4,12 @@
 [![Dependency Review](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml)
 [![CodeQL](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml)
 
-[![Go](https://github.com/sanselme/sandbox/actions/workflows/go.yaml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go.yaml)
+[![Go](https://github.com/sanselme/sandbox/actions/workflows/go-build.yaml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go-build.yaml)
 
-[![Docker](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/docker-publish.yml)
-[![Helm](https://github.com/sanselme/sandbox/actions/workflows/helm.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/helm.yml)
+[![Docker](https://github.com/sanselme/sandbox/actions/workflows/docker-build.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/docker-build.yml)
+[![Helm](https://github.com/sanselme/sandbox/actions/workflows/helm-package.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/helm-package.yml)
 
-[![GitHub Pages](https://github.com/sanselme/sandbox/actions/workflows/pages.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/pages.yml)
+[![GitHub Pages](https://github.com/sanselme/sandbox/actions/workflows/github-pages.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/github-pages.yml)
 
 Collection of demo/sandbox/tutorial projects
 
