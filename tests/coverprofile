@@ -1,0 +1,4 @@
+mode: set
+github.com/sanselme/sandbox/pkg/foo/foo.go:23.30,25.11 2 1
+github.com/sanselme/sandbox/pkg/foo/foo.go:28.2,28.28 1 1
+github.com/sanselme/sandbox/pkg/foo/foo.go:25.11,27.3 1 1
