@@ -3,7 +3,7 @@
     <module name="sandbox" />
     <working_directory value="$PROJECT_DIR$" />
     <kind value="PACKAGE" />
-    <package value="sandbox/cmd/generics" />
+    <package value="github.com/sanselme/sandbox" />
     <directory value="$PROJECT_DIR$" />
     <filePath value="$PROJECT_DIR$/cmd/generics/main.go" />
     <method v="2" />
