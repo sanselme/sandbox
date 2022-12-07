@@ -85,7 +85,17 @@ gen
 
 # Project Builder files
 bin/*
-!bin/.gitkeep
+!bin/README.md
+
+build/*
+!build/package/
+!build/pipeline/
+!build/firmware
+
+build/firmware/*
+!build/firmware/README.md
+
+*/*/build/
 
 gpg/
 ssh/
