@@ -96,6 +96,7 @@ build/firmware/*
 !build/firmware/README.md
 
 */*/build/
+*/*/target/
 
 gpg/
 ssh/
