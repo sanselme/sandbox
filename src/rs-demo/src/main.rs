@@ -1,12 +1,19 @@
-use std::{any, fmt};
+use std::fmt;
 
-fn print_type<T: fmt::Debug>(item: T) {
-    println!("{:?} is {}", item, any::type_name::<T>());
+// fn compare_and_print<T: fmt::Display + PartialEq + From<U>, U: fmt::Display + PartialEq + Copy>(
+fn compare_and_print<T, U>(a: T, b: U)
+where
+    T: fmt::Display + PartialEq + From<U>,
+    U: fmt::Display + PartialEq + Copy,
+{
+    if a == T::from(b) {
+        println!("{} is equal to {}", a, b);
+    } else {
+        println!("{} is NOT equal to {}", a, b);
+    }
 }
 
 fn main() {
-    print_type(13);
-    print_type(13.0);
-    print_type("thirteen");
-    print_type([13]);
+    compare_and_print(1.0, 1);
+    compare_and_print(1.1, 1);
 }
