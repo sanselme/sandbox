@@ -1,36 +1,29 @@
-#[derive(Debug, Clone)]
-struct Shuttle {
-    name: String,
-    crew_size: u8,
-    propellant: f64,
+struct Rectangle {
+    width: f64,
+    height: f64,
 }
 
-impl Shuttle {
-    fn new(name: &str) -> Shuttle {
-        Shuttle {
-            name: String::from(name),
-            crew_size: 7,
-            propellant: 0.0,
-        }
+impl Rectangle {
+    fn new(width: f64, height: f64) -> Rectangle {
+        Rectangle { width, height }
     }
 
-    fn get_name(&self) -> &str {
-        &self.name
+    fn get_area(&self) -> f64 {
+        self.width * self.height
     }
 
-    fn add_fuel(&mut self, gallons: f64) {
-        self.propellant += gallons;
+    fn scale(&mut self, scalar: f64) {
+        self.height *= scalar;
+        self.width *= scalar;
     }
 }
 
 fn main() {
-    let mut vehicle = Shuttle::new("Endeavour");
-    let mut vehicle2 = Shuttle::new("Discovery");
+    let mut rect = Rectangle::new(1.2, 3.4);
+    assert_eq!(rect.get_area(), 4.08);
 
-    let vehicle_name = vehicle.get_name();
-    println!("vehicle name is {}", vehicle_name);
+    rect.scale(0.5);
+    assert_eq!(rect.get_area(), 1.02);
 
-    println!("propellant is {}", vehicle.propellant);
-    vehicle.add_fuel(1000.0);
-    println!("propellant is {}", vehicle.propellant);
+    println!("Tests passed!");
 }
