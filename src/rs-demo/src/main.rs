@@ -1,27 +1,35 @@
-#[derive(Debug)]
-struct Rectangle<T, U> {
-    width: T,
-    height: U,
+use std::mem;
+
+struct Shuttle {
+    name: String,
+    crew_size: u8,
+    propellant: f64,
 }
 
-impl<T, U> Rectangle<T, U> {
-    fn get_width(&self) -> &T {
-        &self.width
-    }
-}
-
-impl Rectangle<u8, u8> {
-    fn get_perimeter(&self) -> u8 {
-        2 * self.width + 2 * self.height
-    }
-}
 fn main() {
-    let rect = Rectangle {
-        width: 1u8,
-        height: 3u8,
+    let vehicle = Shuttle {
+        name: String::from("Atlantis"),
+        crew_size: 7,
+        propellant: 835958.0,
     };
+    println!(
+        "vehicle size on stack: {} bytes",
+        mem::size_of_val(&vehicle)
+    );
 
-    println!("rect is {:?}", rect);
-    println!("width is {:}", rect.get_width());
-    println!("perimeter is {}", rect.get_perimeter());
+    let boxed_vehicle: Box<Shuttle> = Box::from(vehicle);
+    println!(
+        "vehicle size on stack: {} bytes",
+        mem::size_of_val(&boxed_vehicle)
+    );
+    println!(
+        "vehicle size on heap: {} bytes",
+        mem::size_of_val(&*boxed_vehicle)
+    );
+
+    let unboxed_vehicle: Shuttle = *boxed_vehicle;
+    println!(
+        "vehicle size on stack: {} bytes",
+        mem::size_of_val(&unboxed_vehicle)
+    );
 }
