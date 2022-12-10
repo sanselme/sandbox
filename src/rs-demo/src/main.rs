@@ -1,19 +1,20 @@
 use std::fmt;
 
-// fn compare_and_print<T: fmt::Display + PartialEq + From<U>, U: fmt::Display + PartialEq + Copy>(
-fn compare_and_print<T, U>(a: T, b: U)
-where
-    T: fmt::Display + PartialEq + From<U>,
-    U: fmt::Display + PartialEq + Copy,
-{
-    if a == T::from(b) {
-        println!("{} is equal to {}", a, b);
-    } else {
-        println!("{} is NOT equal to {}", a, b);
+struct Satellite {
+    name: String,
+    velocity: f64, // miles per second
+}
+
+impl fmt::Display for Satellite {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} flying at {} m/s", self.name, self.velocity)
     }
 }
 
 fn main() {
-    compare_and_print(1.0, 1);
-    compare_and_print(1.1, 1);
+    let hubble = Satellite {
+        name: String::from("Hubble Telescope"),
+        velocity: 4.72,
+    };
+    println!("hubble is {}", hubble)
 }
