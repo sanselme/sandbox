@@ -1,35 +1,40 @@
-use std::mem;
-
-struct Shuttle {
-    name: String,
-    crew_size: u8,
-    propellant: f64,
+trait Description {
+    fn describe(&self) -> String {
+        String::from("an object flying through space")
+    }
 }
 
+struct Satellite {
+    name: String,
+    velocity: f64, // miles per second
+}
+
+impl Description for Satellite {}
+
+struct SpaceStation {
+    name: String,
+    crew_size: u8,
+    altitude: u32, // miles
+}
+
+impl Description for SpaceStation {
+    fn describe(&self) -> String {
+        format!(
+            "the {} flying at {} miles height with {} crew members on board!",
+            self.name, self.altitude, self.crew_size
+        )
+    }
+}
 fn main() {
-    let vehicle = Shuttle {
-        name: String::from("Atlantis"),
-        crew_size: 7,
-        propellant: 835958.0,
+    let hubble = Satellite {
+        name: String::from("Hubble Telescope"),
+        velocity: 4.72,
     };
-    println!(
-        "vehicle size on stack: {} bytes",
-        mem::size_of_val(&vehicle)
-    );
-
-    let boxed_vehicle: Box<Shuttle> = Box::from(vehicle);
-    println!(
-        "vehicle size on stack: {} bytes",
-        mem::size_of_val(&boxed_vehicle)
-    );
-    println!(
-        "vehicle size on heap: {} bytes",
-        mem::size_of_val(&*boxed_vehicle)
-    );
-
-    let unboxed_vehicle: Shuttle = *boxed_vehicle;
-    println!(
-        "vehicle size on stack: {} bytes",
-        mem::size_of_val(&unboxed_vehicle)
-    );
+    let iss = SpaceStation {
+        name: String::from("International Space Station"),
+        crew_size: 6,
+        altitude: 254,
+    };
+    println!("hubble is {}", hubble.describe());
+    println!("iss is {}", iss.describe())
 }
