@@ -1,20 +1,15 @@
-use std::fmt;
-
-struct Satellite {
-    name: String,
-    velocity: f64, // miles per second
-}
-
-impl fmt::Display for Satellite {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{} flying at {} m/s", self.name, self.velocity)
+fn best_fuel<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
     }
 }
 
 fn main() {
-    let hubble = Satellite {
-        name: String::from("Hubble Telescope"),
-        velocity: 4.72,
-    };
-    println!("hubble is {}", hubble)
+    let result;
+    let propellant1 = String::from("RP-1");
+    let propellant2 = String::from("LNG");
+    result = best_fuel(&propellant1, &propellant2);
+    println!("result is {}", result);
 }
