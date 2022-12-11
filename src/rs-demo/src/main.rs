@@ -1,16 +1,17 @@
-struct Shuttle<'a> {
-    name: &'a str,
-}
-
-impl<'a, 'b> Shuttle<'a> {
-    fn send_transmission(&'a self, msg: &'b str) -> &'b str {
-        println!("Transmission message: {}", msg);
-        msg
-    }
+#[derive(Debug)]
+enum Shape {
+    Circle(f64),             // radius
+    Rectangle(f64, f64),     // width, height
+    Triangle(f64, f64, f64), // sides a, b, c
 }
 
 fn main() {
-    let vehicle = Shuttle { name: "Endeavour" };
-    let sender = vehicle.send_transmission("Greetings from orbit!");
-    println!("sender is {}", sender);
+    let my_shape = Shape::Rectangle(1.2, 3.4);
+    println!("my shape is {:?}", my_shape);
+
+    match my_shape {
+        Shape::Circle(r) => println!("Circle with radius {}", r),
+        Shape::Rectangle(w, h) => println!("{} x {} Rectangle", w, h),
+        Shape::Triangle(a, b, c) => println!("Triangle with sides {}, {}, {}", a, b, c),
+    }
 }
