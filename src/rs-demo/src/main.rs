@@ -1,31 +1,14 @@
-use std::fmt;
-
-type Lat = f64;
-type Long = f64;
-
-enum Location {
-    Anonymous,
-    Known(Lat, Long),
-    Unknown,
-}
-
-impl fmt::Display for Location {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Self::Anonymous => write!(f, "anonymous"),
-            Self::Unknown => write!(f, "unknown"),
-            Self::Known(lat, long) => write!(f, "{} lat / {} long", lat, long),
-        }
-    }
-}
+use std::{fs, io};
 
 fn main() {
-    let address = Location::Unknown;
-    println!("Location: {}", address);
-
-    let address = Location::Anonymous;
-    println!("Location: {}", address);
-
-    let address = Location::Known(28.608295, -80.604177);
-    println!("Location: {}", address);
+    let result = fs::read_to_string("the_ultimate_question.txt");
+    let contents = match result {
+        Ok(message) => message,
+        Err(error) => match error.kind() {
+            io::ErrorKind::NotFound => String::from("File not found"),
+            io::ErrorKind::PermissionDenied => String::from("Permission denied"),
+            _ => panic!("Another type of error: {}", error),
+        },
+    };
+    println!("contents is: {}", contents);
 }
