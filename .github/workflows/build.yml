@@ -1,36 +1,52 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+name: Build
 
-name: Docker Build
-
+# TODO: add paths to trigger on
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   # Publish semver tags as releases.
-  #   tags:
-  #     - "v*.*.*"
-  # pull_request:
-  #   branches:
-  #     - main
-  # schedule:
-  #   - cron: "35 21 * * *"
+  push:
+    branches:
+      - main
+    # Publish semver tags as releases.
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "35 21 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
-
+  workflow_dispatch: {}
+  # inputs:
+  #   name:
+  #     description: Cluster name
+  #     required: false
+  #     default: kind-helm-test
+  #   namespace:
+  #     description: Cluster namespace
+  #     required: false
+  #     default: default
 
 jobs:
-  build:
 
+  # Build and test Go code
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test
+        run: go test -race ./...
+
+  # FIXME: Build and push Docker image
+  docker:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -38,6 +54,20 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+
+    env:
+      # Use docker.io for Docker Hub if empty
+      REGISTRY: ghcr.io
+      # github.repository as <account>/<repo>
+      IMAGE_NAME: ${{ github.repository }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          - linux/arm64
+        image: []
 
     steps:
       - name: Checkout repository
@@ -50,7 +80,6 @@ jobs:
         uses: sigstore/cosign-installer@9becc617647dfa20ae7b1151972e9b3a2c338a2b
         with:
           cosign-release: v1.9.0
-
 
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
@@ -81,10 +110,11 @@ jobs:
         uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5
         with:
           context: .
-          file: /build/package/<image>/Dockerfile
+          file: /build/package/${{ matrix.image }}/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: ${{ matrix.platform }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
@@ -98,3 +128,9 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+
+  # TODO: Build and push Helm chart
+  helm:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
