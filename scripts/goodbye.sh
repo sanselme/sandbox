@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Copyright © 2022 Schubert Anselme <schubert@anselm.es>
+# Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -9,7 +9,7 @@
 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
@@ -17,8 +17,4 @@
 
 set -e
 
-# build server
-go build -o bin/greeterd "${PWD}/cmd/server"
-
-# build client
-go build -o bin/greeterctl "${PWD}/cmd/client"
+echo "Goodbye"

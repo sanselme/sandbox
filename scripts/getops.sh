@@ -17,8 +17,27 @@
 
 set -e
 
-# build server
-go build -o bin/greeterd "${PWD}/cmd/server"
+# NOTE: https://linuxconfig.org/bash-script-flags-usage-with-arguments-examples
 
-# build client
-go build -o bin/greeterctl "${PWD}/cmd/client"
+while getopts 'lha:' flag; do
+  case "${flag}" in
+  l)
+    echo "You have supplied the -l flag"
+    ;;
+  h)
+    echo "You have supplied the -h flag"
+    ;;
+  a)
+    AVAL="${OPTARG}"
+    echo "The value provided is ${AVAL}"
+    ;;
+  ?)
+    echo "Script usage: $(basename \$0) [-l] [-h] [-a value]" >&2
+    exit 1
+    ;;
+  esac
+done
+
+# NOTE: $/${} is unnecessary on arithmetic variables
+# trunk-ignore(shellcheck/SC2004)
+shift "$(($OPTIND - 1))"

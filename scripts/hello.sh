@@ -17,8 +17,51 @@
 
 set -e
 
-# build server
-go build -o bin/greeterd "${PWD}/cmd/server"
+# NOTE: https://www.redhat.com/sysadmin/arguments-options-bash-scripts
 
-# build client
-go build -o bin/greeterctl "${PWD}/cmd/client"
+: "${NAME:="world"}"
+
+#
+## Help
+#
+
+print_help() {
+  # Display help
+  cat <<EOF
+Add description of the script functions here.
+
+Syntax: $0 [option]
+
+Options:
+  -n   Pass a name.
+  -h   Print this help.
+
+EOF
+}
+
+#
+## Main
+#
+
+# Process input options.
+while getopts ":hn:" option; do
+  case ${option} in
+  h)
+    # Display help
+    print_help
+    exit
+    ;;
+  n)
+    # Enter a name
+    NAME=${OPTARG}
+    ;;
+  \?)
+    # Invalid option
+    echo "Error: Invalid option"
+    exit
+    ;;
+  esac
+done
+
+# Run
+echo "Hello ${NAME}!"
