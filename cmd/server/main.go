@@ -23,7 +23,7 @@ import (
 	"log"
 	"net"
 
-	v1 "github.com/sanselme/sandbox/api/v1"
+	v1 "github.com/sanselme/sandbox/api/greet/v1"
 
 	"google.golang.org/grpc"
 )
