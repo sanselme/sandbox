@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package greet.v1;
+option go_package = "api/greet/v1";
+
+import "greet/v1/messages.proto";
+
+service Greeter {
+  rpc Greet(GreetRequest) returns (GreetResponse) {}
+}
