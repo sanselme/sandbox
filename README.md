@@ -1,21 +1,8 @@
 # sandbox
 
-[![Lint Code Base](https://github.com/sanselme/sandbox/actions/workflows/super-linter.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/super-linter.yml)
-[![Dependency Review](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/dependency-review.yml)
-[![CodeQL](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/codeql-analysis.yml)
-
-[![Go](https://github.com/sanselme/sandbox/actions/workflows/go-build.yaml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/go-build.yaml)
-
-[![Docker](https://github.com/sanselme/sandbox/actions/workflows/docker-build.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/docker-build.yml)
-[![Helm](https://github.com/sanselme/sandbox/actions/workflows/helm-package.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/helm-package.yml)
-
-[![GitHub Pages](https://github.com/sanselme/sandbox/actions/workflows/github-pages.yml/badge.svg)](https://github.com/sanselme/sandbox/actions/workflows/github-pages.yml)
-
 Collection of demo/sandbox/tutorial projects
 
 ---
-
-Copyright © 2022 Schubert Anselme <schubert@anselm.es>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
