@@ -88,8 +88,8 @@ bin/*
 !bin/README.md
 
 build/*
+!build/actions/
 !build/package/
-!build/pipeline/
 !build/firmware
 
 build/firmware/*

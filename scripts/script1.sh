@@ -17,8 +17,10 @@
 
 set -e
 
-# build server
-go build -o bin/greeterd "${PWD}/cmd/server"
+# NOTE: https://www.redhat.com/sysadmin/arguments-options-bash-scripts
 
-# build client
-go build -o bin/greeterctl "${PWD}/cmd/client"
+echo "Name: ${1}"
+echo "Street: ${2}"
+echo "City: ${3}"
+echo "State/Province/Territory: ${4}"
+echo "Zip/Postal Code: ${5}"

@@ -1,31 +1,21 @@
-use std::fmt;
+use std::{fs, io};
 
-type Lat = f64;
-type Long = f64;
+fn read_and_combine(f1: &str, f2: &str) -> Result<String, io::Error> {
+    let mut s1 = fs::read_to_string(f1)?;
+    let s2 = match fs::read_to_string(f2) {
+        Ok(s) => s,
+        Err(e) => return Err(e),
+    };
 
-enum Location {
-    Anonymous,
-    Known(Lat, Long),
-    Unknown,
-}
-
-impl fmt::Display for Location {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Self::Anonymous => write!(f, "anonymous"),
-            Self::Unknown => write!(f, "unknown"),
-            Self::Known(lat, long) => write!(f, "{} lat / {} long", lat, long),
-        }
-    }
+    s1.push('\n');
+    s1.push_str(&s2);
+    Ok(s1)
 }
 
 fn main() {
-    let address = Location::Unknown;
-    println!("Location: {}", address);
-
-    let address = Location::Anonymous;
-    println!("Location: {}", address);
-
-    let address = Location::Known(28.608295, -80.604177);
-    println!("Location: {}", address);
+    let result = read_and_combine("planets.txt", "dwarf_planets.txt");
+    match result {
+        Ok(s) => println!("result is ...\n{}", s),
+        Err(e) => println!("there was an error: {}", e),
+    }
 }
