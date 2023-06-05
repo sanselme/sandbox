@@ -2,6 +2,13 @@
 repo:
   - "*"
 
+# Add 'github-actions' label to any changes in the '.github' directory
+github-actions:
+  - .github/workflows/*
+  - .github/workflows/*/**
+  - .github/dependabot.yml
+  - .github/dependabot.yml/**
+
 # Add 'command' label to files in cmd
 command:
   - cmd/*
@@ -26,8 +33,8 @@ docs:
 scripts:
   - "*"
 
-# Add 'tooling' label to change within tools and .run
-tooling:
+# Add 'tools' label to change within tools and .run
+tools:
   - tools/*
   - tools/*/**
   - .run/*.xml
@@ -41,4 +48,8 @@ tooling:
   - src/**/*
 
 # Add 'test' label to any change to test files
-# test: []
+test:
+  - test/*
+  - test/**/*
+  - testdata/*
+  - testdata/**/*

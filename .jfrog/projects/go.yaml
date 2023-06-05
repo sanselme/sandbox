@@ -1,0 +1,8 @@
+version: 1
+type: go
+resolver:
+  repo: default-go-virtual
+  serverId: anselmes
+deployer:
+  repo: default-go-virtual
+  serverId: anselmes
