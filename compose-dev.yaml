@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  rust:
+    image: ghcr.io/sanselme/devcontainer:latest
+    privileged: true
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    command:
+      - /sbin/init
+    env_file:
+      - .env
+    volumes:
+      - .:/workspace
+    ports:
+      - 10022:22
+      - 10080:80
+      - 10443:443
+      - 15900:5900

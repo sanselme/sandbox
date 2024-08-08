@@ -1,3 +1,17 @@
 # Add 'repo' label to any root file changes
 repo:
   - "*"
+
+# Add 'devcontainer' label to any changes in the '.devcontainer' directory
+# Add 'devcontainer' label to any changes in the '.docker' directory
+devcontainer:
+  - .devcontainer/*
+  - .devcontainer/*/**
+  - .devcontainer/devcontainer.json
+  - .devcontainer/devcontainer.json/**
+  - .docker/*
+  - .docker/*/**
+  - .docker/Dockerfile
+  - .docker/Dockerfile/**
+  - .docker/docker-compose.yml
+  - .docker/docker-compose.yml/**
