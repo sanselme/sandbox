@@ -41,3 +41,4 @@ sudo apt-get install -y \
 # install trunk.io
 curl https://get.trunk.io -fsSL | sudo bash
 sudo chmod 755 "$(command -v trunk)"
+sudo chmod -R 777 "${RUSTUP_HOME}" "${CARGO_HOME}"
