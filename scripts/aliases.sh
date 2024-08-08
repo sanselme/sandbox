@@ -1,9 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
 
-# SPDX-License-Identifier: GPL-3.0
-
-# SPDX-License-Identifier: GPL-3.0
-
 alias dir="dir --color=auto"
 alias vdir="vdir --color=auto"
 

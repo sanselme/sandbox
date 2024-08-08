@@ -1,18 +1,10 @@
 #!/bin/bash
 # SPDX-License-Identifier: GPL-3.0
 
-# SPDX-License-Identifier: GPL-3.0
-
-# SPDX-License-Identifier: GPL-3.0
-
-# SPDX-License-Identifier: GPL-3.0
-
-# SPDX-License-Identifier: GPL-3.0
-
 set -euxo pipefail
 
 # configure environment
-[[ ! -d /home/vscode/.oh-my-zsh ]] && \
+[[ ! -d /home/vscode/.oh-my-zsh ]] &&
   sh -c "$(curl -fsSLo /home/vscode/.oh-my-zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sudo mkdir -p \
@@ -34,11 +26,18 @@ sudo chown -R vscode:vscode /home/vscode/
 # install packages
 sudo apt-get update -y
 sudo apt-get install -y \
-  pkg-config \
-  libssl-dev
+  clang \
+  gcc \
+  libssl-dev \
+  llvm \
+  pkg-config
 
 # install rust if not present
-[[ -n $(command -v rustc &> /dev/null) ]] && {
+[[ -n $(command -v rustc &>/dev/null) ]] && {
   curl -fsSLo /tmp/rustup-init.sh https://sh.rustup.rs
   sudo RUSTUP_HOME="${RUSTUP_HOME}" CARGO_HOME="${CARGO_HOME}" sh /tmp/rustup-init.sh -y
 }
+
+# install trunk.io
+curl https://get.trunk.io -fsSL | sudo bash
+sudo chmod 755 "$(command -v trunk)"
