@@ -5,4 +5,9 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "guessing-game"
+path = "src/cmd/guessing_game/main.rs"
+
 [dependencies]
+rand = "0.8.5"
