@@ -1,50 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use rust::{average, median, mode, pigify, Command};
-use std::collections::HashMap;
-use std::io;
-use std::io::BufRead;
+use minigrep::{run, Config};
+use std::{env, process};
 
 fn main() {
-    let mut numbers = [1, 2, 3, 4, 5];
-    println!("Average: {}", average(&numbers));
-    println!("Median: {}", median(&mut numbers));
-    println!("Mode: {}", mode(&numbers));
+    let args: Vec<String> = env::args().collect();
 
-    let word = "apple";
-    println!("{}", pigify(word));
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
 
-    let mut employees: HashMap<String, Vec<String>> = HashMap::new();
-    let stdin = io::stdin();
-    println!("Type 'All' to list all employees by department");
-    println!("Type 'List <department>' to list the employees of a department");
-    println!("Type 'Add <name> to <department>' to add an employee");
-    println!("Type 'Quit' to quit");
-    for line in stdin.lock().lines() {
-        let input = line.expect("error: unable to read user input");
-        match Command::from_input(&input) {
-            Some(Command::Quit) => break,
-            Some(Command::All) => {
-                for (dept, names) in &employees {
-                    let mut names = names.clone();
-                    names.sort();
-                    for name in names {
-                        println!("{}: {}", dept, name);
-                    }
-                }
-            }
-            Some(Command::List(dept)) => match employees.get(&dept) {
-                Some(names) => {
-                    for name in names {
-                        println!("{}: {}", dept, name);
-                    }
-                }
-                None => println!("I don not recognize that department"),
-            },
-            Some(Command::Add { dept, name }) => employees.entry(dept).or_default().push(name),
-            None => println!("Input error!"),
-        }
+    println!("Searching for {}", config.query);
+    println!("In file {}", config.file_path);
+
+    if let Err(e) = run(config) {
+        eprintln!("Application error: {e}");
+        process::exit(1);
     }
-
-    println!("Have a nice day!");
 }
