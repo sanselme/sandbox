@@ -7,15 +7,7 @@ edition = "2021"
 
 [[bin]]
 name = "guessing-game"
-path = "src/cmd/guessing_game/main.rs"
-
-[[bin]]
-name = "minigrep"
 path = "src/main.rs"
-
-[lib]
-name = "minigrep"
-path = "src/lib.rs"
 
 [dependencies]
 rand = "0.8.5"
