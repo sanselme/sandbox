@@ -1,34 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
+use minigrep::{run, Config};
+use std::{env, process};
 
 fn main() {
-    println!("Guess the number!");
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let config = Config::build(env::args()).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
 
-    loop {
-        println!("Please input your guess.");
-        let mut guess = String::new();
+    println!("Searching for {}", config.query);
+    println!("In file {}", config.file_path);
 
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("failed to read line");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        println!("You guessed: {guess}");
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            }
-        }
+    if let Err(e) = run(config) {
+        eprintln!("Application error: {e}");
+        process::exit(1);
     }
 }
