@@ -5,6 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/exercise-1/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/guessing-game/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/minigrep/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/lib-exercise/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/lib-minigrep/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
