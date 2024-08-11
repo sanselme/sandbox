@@ -9,6 +9,13 @@
       <option name="CREATE_LOCAL_GROUP" value="true" />
       <option name="LOCAL_PACKAGE_PREFIXES" />
     </GoCodeStyleSettings>
+    <codeStyleSettings language="Rust">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="2" />
+        <option name="CONTINUATION_INDENT_SIZE" value="2" />
+        <option name="TAB_SIZE" value="2" />
+      </indentOptions>
+    </codeStyleSettings>
     <codeStyleSettings language="go">
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />

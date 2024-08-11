@@ -1,10 +1,9 @@
 [package]
-name = "lib-minigrep"
+name = "libutil"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-lib-util = { path = "../../lib/lib-util" }
 
 [lints]
 workspace = true

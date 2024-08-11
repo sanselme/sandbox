@@ -1,13 +1,14 @@
 [package]
-name = "exercise-1"
+name = "exercises"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
 name = "exercise-1"
+path = "src/main.rs"
 
 [dependencies]
-lib-util = { path = "../../lib/lib-util" }
+libutil = { path = "../../lib/libutil" }
 
 [lints]
 workspace = true

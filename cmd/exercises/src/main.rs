@@ -3,7 +3,7 @@
 mod util;
 
 use crate::util::{pigify, Command};
-use lib_util::number::{average, median, mode};
+use libutil::number::{average, median, mode};
 use std::collections::HashMap;
 use std::io;
 use std::io::BufRead;

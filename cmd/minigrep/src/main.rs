@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use lib_minigrep::{run, Config};
+mod config;
+mod util;
+
+use crate::config::Config;
+use crate::util::run;
 use std::{env, process};
 
 fn main() {

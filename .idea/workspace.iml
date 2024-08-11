@@ -12,9 +12,22 @@
       <sourceFolder url="file://$MODULE_DIR$/cmd/exercises/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/jarvis/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/exercise/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/lib-ai/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/minion/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/lib-util/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/clos/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/gru/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/heimdall/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/loki/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hack/sandbox/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/error/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libai/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libconfig/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libgen/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libui/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libutil/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/logger/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tools/bindgen/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tools/eitry/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tools/nefario/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
