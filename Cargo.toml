@@ -6,7 +6,9 @@ unused = "allow" # note: For experimental dev.
 members = [
     # -- Libraries
     "lib/lib-exercise",
+    "lib/lib-minigrep",
     # -- Commands
     "cmd/exercise-1",
     "cmd/guessing-game",
+    "cmd/minigrep",
 ]

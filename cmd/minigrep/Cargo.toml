@@ -1,0 +1,10 @@
+[package]
+name = "minigrep"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lib-minigrep = { path = "../../lib/lib-minigrep" }
+
+[lints]
+workspace = true
