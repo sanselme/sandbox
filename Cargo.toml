@@ -4,6 +4,9 @@ unused = "allow" # note: For experimental dev.
 
 [workspace]
 members = [
+    # -- Libraries
+    "lib/lib-exercise",
     # -- Commands
+    "cmd/exercise-1",
     "cmd/guessing-game",
 ]
