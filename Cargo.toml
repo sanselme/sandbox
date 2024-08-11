@@ -1,14 +1,16 @@
 [workspace.lints.rust]
 unsafe_code = "forbid"
-unused = "allow" # note: For experimental dev.
+unused = "allow"       # debug: For experimental dev.
 
 [workspace]
+resolver = "2"
 members = [
-    # -- Libraries
-    "lib/lib-exercise",
-    "lib/lib-minigrep",
-    # -- Commands
-    "cmd/exercise-1",
-    "cmd/guessing-game",
-    "cmd/minigrep",
+  "cmd/exercises",
+  "cmd/guessing-game",
+  "cmd/jarvis",
+  "cmd/minigrep",
+  "lib/lib-ai",
+  "lib/lib-minigrep",
+  "lib/lib-util",
+  "lib/minion",
 ]

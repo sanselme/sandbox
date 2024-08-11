@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
+use lib_util::search::{search, search_case_insensitive};
 use std::error::Error;
 use std::{env, fs};
 
@@ -52,23 +53,9 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents
-        .lines()
-        .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
-        .collect()
-}
-
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents
-        .lines()
-        .filter(|line| line.contains(query))
-        .collect()
-}
-
 #[cfg(test)]
 mod tests {
-    use crate::{search, search_case_insensitive};
+    use lib_util::search::{search, search_case_insensitive};
 
     #[test]
     fn case_sensitive() {

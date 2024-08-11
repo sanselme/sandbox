@@ -5,13 +5,20 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/cmd/exercise-1/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/guessing-game/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/minigrep/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/lib-exercise/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/lib-minigrep/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/sandbox/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/exercises/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmd/jarvis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/exercise/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/lib-ai/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/minion/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/lib-util/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/.trunk/plugins" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -5,8 +5,8 @@ export EDITOR="vi"
 export GPG_TTY="$(tty)"
 
 # Re-export PATH
-export SCRIPTS="${HOME}/scripts"
-export TOOLS="${HOME}/tools"
+export SCRIPTS="/workspace/scripts"
+export TOOLS="/workspace/tools"
 
 export RUSTUP_HOME="/usr/local/rust/rustup"
 export CARGO_HOME="/usr/local/rust/cargo"

@@ -3,8 +3,11 @@ name = "exercise-1"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "exercise-1"
+
 [dependencies]
-lib-exercise = { path = "../../lib/lib-exercise" }
+lib-util = { path = "../../lib/lib-util" }
 
 [lints]
 workspace = true

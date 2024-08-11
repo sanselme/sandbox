@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use lib_exercise::{average, median, mode, pigify, Command};
+mod util;
+
+use crate::util::{pigify, Command};
+use lib_util::number::{average, median, mode};
 use std::collections::HashMap;
 use std::io;
 use std::io::BufRead;
