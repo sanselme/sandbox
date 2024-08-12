@@ -19,7 +19,16 @@ path = "src/types.rs"
 name = "fn"
 path = "src/functions_and_closures.rs"
 
+[[bin]]
+name = "macro"
+path = "src/macros.rs"
+
+[lib]
+proc-macro = true
+
 [dependencies]
+syn = "2.0.74"
+quote = "1.0.36"
 
 [lints]
 workspace = true
