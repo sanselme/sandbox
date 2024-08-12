@@ -11,6 +11,10 @@ path = "src/unsafe.rs"
 name = "traits"
 path = "src/traits.rs"
 
+[[bin]]
+name = "types"
+path = "src/types.rs"
+
 [dependencies]
 
 [lints]
