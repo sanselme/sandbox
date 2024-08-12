@@ -15,6 +15,10 @@ path = "src/traits.rs"
 name = "types"
 path = "src/types.rs"
 
+[[bin]]
+name = "fn"
+path = "src/functions_and_closures.rs"
+
 [dependencies]
 
 [lints]
