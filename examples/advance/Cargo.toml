@@ -7,6 +7,10 @@ edition = "2021"
 name = "unsafe"
 path = "src/unsafe.rs"
 
+[[bin]]
+name = "traits"
+path = "src/traits.rs"
+
 [dependencies]
 
 [lints]
