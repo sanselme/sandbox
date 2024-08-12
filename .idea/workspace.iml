@@ -17,9 +17,11 @@
       <sourceFolder url="file://$MODULE_DIR$/cmd/gru/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/heimdall/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/loki/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/examples/pattern-matching/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/hack/sandbox/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/error/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/libai/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/libauth/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/libconfig/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/libgen/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/libui/src" isTestSource="false" />
