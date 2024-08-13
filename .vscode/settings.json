@@ -9,7 +9,6 @@
     "**/.trunk/*plugins/": true,
     "**/.trunk/*tools/": true
   },
-  "trunk.trunkGrayOutNonBlockingIssues": false,
   "files.watcherExclude": {
     "**/.trunk/*actions/": true,
     "**/.trunk/*logs/": true,
@@ -21,8 +20,6 @@
   "github.copilot.editor.enableAutoCompletions": false,
   "git.autofetch": true,
   "githubPullRequests.pullBranch": "always",
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.runInTerminal": true,
   "git.enableCommitSigning": true,
   "git.enableSmartCommit": true,
   "git.timeline.showUncommitted": true,

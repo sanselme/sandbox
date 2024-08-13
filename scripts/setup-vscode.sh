@@ -3,6 +3,7 @@
 
 set -e
 
+# fixme: derive from .vscode/exensions.json
 DEFAULT_EXTENSION_LIST=(
   "aaron-bond.better-comments"
   "bierner.github-markdown-preview"
