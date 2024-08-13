@@ -8,16 +8,28 @@ pub type Job = Box<dyn FnOnce() + Send + 'static>;
 #[derive(Debug)]
 pub struct Worker {
     pub id: usize,
-    pub thread: thread::JoinHandle<()>,
+    pub thread: Option<thread::JoinHandle<()>>,
 }
 
 impl Worker {
     pub fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
         let thread = thread::spawn(move || loop {
-            let job = receiver.lock().unwrap().recv().unwrap();
-            println!("Worker {id} got a job! Executing...");
-            job();
+            let message = receiver.lock().unwrap().recv();
+
+            match message {
+                Ok(job) => {
+                    println!("Worker {id} got a job! Executing...");
+                    job();
+                }
+                Err(_) => {
+                    println!("Worker {id} disconnected! Shutting down...");
+                    break;
+                }
+            }
         });
-        Worker { id, thread }
+        Worker {
+            id,
+            thread: Some(thread),
+        }
     }
 }
