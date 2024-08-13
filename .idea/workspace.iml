@@ -31,6 +31,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tools/bindgen/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tools/eitry/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tools/nefario/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/tracer/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
