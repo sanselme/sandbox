@@ -5,7 +5,11 @@ edition = "2021"
 
 [[bin]]
 name = "exercise-1"
-path = "src/main.rs"
+path = "src/ex1/main.rs"
+
+[[bin]]
+name = "exercise-2"
+path = "src/ex2/main.rs"
 
 [dependencies]
 libutil = { path = "../../lib/libutil" }

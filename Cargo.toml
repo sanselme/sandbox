@@ -1,5 +1,5 @@
 [workspace.lints.rust]
-#unsafe_code = "forbid"
+unsafe_code = "forbid"
 unused = "allow" # debug: For experimental dev.
 
 [workspace]
@@ -13,19 +13,4 @@ members = [
   "hack/sandbox",
   "lib/libui",
   "lib/libutil",
-  #  "cmd/clos",
-  #  "cmd/gru",
-  #  "cmd/heimdall",
-  #  "cmd/jarvis",
-  #  "cmd/loki",
-  #  "lib/error",
-  #  "lib/libai",
-  #  "lib/libauth",
-  #  "lib/libconfig",
-  #  "lib/libgen",
-  #  "lib/logger",
-  #  "lib/minion",
-  #  "tools/bindgen",
-  #  "tools/eitry",
-  #  "tools/nefario",
 ]
