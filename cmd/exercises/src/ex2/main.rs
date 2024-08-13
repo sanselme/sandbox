@@ -2,14 +2,17 @@
 
 mod handler;
 
-use std::io::prelude::*;
-use std::net::TcpListener;
+use exercises::ThreadPool;
+use std::{io::prelude::*, net::TcpListener};
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
+    let pool = ThreadPool::new(4);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handler::handle_connection(stream);
+        pool.execute(|| {
+            handler::handle_connection(stream);
+        });
     }
 }

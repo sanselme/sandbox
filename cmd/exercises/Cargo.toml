@@ -13,6 +13,7 @@ path = "src/ex2/main.rs"
 
 [dependencies]
 libutil = { path = "../../lib/libutil" }
+futures = { version = "0.3.30", features = ["thread-pool"] }
 
 [lints]
 workspace = true
