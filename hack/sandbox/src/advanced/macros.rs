@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use advance::{some_name, sql};
+use macros::{some_name, sql};
 
 fn main() {
     let name = some_name!("John");

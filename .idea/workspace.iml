@@ -17,8 +17,6 @@
       <sourceFolder url="file://$MODULE_DIR$/cmd/gru/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/heimdall/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmd/loki/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/examples/advance/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/examples/pattern-matching/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/hack/sandbox/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/error/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/libai/src" isTestSource="false" />
@@ -32,6 +30,10 @@
       <sourceFolder url="file://$MODULE_DIR$/tools/eitry/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tools/nefario/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/tracer/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/examples/design-pattern/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hack/advance/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hack/pattern-matching/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hack/macros/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />

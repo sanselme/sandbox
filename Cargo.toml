@@ -1,15 +1,11 @@
 [workspace.lints.rust]
-unsafe_code = "forbid"
-unused = "allow" # debug: For experimental dev.
+#unsafe_code = "forbid"
+unused = "allow"       # debug: For experimental dev.
 
 [workspace]
 resolver = "2"
 members = [
-  "cmd/exercises",
-  "cmd/guessing-game",
-  "cmd/minigrep",
-  "examples/advance",
-  "examples/pattern-matching",
+  "hack/macros",
   "hack/sandbox",
   "lib/libui",
   "lib/libutil",

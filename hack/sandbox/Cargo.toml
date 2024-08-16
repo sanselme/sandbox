@@ -1,0 +1,52 @@
+[package]
+name = "sandbox"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "pattern-matching"
+path = "src/pattern_matching.rs"
+
+[[bin]]
+name = "guessing-game"
+path = "src/guessing_game.rs"
+
+[[bin]]
+name = "minigrep"
+path = "src/minigrep/main.rs"
+
+[[bin]]
+name = "exercise-1"
+path = "src/ex1/main.rs"
+
+[[bin]]
+name = "exercise-2"
+path = "src/ex2/main.rs"
+
+[[bin]]
+name = "unsafe"
+path = "src/advanced/unsafe.rs"
+
+[[bin]]
+name = "traits"
+path = "src/advanced/traits.rs"
+
+[[bin]]
+name = "types"
+path = "src/advanced/types.rs"
+
+[[bin]]
+name = "fn"
+path = "src/advanced/functions_and_closures.rs"
+
+[[bin]]
+name = "macro"
+path = "src/advanced/macros.rs"
+
+[dependencies]
+libui = { path = "../../lib/libui" }
+libutil = { path = "../../lib/libutil" }
+macros = { path = "../macros" }
+
+[lints]
+workspace = true
