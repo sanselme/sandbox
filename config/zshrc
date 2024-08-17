@@ -91,7 +91,6 @@ plugins=(
   node
   otp
   sudo
-  vault
   vscode
   z
 )

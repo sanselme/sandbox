@@ -5,8 +5,8 @@ unused = "allow"       # debug: For experimental dev.
 [workspace]
 resolver = "2"
 members = [
-  "hack/macros",
-  "hack/sandbox",
-  "lib/libui",
-  "lib/libutil",
+  "pkg/sandbox",
+  "pkg/sandbox-macros",
+  "pkg/libui",
+  "pkg/libutil",
 ]

@@ -2,6 +2,7 @@
 
 # Export environment variables
 export EDITOR="vi"
+export GO11MODULE="on"
 export GPG_TTY="$(tty)"
 
 # Re-export PATH
@@ -10,5 +11,6 @@ export TOOLS="/workspace/tools"
 
 export RUSTUP_HOME="/usr/local/rust/rustup"
 export CARGO_HOME="/usr/local/rust/cargo"
+export GOPATH="/usr/local/go"
 
-export PATH="${CARGO_HOME}/bin:${TOOLS}${PATH:+:${PATH}}"
+export PATH="${CARGO_HOME}/bin:${GOPATH}:${TOOLS}${PATH:+:${PATH}}"

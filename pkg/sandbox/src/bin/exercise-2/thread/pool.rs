@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
 use crate::thread::worker::{Job, Worker};
-use futures::SinkExt;
 use std::sync::{mpsc, Arc, Mutex};
 
 #[derive(Debug)]

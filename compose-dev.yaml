@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  rust:
+  sandbox:
     image: ghcr.io/sanselme/devcontainer:latest
     privileged: true
     stdin_open: true

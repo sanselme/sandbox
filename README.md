@@ -7,21 +7,14 @@
 [![Review][review-badge]][review-link]
 [![Releases][releases-badge]][releases-link]
 
-[ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/sanselme/rust/badge
-
-[ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/sanselme/rust
-
-[ci-badge]: https://github.com/sanselme/rust/actions/workflows/cicd.yml/badge.svg
-
-[ci-link]: https://github.com/sanselme/rust/actions/workflows/cicd.yml
-
-[review-badge]: https://github.com/sanselme/rust/actions/workflows/review.yml/badge.svg
-
-[review-link]: https://github.com/sanselme/rust/actions/workflows/review.yml
-
-[releases-badge]: https://github.com/sanselme/rust/actions/workflows/release.yml/badge.svg
-
-[releases-link]: https://github.com/sanselme/rust/actions/workflows/release.yml
+[ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/sanselme/sandbox/badge
+[ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/sanselme/sandbox
+[ci-badge]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml/badge.svg
+[ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
+[review-badge]: https://github.com/sanselme/sandbox/actions/workflows/review.yml/badge.svg
+[review-link]: https://github.com/sanselme/sandbox/actions/workflows/review.yml
+[releases-badge]: https://github.com/sanselme/sandbox/actions/workflows/release.yml/badge.svg
+[releases-link]: https://github.com/sanselme/sandbox/actions/workflows/release.yml
 
 ---
 

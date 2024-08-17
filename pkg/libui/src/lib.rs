@@ -1,3 +1,3 @@
 // SPDX-License-Identifier: GPL-3.0
 
-fn main() {}
+pub mod gui;

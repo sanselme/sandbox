@@ -2,4 +2,4 @@
 
 ## To Contribute
 
-Open a PR https://github.com/sanselme/rust/compare.
+Open a PR https://github.com/sanselme/sandbox/compare.
