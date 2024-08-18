@@ -39,7 +39,7 @@ name = "macro"
 libui = { path = "../libui" }
 libutil = { path = "../libutil" }
 rand = "0.8.5"
-sandbox_macros = { path = "../sandbox-macros" }
+sandbox-macros = { path = "../sandbox-macros" }
 
 [lints]
 workspace = true
