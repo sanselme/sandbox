@@ -1,28 +1,28 @@
 // SPDX-License-Identifier: GPL-3.0
 
+use bytes::Bytes;
 use mini_redis::{Command, Connection, Frame, Result};
 use std::collections::HashMap;
+use std::sync::{Arc, Mutex};
 use tokio::net::{TcpListener, TcpStream};
 
-async fn process(socket: TcpStream) {
-    // a hashmap is used to store data
-    let mut db = HashMap::new();
+type Db = Arc<Mutex<HashMap<String, Bytes>>>;
 
-    // the `Connection` lets us read/write redis **frames** instead of byte streams
-    // the `Connection` type is defined by sandbox-redis
+async fn process(socket: TcpStream, db: Db) {
+    // connection, provided by `sandbox-redis`, handles parsing frames
+    // from the socket
     let mut connection = Connection::new(socket);
 
-    // use `read_frame` to receive a command from the connection
     while let Some(frame) = connection.read_frame().await.unwrap() {
         let response = match Command::from_frame(frame).unwrap() {
             Command::Set(cmd) => {
-                // the value is stored as `Vec<u8>`
-                db.insert(cmd.key().to_string(), cmd.value().to_vec());
+                let mut db = db.lock().unwrap();
+                db.insert(cmd.key().to_string(), cmd.value().clone());
                 Frame::Simple("OK".to_string())
             }
             Command::Get(cmd) => {
+                let db = db.lock().unwrap();
                 if let Some(value) = db.get(cmd.key()) {
-                    // `Frame::Bulk` expects dat to be of type `Bytes`
                     Frame::Bulk(value.clone().into())
                 } else {
                     Frame::Null
@@ -48,15 +48,22 @@ async fn process(socket: TcpStream) {
 async fn main() -> Result<()> {
     // bind the listener to the address
     let listener = TcpListener::bind("127.0.0.1:6379").await?;
+    println!("Listening!");
+
+    let db = Arc::new(Mutex::new(HashMap::new()));
 
     loop {
         // the second item contains the IP and Port of the new connection
         let (socket, _) = listener.accept().await?;
 
+        // clone the handle to the hash map
+        let db = db.clone();
+        println!("Accepted!");
+
         // a new task is spawned for each inbound socket
         // the socket is moved to the new task and processed there
         tokio::spawn(async move {
-            process(socket).await;
+            process(socket, db).await;
         });
     }
 }
