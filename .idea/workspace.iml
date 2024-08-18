@@ -38,6 +38,8 @@
       <sourceFolder url="file://$MODULE_DIR$/pkg/libutil/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-macros/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
