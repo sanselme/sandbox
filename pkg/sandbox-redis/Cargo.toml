@@ -3,12 +3,6 @@ name = "sandbox-redis"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "server"
-
-[[bin]]
-name = "client"
-
 [dependencies]
 bytes = "1"
 mini-redis = "0.4"
