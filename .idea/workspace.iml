@@ -40,10 +40,14 @@
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/examples" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/api/fuckyou/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/api/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/cli/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/.trunk/plugins" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dictionaries" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
