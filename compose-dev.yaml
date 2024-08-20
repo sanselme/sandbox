@@ -2,12 +2,12 @@ version: "3.9"
 services:
   sandbox:
     image: ghcr.io/sanselme/devcontainer:latest
+    command: /sbin/init
+    #platform: linux/amd64
     privileged: true
     stdin_open: true
     tty: true
     working_dir: /workspace
-    command:
-      - /sbin/init
     env_file:
       - .env
     volumes:
@@ -17,3 +17,4 @@ services:
       - 10080:80
       - 10443:443
       - 15900:5900
+      - 16443:6443
