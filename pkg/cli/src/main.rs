@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 
+use anyhow::{Context, Result};
 use clap::Parser;
+use std::io::BufRead;
 use std::{fs, path};
 
 /// Search for a pattern in a file and display the lines that contain it.
@@ -12,13 +14,16 @@ struct Cli {
     path: path::PathBuf,
 }
 
-fn main() {
+fn main() -> Result<()> {
     let args = Cli::parse();
-    let content = fs::read_to_string(&args.path).expect("could not read file");
+    let content = fs::read_to_string(&args.path)
+        .with_context(|| format!("could not read file `{}`", args.path.display()))?;
 
     for line in content.lines() {
         if line.contains(&args.pattern) {
             println!("{line}");
         }
     }
+
+    Ok(())
 }
