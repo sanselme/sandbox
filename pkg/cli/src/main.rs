@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
 use clap::Parser;
-use std::path;
+use std::{fs, path};
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser)]
@@ -14,6 +14,11 @@ struct Cli {
 
 fn main() {
     let args = Cli::parse();
+    let content = fs::read_to_string(&args.path).expect("could not read file");
 
-    println!("pattern: {:?}, path: {:?}", args.pattern, args.path);
+    for line in content.lines() {
+        if line.contains(&args.pattern) {
+            println!("{line}");
+        }
+    }
 }
