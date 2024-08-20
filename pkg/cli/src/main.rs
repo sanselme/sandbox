@@ -2,8 +2,8 @@
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use std::io::BufRead;
-use std::{fs, path};
+use cli::find_matches;
+use std::{fs, io, path};
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser)]
@@ -19,11 +19,6 @@ fn main() -> Result<()> {
     let content = fs::read_to_string(&args.path)
         .with_context(|| format!("could not read file `{}`", args.path.display()))?;
 
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("{line}");
-        }
-    }
-
+    find_matches(&content, &args.pattern, &mut io::stdout());
     Ok(())
 }
