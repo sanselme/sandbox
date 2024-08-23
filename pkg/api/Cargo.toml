@@ -1,0 +1,21 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = []
+## @@protoc_insertion_point(features)
+
+[dependencies]
+pbjson = "0.7.0"
+pbjson-types = "0.7.0"
+prost = "0.13.1"
+serde = "1.0.208"
+tonic = "0.12.1"
+
+[lints]
+workspace = true
