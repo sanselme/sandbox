@@ -68,7 +68,9 @@ sudo -E mkdir -p \
   curl -fsSLo /tmp/rustup-init.sh https://sh.rustup.rs
   sudo -E RUSTUP_HOME="${RUSTUP_HOME}" CARGO_HOME="${CARGO_HOME}" sh /tmp/rustup-init.sh -y
   rustup component add rust-src
+  cargo install cargo-bundle
   rustc --version
+  cargo --version
 }
 
 # install trunk.io
