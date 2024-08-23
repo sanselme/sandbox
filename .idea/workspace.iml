@@ -40,9 +40,13 @@
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/examples" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/aibuddy/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/api/fuckyou/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/api/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/cli/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/cli/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/grpc/client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/grpc/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
