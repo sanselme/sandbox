@@ -1,14 +1,10 @@
 [workspace.lints.rust]
-#unsafe_code = "forbid"
+unsafe_code = "forbid"
 unused = "allow"       # debug: For experimental dev.
 
 [workspace]
 resolver = "2"
 members = [
-  "pkg/cli",
-  "pkg/libui",
-  "pkg/libutil",
-  "pkg/sandbox",
-  "pkg/sandbox-macros",
-  "pkg/sandbox-redis",
+  "pkg/api",
+  "pkg/grpc",
 ]
