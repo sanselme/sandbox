@@ -82,6 +82,9 @@ sudo -E mkdir -p \
 
 # todo: install k0s
 curl -fsSL https://get.k0s.sh | sudo sh
+#sudo k0s install controller --single --config config/k0s.yaml
+#sudo k0s start
+#sudo k0s kubeconfig > hack/kubeconfig.yaml
 
 # post
 sudo -E chmod -R 777 "${RUSTUP_HOME}" "${CARGO_HOME}"
