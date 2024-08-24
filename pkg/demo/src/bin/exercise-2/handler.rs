@@ -10,12 +10,12 @@ pub fn handle_connection(mut stream: TcpStream) {
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 
     let (status_line, filename) = match &request_line[..] {
-        "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "hack/sandbox/public/hello.html"),
+        "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "hack/demo/public/hello.html"),
         "GET /sleep HTTP/1.1" => {
             thread::sleep(Duration::from_secs(5));
-            ("HTTP/1.1 200 OK", "hack/sandbox/public/hello.html")
+            ("HTTP/1.1 200 OK", "hack/demo/public/hello.html")
         }
-        _ => ("HTTP/1.1 404 NOT FOUND", "hack/sandbox/public/404.html"),
+        _ => ("HTTP/1.1 404 NOT FOUND", "hack/demo/public/404.html"),
     };
 
     let contents = fs::read_to_string(filename).unwrap();

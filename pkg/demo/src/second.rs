@@ -5,7 +5,7 @@
 /// # Example
 ///
 /// ```
-/// let s = sandbox::Second::new(42);
+/// let s = demo::Second::new(42);
 /// assert_eq!(42, s.value());
 #[derive(Default)]
 pub struct Second {

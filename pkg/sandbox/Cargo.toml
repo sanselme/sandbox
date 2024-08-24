@@ -3,43 +3,7 @@ name = "sandbox"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "pattern-matching"
-
-[[bin]]
-name = "guessing-game"
-
-[[bin]]
-name = "minigrep"
-
-# note: Exercises
-[[bin]]
-name = "exercise-1"
-
-[[bin]]
-name = "exercise-2"
-
-# note: Advanced Features
-[[bin]]
-name = "unsafe"
-
-[[bin]]
-name = "traits"
-
-[[bin]]
-name = "types"
-
-[[bin]]
-name = "fn"
-
-[[bin]]
-name = "macro"
-
 [dependencies]
-libui = { path = "../libui" }
-libutil = { path = "../libutil" }
-rand = "0.8.5"
-sandbox-macros = { path = "../sandbox-macros" }
 
 [lints]
 workspace = true

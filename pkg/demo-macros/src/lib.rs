@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
+mod fib;
+
 use proc_macro;
 use proc_macro::TokenStream;
 use quote::quote;
