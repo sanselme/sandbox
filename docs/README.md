@@ -8,12 +8,33 @@
     - [CloudEvent.AttributesEntry](#api-v1-CloudEvent-AttributesEntry)
     - [CloudEvent.CloudEventAttributeValue](#api-v1-CloudEvent-CloudEventAttributeValue)
     - [CloudEventBatch](#api-v1-CloudEventBatch)
+    - [PublishRequest](#api-v1-PublishRequest)
+    - [SubscriptionRequest](#api-v1-SubscriptionRequest)
+  
+    - [CloudEventService](#api-v1-CloudEventService)
+  
+- [v1/health.proto](#v1_health-proto)
+    - [HealthCheckRequest](#api-v1-HealthCheckRequest)
+    - [HealthCheckResponse](#api-v1-HealthCheckResponse)
+  
+    - [HealthCheckResponse.ServingStatus](#api-v1-HealthCheckResponse-ServingStatus)
+  
+    - [Health](#api-v1-Health)
   
 - [v1alpha1/helloworld.proto](#v1alpha1_helloworld-proto)
     - [SayHelloRequest](#api-v1alpha1-SayHelloRequest)
     - [SayHelloResponse](#api-v1alpha1-SayHelloResponse)
   
     - [GreeterService](#api-v1alpha1-GreeterService)
+  
+- [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
+    - [Feature](#api-v1alpha1-Feature)
+    - [Point](#api-v1alpha1-Point)
+    - [Rectangle](#api-v1alpha1-Rectangle)
+    - [RouteNote](#api-v1alpha1-RouteNote)
+    - [RouteSummary](#api-v1alpha1-RouteSummary)
+  
+    - [RouteGuide](#api-v1alpha1-RouteGuide)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -106,11 +127,128 @@ CloudEvent Protobuf Batch Format
 
 
 
- 
+
+<a name="api-v1-PublishRequest"></a>
+
+### PublishRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| topic | [string](#string) |  |  |
+| event | [CloudEvent](#api-v1-CloudEvent) |  |  |
+
+
+
+
+
+
+<a name="api-v1-SubscriptionRequest"></a>
+
+### SubscriptionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| topic | [string](#string) |  |  |
+
+
+
+
 
  
 
  
+
+ 
+
+
+<a name="api-v1-CloudEventService"></a>
+
+### CloudEventService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Publish | [PublishRequest](#api-v1-PublishRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| Subscribe | [SubscriptionRequest](#api-v1-SubscriptionRequest) | [CloudEvent](#api-v1-CloudEvent) stream |  |
+
+ 
+
+
+
+<a name="v1_health-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## v1/health.proto
+
+
+
+<a name="api-v1-HealthCheckRequest"></a>
+
+### HealthCheckRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| service | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="api-v1-HealthCheckResponse"></a>
+
+### HealthCheckResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [HealthCheckResponse.ServingStatus](#api-v1-HealthCheckResponse-ServingStatus) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="api-v1-HealthCheckResponse-ServingStatus"></a>
+
+### HealthCheckResponse.ServingStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN | 0 |  |
+| SERVING | 1 |  |
+| NOT_SERVING | 2 |  |
+| SERVICE_UNKNOWN | 3 | used only by Watch |
+
+
+ 
+
+ 
+
+
+<a name="api-v1-Health"></a>
+
+### Health
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Check | [HealthCheckRequest](#api-v1-HealthCheckRequest) | [HealthCheckResponse](#api-v1-HealthCheckResponse) | if the requested service is unknown, the call will fail with status NOT_FOUND |
+| Watch | [HealthCheckRequest](#api-v1-HealthCheckRequest) | [HealthCheckResponse](#api-v1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes
+
+if the requested service is unknown when the call is received, the server will send a message setting the serving status to SERVICE_UNKNOWN but will *not* terminate the call if at some future point, the serving status of the service becomes known, the server will send a new message with the service&#39;s serving status
+
+if the call terminates with status UNIMPLEMENTED, then clients should assume this method is not supported and should not retry the call if the call terminates with any other status (including OK), clients should retry the call with appropriate exponential backoff |
 
  
 
@@ -167,6 +305,122 @@ CloudEvent Protobuf Batch Format
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | SayHello | [SayHelloRequest](#api-v1alpha1-SayHelloRequest) | [SayHelloResponse](#api-v1alpha1-SayHelloResponse) |  |
+
+ 
+
+
+
+<a name="v1alpha1_route_guide-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## v1alpha1/route_guide.proto
+
+
+
+<a name="api-v1alpha1-Feature"></a>
+
+### Feature
+A feature names something at a given point.
+If a feature could not be named, the name is empty.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the feature. |
+| location | [Point](#api-v1alpha1-Point) |  | The point where the feature is detected. |
+
+
+
+
+
+
+<a name="api-v1alpha1-Point"></a>
+
+### Point
+Points are represented as latitude-longitude pairs in the E7 representation
+(degrees multiplied by 10**7 and rounded to the nearest integer).
+Latitudes should be in the range &#43;/- 90 degrees and longitude should be in
+the range &#43;/- 180 degrees (inclusive).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| latitude | [int32](#int32) |  |  |
+| longitude | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="api-v1alpha1-Rectangle"></a>
+
+### Rectangle
+A latitude-longitude rectangle, represented as two diagonally oposite
+points &#34;lo&#34; and &#34;hi&#34;.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| lo | [Point](#api-v1alpha1-Point) |  | One corner of the rectangle. |
+| hi | [Point](#api-v1alpha1-Point) |  | The other corner of the rectangle. |
+
+
+
+
+
+
+<a name="api-v1alpha1-RouteNote"></a>
+
+### RouteNote
+A RouteNote is a message sent while at a given point.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| location | [Point](#api-v1alpha1-Point) |  | The location from which the message is sent. |
+| message | [string](#string) |  | The message to be sent. |
+
+
+
+
+
+
+<a name="api-v1alpha1-RouteSummary"></a>
+
+### RouteSummary
+A RouteSummary is received in response to a RecordRoute rpc.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| point_count | [int32](#int32) |  | The number of points received. |
+| feature_count | [int32](#int32) |  | The number of known feature passed while traversing the route. |
+| distance | [int32](#int32) |  | The distance covered in metres. |
+| elapsed_time | [int32](#int32) |  | The duration of the traversal in seconds. |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="api-v1alpha1-RouteGuide"></a>
+
+### RouteGuide
+Interface exported by the server.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetFeature | [Point](#api-v1alpha1-Point) | [Feature](#api-v1alpha1-Feature) | Obtains the feature at a given position. |
+| ListenFeatures | [Rectangle](#api-v1alpha1-Rectangle) | [Feature](#api-v1alpha1-Feature) stream | Obtains the Features available within the given Rectangle. Results are streamed rather than returned at once (e.g. in a response message with a repeated field), as the rectangle may cover a large area and contain a huge number of features. |
+| RecordRoute | [Point](#api-v1alpha1-Point) stream | [RouteSummary](#api-v1alpha1-RouteSummary) | Accepts a stream of Points on a route being traversed, returning a RouteSummary when traversal is completed. |
+| Routechat | [RouteNote](#api-v1alpha1-RouteNote) stream | [RouteNote](#api-v1alpha1-RouteNote) stream | Accepts a stream of RouteNotes sent while a route is being traversed, while receiving other RouteNotes (e.g. from other users). |
 
  
 

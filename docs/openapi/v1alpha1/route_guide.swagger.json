@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "v1/cloudevent.proto",
+    "title": "v1alpha1/route_guide.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "CloudEventService"
+      "name": "RouteGuide"
     }
   ],
   "consumes": [
@@ -17,36 +17,6 @@
   ],
   "paths": {},
   "definitions": {
-    "CloudEventCloudEventAttributeValue": {
-      "type": "object",
-      "properties": {
-        "ceBoolean": {
-          "type": "boolean"
-        },
-        "ceInteger": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "ceString": {
-          "type": "string"
-        },
-        "ceBytes": {
-          "type": "string",
-          "format": "byte"
-        },
-        "ceUri": {
-          "type": "string"
-        },
-        "ceUriRef": {
-          "type": "string"
-        },
-        "ceTimestamp": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "description": "*\nThe CloudEvent specification defines\nseven attribute value types..."
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -77,43 +47,73 @@
         }
       }
     },
-    "v1CloudEvent": {
+    "v1alpha1Feature": {
       "type": "object",
       "properties": {
-        "id": {
+        "name": {
           "type": "string",
-          "title": "Required Attributes"
+          "description": "The name of the feature."
         },
-        "source": {
-          "type": "string",
-          "title": "URI-reference"
-        },
-        "specVersion": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/CloudEventCloudEventAttributeValue"
-          },
-          "title": "Optional \u0026 Extension Attributes"
-        },
-        "binaryData": {
-          "type": "string",
-          "format": "byte"
-        },
-        "textData": {
-          "type": "string"
-        },
-        "protoData": {
-          "$ref": "#/definitions/protobufAny"
+        "location": {
+          "$ref": "#/definitions/v1alpha1Point",
+          "description": "The point where the feature is detected."
         }
       },
-      "description": "-- CloudEvent Context Attributes",
-      "title": "CloudEvent Protobuf Format"
+      "description": "A feature names something at a given point.\nIf a feature could not be named, the name is empty."
+    },
+    "v1alpha1Point": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "longitude": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Points are represented as latitude-longitude pairs in the E7 representation\n(degrees multiplied by 10**7 and rounded to the nearest integer).\nLatitudes should be in the range +/- 90 degrees and longitude should be in\nthe range +/- 180 degrees (inclusive)."
+    },
+    "v1alpha1RouteNote": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/v1alpha1Point",
+          "description": "The location from which the message is sent."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message to be sent."
+        }
+      },
+      "description": "A RouteNote is a message sent while at a given point."
+    },
+    "v1alpha1RouteSummary": {
+      "type": "object",
+      "properties": {
+        "pointCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of points received."
+        },
+        "featureCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of known feature passed while traversing the route."
+        },
+        "distance": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The distance covered in metres."
+        },
+        "elapsedTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The duration of the traversal in seconds."
+        }
+      },
+      "description": "A RouteSummary is received in response to a RecordRoute rpc."
     }
   }
 }

@@ -9,7 +9,7 @@ managed:
       value: pkg/api/v1alpha1
     - file_option: go_package_prefix
       module: buf.build/sanselme/api
-      value: github.com/sanselme/sandbox/api
+      value: github.com/sanselme/demo/api
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.34.2
     out: pkg/api
