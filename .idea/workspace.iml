@@ -36,7 +36,6 @@
       <sourceFolder url="file://$MODULE_DIR$/hack/macros/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/libui/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/libutil/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-macros/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/examples" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/sandbox-redis/src" isTestSource="false" />
@@ -47,11 +46,17 @@
       <sourceFolder url="file://$MODULE_DIR$/pkg/cli/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/grpc/client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/grpc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/ce/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/demo-macros/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/demo/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/mandelbrot/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/oscore/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/.trunk/plugins" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dictionaries" />
+      <excludeFolder url="file://$MODULE_DIR$/pkg/oscore/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
