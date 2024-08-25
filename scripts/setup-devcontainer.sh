@@ -41,7 +41,8 @@ sudo apt-get install -y \
   llvm \
   nodejs \
   protobuf-compiler \
-  protobuf-compiler-grpc
+  protobuf-compiler-grpc \
+  qemu-system
 
 sudo -E mkdir -p \
   "${CARGO_HOME}" \
