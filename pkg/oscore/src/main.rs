@@ -2,22 +2,38 @@
 
 #![no_std]
 #![no_main]
-
-mod vga_buffer;
+#![feature(custom_test_frameworks)]
+#![test_runner(oscore::test_runner)]
+#![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
+use oscore::println;
+
+#[no_mangle]
+pub extern "C" fn _start() -> ! {
+    println!("Hello World{}", "!");
+
+    #[cfg(test)]
+    test_main();
+
+    loop {}
+}
 
 /// This function is called on panic.
+#[cfg(not(test))]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
     loop {}
 }
 
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
-    println!("Hello World{}", "!");
-    // panic!("Some panic message");
+#[cfg(test)]
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    oscore::test_panic_handler(info)
+}
 
-    loop {}
+#[test_case]
+fn trivial_assertion() {
+    assert_eq!(1, 1);
 }

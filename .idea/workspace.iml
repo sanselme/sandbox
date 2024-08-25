@@ -51,6 +51,7 @@
       <sourceFolder url="file://$MODULE_DIR$/pkg/demo/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/mandelbrot/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/pkg/oscore/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pkg/oscore/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/src/cmd/guessing_game/demo/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.cache" />
