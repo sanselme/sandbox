@@ -4,7 +4,7 @@
 
 use core::panic::PanicInfo;
 use lazy_static::lazy_static;
-use oscore::{exit_qemu, gdt, serial_print, serial_println, QemuExitCode};
+use oscore::{exit_qemu, gdt, hlt_loop, serial_print, serial_println, QemuExitCode};
 use volatile::Volatile;
 use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame};
 
@@ -18,7 +18,7 @@ extern "x86-interrupt" fn test_double_fault_handler(
 ) -> ! {
     serial_println!("[ok]");
     exit_qemu(QemuExitCode::Success);
-    loop {}
+    hlt_loop();
 }
 
 #[no_mangle]

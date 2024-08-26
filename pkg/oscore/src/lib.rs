@@ -14,6 +14,8 @@ pub mod vga_buffer;
 
 use core::any::type_name;
 use core::panic::PanicInfo;
+use x86_64::instructions;
+use x86_64::instructions::interrupts;
 use x86_64::instructions::port::Port;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -41,6 +43,14 @@ where
 pub fn init() {
     gdt::init();
     interrupt::init_idt();
+    unsafe { interrupt::PICS.lock().initialize() };
+    interrupts::enable();
+}
+
+pub fn hlt_loop() -> ! {
+    loop {
+        instructions::hlt();
+    }
 }
 
 pub fn test_runner(tests: &[&dyn Testable]) {
@@ -55,7 +65,7 @@ pub fn test_panic_handler(info: &PanicInfo) -> ! {
     serial_println!("[failed]\n");
     serial_println!("Error: {}\n", info);
     exit_qemu(QemuExitCode::Failed);
-    loop {}
+    hlt_loop();
 }
 
 pub fn exit_qemu(exit_code: QemuExitCode) {
@@ -71,7 +81,7 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 pub extern "C" fn _start() -> ! {
     init();
     test_main();
-    loop {}
+    hlt_loop();
 }
 
 #[cfg(test)]

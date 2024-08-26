@@ -4,6 +4,7 @@ use core::fmt::{Arguments, Write};
 use lazy_static::lazy_static;
 use spin::Mutex;
 use volatile::Volatile;
+use x86_64::instructions::interrupts;
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -140,14 +141,20 @@ macro_rules! println {
     ($($arg:tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)))
 }
 
+/// Prints the given formatted string to the VGA text buffer
+/// through the global `WRITER` instance.
 #[doc(hidden)]
 pub fn _print(args: Arguments) {
-    WRITER.lock().write_fmt(args).unwrap();
+    use core::fmt::Write;
+    interrupts::without_interrupts(|| {
+        WRITER.lock().write_fmt(args).unwrap();
+    });
 }
 
 #[cfg(test)]
 mod tests {
     use crate::vga_buffer::{BUFFER_HEIGHT, WRITER};
+    use x86_64::instructions::interrupts;
 
     #[test_case]
     fn test_println_simple() {
@@ -163,11 +170,15 @@ mod tests {
 
     #[test_case]
     fn test_println_output() {
+        use core::fmt::Write;
         let s = "Some test string that fits on a single line";
-        println!("{}", s);
-        for (i, c) in s.chars().enumerate() {
-            let screen_char = WRITER.lock().buffer.chars[BUFFER_HEIGHT - 2][i].read();
-            assert_eq!(char::from(screen_char.ascii_character), c);
-        }
+        interrupts::without_interrupts(|| {
+            let mut writer = WRITER.lock();
+            writeln!(writer, "\n{}", s).expect("writeln failed");
+            for (i, c) in s.chars().enumerate() {
+                let screen_char = writer.buffer.chars[BUFFER_HEIGHT - 2][i].read();
+                assert_eq!(char::from(screen_char.ascii_character), c);
+            }
+        });
     }
 }
