@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use core::fmt::{Arguments, Write};
+use core::fmt::{Arguments, Result, Write};
 use lazy_static::lazy_static;
 use spin::Mutex;
 use volatile::Volatile;
@@ -116,7 +116,7 @@ impl Writer {
 }
 
 impl Write for Writer {
-    fn write_str(&mut self, s: &str) -> core::fmt::Result {
+    fn write_str(&mut self, s: &str) -> Result {
         self.write_string(s);
         Ok(())
     }
@@ -145,7 +145,7 @@ macro_rules! println {
 /// through the global `WRITER` instance.
 #[doc(hidden)]
 pub fn _print(args: Arguments) {
-    use core::fmt::Write;
+    // use Write;
     interrupts::without_interrupts(|| {
         WRITER.lock().write_fmt(args).unwrap();
     });
@@ -153,7 +153,7 @@ pub fn _print(args: Arguments) {
 
 #[cfg(test)]
 mod tests {
-    use crate::vga_buffer::{BUFFER_HEIGHT, WRITER};
+    use super::*;
     use x86_64::instructions::interrupts;
 
     #[test_case]

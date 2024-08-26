@@ -9,6 +9,7 @@
 
 pub mod gdt;
 pub mod interrupt;
+pub mod memory;
 pub mod serial;
 pub mod vga_buffer;
 
@@ -75,17 +76,24 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
     }
 }
 
-/// Entry pint for `cargo test`
 #[cfg(test)]
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
-    init();
-    test_main();
-    hlt_loop();
-}
+mod tests {
+    use super::*;
+    pub use crate::{hlt_loop, test_panic_handler};
+    use bootloader::{entry_point, BootInfo};
+    use core::panic::PanicInfo;
 
-#[cfg(test)]
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    test_panic_handler(info)
+    entry_point!(test_kernel_main);
+
+    /// Entry pint for `cargo test`
+    fn test_kernel_main(_boot_info: &'static BootInfo) -> ! {
+        init();
+        test_main();
+        hlt_loop();
+    }
+
+    #[panic_handler]
+    fn panic(info: &PanicInfo) -> ! {
+        test_panic_handler(info)
+    }
 }

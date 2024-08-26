@@ -111,7 +111,12 @@ lazy_static! {
     };
 }
 
-#[test_case]
-fn test_breakpoint_exception() {
-    x86_64::instructions::interrupts::int3();
+#[cfg(test)]
+mod tests {
+    use x86_64::instructions::interrupts;
+
+    #[test_case]
+    fn test_breakpoint_exception() {
+        interrupts::int3();
+    }
 }
