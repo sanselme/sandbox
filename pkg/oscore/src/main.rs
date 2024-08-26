@@ -7,15 +7,22 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use oscore::println;
+use oscore::{init, println};
+use x86_64::instructions::interrupts;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
 
+    init();
+
+    // invoke a breakpoint exception
+    interrupts::int3();
+
     #[cfg(test)]
     test_main();
 
+    println!("It did not crash!");
     loop {}
 }
 

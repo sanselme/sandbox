@@ -3,13 +3,15 @@
 #![no_std]
 #![cfg_attr(test, no_main)]
 #![feature(custom_test_frameworks)]
+#![feature(abi_x86_interrupt)]
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
+pub mod interrupt;
 pub mod serial;
 pub mod vga_buffer;
 
-use core::any;
+use core::any::type_name;
 use core::panic::PanicInfo;
 use x86_64::instructions::port::Port;
 
@@ -29,10 +31,14 @@ where
     T: Fn(),
 {
     fn run(&self) -> () {
-        serial_print!("{}...\t", any::type_name::<T>());
+        serial_print!("{}...\t", type_name::<T>());
         self();
         serial_println!("[ok]");
     }
+}
+
+pub fn init() {
+    interrupt::init_idt();
 }
 
 pub fn test_runner(tests: &[&dyn Testable]) {
@@ -61,6 +67,7 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 #[cfg(test)]
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    init();
     test_main();
     loop {}
 }
