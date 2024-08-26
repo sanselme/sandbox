@@ -8,7 +8,6 @@
 
 use core::panic::PanicInfo;
 use oscore::{init, println};
-use x86_64::instructions::interrupts;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
@@ -16,13 +15,16 @@ pub extern "C" fn _start() -> ! {
 
     init();
 
-    // invoke a breakpoint exception
-    interrupts::int3();
+    // fn stack_overflow() {
+    //     stack_overflow();
+    // }
+    //
+    // stack_overflow();
 
     #[cfg(test)]
     test_main();
 
-    println!("It did not crash!");
+    // println!("It did not crash!");
     loop {}
 }
 

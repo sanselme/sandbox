@@ -7,6 +7,7 @@
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
+pub mod gdt;
 pub mod interrupt;
 pub mod serial;
 pub mod vga_buffer;
@@ -38,6 +39,7 @@ where
 }
 
 pub fn init() {
+    gdt::init();
     interrupt::init_idt();
 }
 

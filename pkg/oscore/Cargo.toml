@@ -19,13 +19,17 @@ panic = "abort"
 name = "should_panic"
 harness = false
 
+[[test]]
+name = "stack_overflow"
+harness = false
+
 [dependencies]
 bootloader = "0.9"
 lazy_static = { version = "1.5.0", features = ["spin_no_std"] }
 spin = "0.9.8"
 uart_16550 = "0.3.1"
 volatile = "0.2.6"
-x86_64 = "0.15.1"
+x86_64 = "0.14.2"
 
 [lints.rust]
 unsafe_code = "allow"
