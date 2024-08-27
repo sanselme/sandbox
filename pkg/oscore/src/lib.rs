@@ -4,17 +4,24 @@
 #![cfg_attr(test, no_main)]
 #![feature(custom_test_frameworks)]
 #![feature(abi_x86_interrupt)]
+#![feature(const_mut_refs)]
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
 extern crate alloc;
 
-pub mod allocator;
 pub mod gdt;
 pub mod interrupt;
 pub mod memory;
 pub mod serial;
 pub mod vga_buffer;
+
+pub mod malloc {
+    pub mod allocator;
+    pub mod bump;
+    pub mod fixed_sized_block;
+    pub mod linked_list;
+}
 
 use core::any::type_name;
 use core::panic::PanicInfo;

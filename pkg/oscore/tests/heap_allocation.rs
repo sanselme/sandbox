@@ -5,15 +5,16 @@
 #![feature(custom_test_frameworks)]
 #![test_runner(oscore::test_runner)]
 #![reexport_test_harness_main = "test_main"]
+
 extern crate alloc;
 
 use alloc::boxed::Box;
 use alloc::vec::Vec;
 use bootloader::{entry_point, BootInfo};
 use core::panic::PanicInfo;
-use oscore::allocator::HEAP_SIZE;
+use oscore::malloc::allocator::{self, HEAP_SIZE};
 use oscore::memory::BootInfoFrameAllocator;
-use oscore::{allocator, hlt_loop, init, memory, test_panic_handler};
+use oscore::{hlt_loop, init, memory, test_panic_handler};
 use x86_64::VirtAddr;
 
 fn main(boot_info: &'static BootInfo) -> ! {
@@ -53,6 +54,16 @@ fn many_boxes() {
         let x = Box::new(i);
         assert_eq!(*x, i);
     }
+}
+
+#[test_case]
+fn many_boxes_long_lived() {
+    let long_lived = Box::new(1);
+    for i in 0..HEAP_SIZE {
+        let x = Box::new(i);
+        assert_eq!(*x, i);
+    }
+    assert_eq!(*long_lived, 1);
 }
 
 entry_point!(main);
