@@ -8,13 +8,11 @@
 
 extern crate alloc;
 
-use alloc::boxed::Box;
-use alloc::vec::Vec;
+use alloc::{boxed::Box, vec::Vec};
 use bootloader::{entry_point, BootInfo};
 use core::panic::PanicInfo;
-use oscore::malloc::allocator::{self, HEAP_SIZE};
-use oscore::memory::BootInfoFrameAllocator;
-use oscore::{hlt_loop, init, memory, test_panic_handler};
+use oscore::memory::{self, BootInfoFrameAllocator};
+use oscore::{hlt_loop, init, init_heap, test_panic_handler, HEAP_SIZE};
 use x86_64::VirtAddr;
 
 fn main(boot_info: &'static BootInfo) -> ! {
@@ -24,7 +22,7 @@ fn main(boot_info: &'static BootInfo) -> ! {
     let mut mapper = unsafe { memory::init(phy_mem_offset) };
     let mut frame_allocator = unsafe { BootInfoFrameAllocator::init(&boot_info.memory_map) };
 
-    allocator::init_heap(&mut mapper, &mut frame_allocator).expect("heap initialization failed");
+    init_heap(&mut mapper, &mut frame_allocator).expect("heap initialization failed");
 
     test_main();
     hlt_loop();

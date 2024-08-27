@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
 use crate::malloc::fixed_sized_block::FixedSizeBlockAllocator;
+
 use core::alloc::{GlobalAlloc, Layout};
 use core::ptr::null_mut;
 use spin::{Mutex, MutexGuard};
@@ -74,6 +75,6 @@ pub fn init_heap(
 /// Align the given address `addr` upwards to alignment `align`.
 ///
 /// Requires that `align` is a power of two.
-pub(crate) fn align_up(addr: usize, align: usize) -> usize {
+pub fn align_up(addr: usize, align: usize) -> usize {
     (addr + align - 1) & !(align - 1)
 }

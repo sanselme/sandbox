@@ -17,11 +17,22 @@ pub mod serial;
 pub mod vga_buffer;
 
 pub mod malloc {
-    pub mod allocator;
     pub mod bump;
     pub mod fixed_sized_block;
     pub mod linked_list;
+    pub mod malloc;
 }
+
+pub mod task {
+    pub mod executor;
+    pub mod keyboard;
+    pub mod simple_executor;
+    pub mod task;
+}
+
+pub use malloc::malloc::*;
+pub use task::simple_executor::SimpleExecutor;
+pub use task::task::*;
 
 use core::any::type_name;
 use core::panic::PanicInfo;
@@ -93,14 +104,14 @@ mod tests {
     use bootloader::{entry_point, BootInfo};
     use core::panic::PanicInfo;
 
-    entry_point!(test_kernel_main);
-
     /// Entry pint for `cargo test`
     fn test_kernel_main(_boot_info: &'static BootInfo) -> ! {
         init();
         test_main();
         hlt_loop();
     }
+
+    entry_point!(test_kernel_main);
 
     #[panic_handler]
     fn panic(info: &PanicInfo) -> ! {

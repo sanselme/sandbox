@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
-use crate::malloc::allocator::Locked;
+use crate::Locked;
+
 use core::alloc::{GlobalAlloc, Layout};
 use core::ptr::{null_mut, NonNull};
 use linked_list_allocator::Heap;
