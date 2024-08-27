@@ -2,9 +2,12 @@
 #![no_std]
 #![no_main]
 
+use bootloader::{entry_point, BootInfo};
 use core::panic::PanicInfo;
 use lazy_static::lazy_static;
-use oscore::{exit_qemu, gdt, hlt_loop, serial_print, serial_println, QemuExitCode};
+use oscore::{
+    exit_qemu, gdt, hlt_loop, serial_print, serial_println, test_panic_handler, QemuExitCode,
+};
 use volatile::Volatile;
 use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame};
 
@@ -21,8 +24,7 @@ extern "x86-interrupt" fn test_double_fault_handler(
     hlt_loop();
 }
 
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
+fn main(_boot_info: &'static BootInfo) -> ! {
     serial_print!("stack_overflow::stack_overflow...\t");
     gdt::init();
     init_test_idt();
@@ -39,9 +41,11 @@ fn stack_overflow() {
     Volatile::new(0).read(); // prevent tail recursion optimization
 }
 
+entry_point!(main);
+
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    oscore::test_panic_handler(info);
+    test_panic_handler(info);
 }
 
 lazy_static! {
