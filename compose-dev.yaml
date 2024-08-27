@@ -1,8 +1,7 @@
-version: "3.9"
 services:
   sandbox:
     image: ghcr.io/sanselme/devcontainer:latest
-    command: /sbin/init
+    entrypoint: /sbin/init
     #platform: linux/amd64
     privileged: true
     stdin_open: true

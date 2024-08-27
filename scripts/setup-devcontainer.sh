@@ -12,6 +12,7 @@ set -euxo pipefail
   sh -c "$(curl -fsSLo /home/vscode/.oh-my-zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sudo mkdir -p /home/vscode/.ssh
+
 sudo ln -sf /workspace/config/zshrc /root/.zshrc
 sudo ln -sf /workspace/config/zshrc /home/vscode/.zshrc
 sudo ln -sf /workspace/config/sshconfig /home/vscode/.ssh/config
@@ -28,10 +29,12 @@ source /etc/profile
 # install packages
 sudo apt-get update -y
 sudo apt-get install -y \
+  binwalk \
   bison \
   build-essential \
   clang \
   dkms \
+  file \
   flex \
   gcc \
   golang \
@@ -40,6 +43,7 @@ sudo apt-get install -y \
   lld \
   llvm \
   nodejs \
+  npm \
   protobuf-compiler \
   protobuf-compiler-grpc \
   qemu-system
@@ -68,6 +72,8 @@ sudo -E mkdir -p \
 [[ -z $(command -v rustc) ]] && {
   curl -fsSLo /tmp/rustup-init.sh https://sh.rustup.rs
   sudo -E RUSTUP_HOME="${RUSTUP_HOME}" CARGO_HOME="${CARGO_HOME}" sh /tmp/rustup-init.sh -y
+  # rustup default nightly
+  # rustup component add x86_64-unknown-none
   rustup component add rust-src
   cargo install cargo-bundle
   rustc --version
@@ -81,11 +87,14 @@ sudo -E mkdir -p \
   trunk --version
 }
 
-# todo: install k0s
-curl -fsSL https://get.k0s.sh | sudo sh
-#sudo k0s install controller --single --config config/k0s.yaml
-#sudo k0s start
-#sudo k0s kubeconfig > hack/kubeconfig.yaml
+# install k0s
+[[ -z $(command -v k0s) ]] && curl -fsSL https://get.k0s.sh | sudo sh
+[[ -z $(sudo k0s status) ]] && {
+  sudo k0s install controller --single --config config/k0s.yaml
+  sudo k0s start
+}
+sudo k0s kubeconfig admin | tee hack/kubeconfig.yaml
+sed -i 's/server: https.*/server: https:\/\/127.0.0.1:16443/g' hack/kubeconfig.yaml
 
 # post
 sudo -E chmod -R 777 "${RUSTUP_HOME}" "${CARGO_HOME}"
