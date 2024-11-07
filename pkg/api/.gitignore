@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Except these files
+!.gitignore
+!*.proto
+!buf.build.yaml
+!Cargo.toml
+!lib.rs
+
+# ...even if they are in subdirectories
+!*/

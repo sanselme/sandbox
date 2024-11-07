@@ -1,6 +1,6 @@
 ---
 version: v2
-name: buf.build/sanselme/api
+name: buf.build/sanselme/api/sandbox
 breaking:
   ignore_unstable_packages: true
   use:
