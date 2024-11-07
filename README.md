@@ -1,20 +1,19 @@
-# Readme
+# SandBox
 
 ---
 
 [![OpenSSF Scorecard][ossf-score-badge]][ossf-score-link]
 [![Contiuos Integration][ci-badge]][ci-link]
-[![Review][review-badge]][review-link]
-[![Releases][releases-badge]][releases-link]
+
+<!-- [![Review][review-badge]][review-link] -->
 
 [ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/sanselme/sandbox/badge
 [ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/sanselme/sandbox
 [ci-badge]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml/badge.svg
 [ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
-[review-badge]: https://github.com/sanselme/sandbox/actions/workflows/review.yml/badge.svg
-[review-link]: https://github.com/sanselme/sandbox/actions/workflows/review.yml
-[releases-badge]: https://github.com/sanselme/sandbox/actions/workflows/release.yml/badge.svg
-[releases-link]: https://github.com/sanselme/sandbox/actions/workflows/release.yml
+
+<!-- [review-badge]: https://github.com/sanselme/sandbox/actions/workflows/required/sanselme/cicd/.github/workflows/review.yml/badge.svg
+[review-link]: https://github.com/sanselme/sandbox/actions/workflows/required/sanselme/cicd/.github/workflows/review.yml -->
 
 ---
 

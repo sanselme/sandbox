@@ -6,7 +6,9 @@
 !*.proto
 !buf.build.yaml
 !Cargo.toml
-!lib.rs
+!go.mod
+!package.json
+!Package.swift
 
 # ...even if they are in subdirectories
 !*/
