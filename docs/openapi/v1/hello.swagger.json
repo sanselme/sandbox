@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "v1/health.proto",
+    "title": "v1/hello.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "Health"
+      "name": "Greeter"
     }
   ],
   "consumes": [
@@ -15,19 +15,42 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/v1/sandbox/hello": {
+      "post": {
+        "summary": "Sends a greeting",
+        "operationId": "Greeter_SayHello",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HelloReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HelloRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Greeter"
+        ]
+      }
+    }
+  },
   "definitions": {
-    "HealthCheckResponseServingStatus": {
-      "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "SERVING",
-        "NOT_SERVING",
-        "SERVICE_UNKNOWN"
-      ],
-      "default": "UNKNOWN",
-      "title": "- SERVICE_UNKNOWN: used only by Watch"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -58,13 +81,23 @@
         }
       }
     },
-    "v1HealthCheckResponse": {
+    "v1HelloReply": {
       "type": "object",
       "properties": {
-        "status": {
-          "$ref": "#/definitions/HealthCheckResponseServingStatus"
+        "message": {
+          "type": "string"
         }
-      }
+      },
+      "title": "The response message containing the greetings"
+    },
+    "v1HelloRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "The request message containing the user's name"
     }
   }
 }

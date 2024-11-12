@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "v1alpha1/helloworld.proto",
+    "title": "v1alpha1/cloudevent.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "GreeterService"
+      "name": "CloudEventService"
     }
   ],
   "consumes": [
@@ -17,6 +17,36 @@
   ],
   "paths": {},
   "definitions": {
+    "CloudEventCloudEventAttributeValue": {
+      "type": "object",
+      "properties": {
+        "ceBoolean": {
+          "type": "boolean"
+        },
+        "ceInteger": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ceString": {
+          "type": "string"
+        },
+        "ceBytes": {
+          "type": "string",
+          "format": "byte"
+        },
+        "ceUri": {
+          "type": "string"
+        },
+        "ceUriRef": {
+          "type": "string"
+        },
+        "ceTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "*\nThe CloudEvent specification defines\nseven attribute value types..."
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -47,13 +77,43 @@
         }
       }
     },
-    "v1alpha1SayHelloResponse": {
+    "v1alpha1CloudEvent": {
       "type": "object",
       "properties": {
-        "message": {
+        "id": {
+          "type": "string",
+          "title": "Required Attributes"
+        },
+        "source": {
+          "type": "string",
+          "title": "URI-reference"
+        },
+        "specVersion": {
           "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/CloudEventCloudEventAttributeValue"
+          },
+          "title": "Optional \u0026 Extension Attributes"
+        },
+        "binaryData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "textData": {
+          "type": "string"
+        },
+        "protoData": {
+          "$ref": "#/definitions/protobufAny"
         }
-      }
+      },
+      "description": "-- CloudEvent Context Attributes",
+      "title": "CloudEvent Protobuf Format"
     }
   }
 }
