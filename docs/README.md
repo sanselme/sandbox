@@ -45,8 +45,6 @@
 
 <a name="v1_hello-proto"></a>
 
-<a name="v1_hello-proto"></a>
-
 <p align="right"><a href="#top">Top</a></p>
 
 ## v1/hello.proto
@@ -332,12 +330,7 @@ CloudEvent Protobuf Batch Format
 | Check       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)        | if the requested service is unknown, the call will fail with status NOT_FOUND                                                                                                                                                                        |
 | Watch       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes |
 
-| Method Name | Request Type                                           | Response Type                                                   | Description                                                                                                                                                                                                                                          |
-| ----------- | ------------------------------------------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Check       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)        | if the requested service is unknown, the call will fail with status NOT_FOUND                                                                                                                                                                        |
-| Watch       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes |
-
-if the requested service is unknown when the call is received, the server will send a message setting the serving status to SERVICE_UNKNOWN but will _not_ terminate the call if at some future point, the serving status of the service becomes known, the server will send a new message with the service&#39;s serving status
+if the requested service is unknown when the call is received, the server will send a message setting the serving status to SERVICE*UNKNOWN but will \_not* terminate the call if at some future point, the serving status of the service becomes known, the server will send a new message with the service&#39;s serving status
 
 if the call terminates with status UNIMPLEMENTED, then clients should assume this method is not supported and should not retry the call if the call terminates with any other status (including OK), clients should retry the call with appropriate exponential backoff |
 
