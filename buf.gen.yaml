@@ -11,10 +11,39 @@ managed:
       module: buf.build/sanselme/api
       value: github.com/sanselme/sandbox/api
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.34.2
+  # - remote: buf.build/protocolbuffers/go:v1.34.2
+  #   out: pkg/api
+  #   opt: paths=source_relative
+  # - remote: buf.build/grpc/go:v1.5.1
+  #   out: pkg/api
+  #   opt:
+  #     - paths=source_relative
+  #     - require_unimplemented_servers=false
+  # - remote: buf.build/community/neoeinstein-prost:v0.3.1
+  #   out: pkg/api
+  #   opt:
+  #     - compile_well_known_types
+  #     - enable_type_names
+  #     - extern_path=.google.protobuf=::pbjson_types
+  #     - file_descriptor_set
+  # - remote: buf.build/community/neoeinstein-tonic:v0.4.0
+  #   out: pkg/api
+  #   opt:
+  #     - compile_well_known_types
+  #     - extern_path=.google.protobuf=::pbjson_types
+  # - remote: buf.build/community/neoeinstein-prost-serde:v0.3.0
+  #   out: pkg/api
+  # - remote: buf.build/community/neoeinstein-prost-crate:v0.4.1
+  #   out: pkg/api
+  #   opt:
+  #     - no_features
+  #     - include_file=lib.rs
+  - remote: buf.build/apple/swift:v1.28.2
     out: pkg/api
-    opt: paths=source_relative
-  - remote: buf.build/grpc/go:v1.5.1
+    opt: Visibility=Public
+  # fixme: version 2.0.0-alpha.1 is not available
+  # https://github.com/grpc/grpc-swift/blob/2.0.0-alpha.1/dev/protos/generate.sh
+  - local: protoc-gen-grpc-swift
     out: pkg/api
     opt:
       - paths=source_relative

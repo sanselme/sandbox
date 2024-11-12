@@ -5,102 +5,88 @@
 ## Table of Contents
 
 - [v1/hello.proto](#v1_hello-proto)
-    - [HelloReply](#api-v1-HelloReply)
-    - [HelloRequest](#api-v1-HelloRequest)
-  
-    - [Greeter](#api-v1-Greeter)
-  
+
+  - [HelloReply](#api-v1-HelloReply)
+  - [HelloRequest](#api-v1-HelloRequest)
+
+  - [Greeter](#api-v1-Greeter)
+
 - [v1alpha1/cloudevent.proto](#v1alpha1_cloudevent-proto)
-    - [CloudEvent](#api-v1alpha1-CloudEvent)
-    - [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry)
-    - [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue)
-    - [CloudEventBatch](#api-v1alpha1-CloudEventBatch)
-    - [PublishRequest](#api-v1alpha1-PublishRequest)
-    - [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest)
-  
-    - [CloudEventService](#api-v1alpha1-CloudEventService)
-  
+
+  - [CloudEvent](#api-v1alpha1-CloudEvent)
+  - [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry)
+  - [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue)
+  - [CloudEventBatch](#api-v1alpha1-CloudEventBatch)
+  - [PublishRequest](#api-v1alpha1-PublishRequest)
+  - [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest)
+
+  - [CloudEventService](#api-v1alpha1-CloudEventService)
+
 - [v1alpha1/health.proto](#v1alpha1_health-proto)
-    - [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest)
-    - [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)
-  
-    - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
-  
-    - [Health](#api-v1alpha1-Health)
-  
+
+  - [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest)
+  - [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)
+
+  - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
+
+  - [Health](#api-v1alpha1-Health)
+
 - [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
-    - [Feature](#api-v1alpha1-Feature)
-    - [Point](#api-v1alpha1-Point)
-    - [Rectangle](#api-v1alpha1-Rectangle)
-    - [RouteNote](#api-v1alpha1-RouteNote)
-    - [RouteSummary](#api-v1alpha1-RouteSummary)
-  
-    - [RouteGuide](#api-v1alpha1-RouteGuide)
-  
+
+  - [Feature](#api-v1alpha1-Feature)
+  - [Point](#api-v1alpha1-Point)
+  - [Rectangle](#api-v1alpha1-Rectangle)
+  - [RouteNote](#api-v1alpha1-RouteNote)
+  - [RouteSummary](#api-v1alpha1-RouteSummary)
+
+  - [RouteGuide](#api-v1alpha1-RouteGuide)
+
 - [Scalar Value Types](#scalar-value-types)
 
-
+<a name="v1_hello-proto"></a>
 
 <a name="v1_hello-proto"></a>
+
 <p align="right"><a href="#top">Top</a></p>
 
 ## v1/hello.proto
 
-
-
 <a name="api-v1-HelloReply"></a>
 
 ### HelloReply
+
 The response message containing the greetings
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| message | [string](#string) |  |  |
-
-
-
-
-
+| Field   | Type              | Label | Description |
+| ------- | ----------------- | ----- | ----------- |
+| message | [string](#string) |       |             |
 
 <a name="api-v1-HelloRequest"></a>
 
 ### HelloRequest
+
 The request message containing the user&#39;s name
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
+| Field | Type              | Label | Description |
+| ----- | ----------------- | ----- | ----------- |
+| name  | [string](#string) |       |             |
 
 <a name="api-v1-Greeter"></a>
 
 ### Greeter
+
 Here is the overall greeting service definition where we define all our endpoints
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| SayHello | [HelloRequest](#api-v1-HelloRequest) | [HelloReply](#api-v1-HelloReply) | Sends a greeting |
-
- 
-
-
+| Method Name | Request Type                         | Response Type                    | Description      |
+| ----------- | ------------------------------------ | -------------------------------- | ---------------- |
+| SayHello    | [HelloRequest](#api-v1-HelloRequest) | [HelloReply](#api-v1-HelloReply) | Sends a greeting |
 
 <a name="v1alpha1_cloudevent-proto"></a>
+
 <p align="right"><a href="#top">Top</a></p>
 
 ## v1alpha1/cloudevent.proto
+
 CloudEvent Protobuf Format
 
 - [v1alpha1/cloudevent.proto](#v1alpha1_cloudevent-proto)
@@ -121,16 +107,16 @@ CloudEvent Protobuf Format
 
   - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | Required Attributes |
-| source | [string](#string) |  | URI-reference |
-| spec_version | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| attributes | [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry) | repeated | Optional &amp; Extension Attributes |
-| binary_data | [bytes](#bytes) |  |  |
-| text_data | [string](#string) |  |  |
-| proto_data | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+| Field        | Type                                                                   | Label    | Description                         |
+| ------------ | ---------------------------------------------------------------------- | -------- | ----------------------------------- |
+| id           | [string](#string)                                                      |          | Required Attributes                 |
+| source       | [string](#string)                                                      |          | URI-reference                       |
+| spec_version | [string](#string)                                                      |          |                                     |
+| type         | [string](#string)                                                      |          |                                     |
+| attributes   | [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry) | repeated | Optional &amp; Extension Attributes |
+| binary_data  | [bytes](#bytes)                                                        |          |                                     |
+| text_data    | [string](#string)                                                      |          |                                     |
+| proto_data   | [google.protobuf.Any](#google-protobuf-Any)                            |          |                                     |
 
 - [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
 
@@ -154,10 +140,10 @@ CloudEvent Protobuf Format
 
 ### HelloReply
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue) |  |  |
+| Field | Type                                                                                     | Label | Description |
+| ----- | ---------------------------------------------------------------------------------------- | ----- | ----------- |
+| key   | [string](#string)                                                                        |       |             |
+| value | [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue) |       |             |
 
 | Field   | Type              | Label | Description |
 | ------- | ----------------- | ----- | ----------- |
@@ -201,9 +187,9 @@ CloudEvent Protobuf Format
 
 CloudEvent Protobuf Format
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| events | [CloudEvent](#api-v1alpha1-CloudEvent) | repeated |  |
+| Field  | Type                                   | Label    | Description |
+| ------ | -------------------------------------- | -------- | ----------- |
+| events | [CloudEvent](#api-v1alpha1-CloudEvent) | repeated |             |
 
 | Field        | Type                                                                   | Label    | Description                         |
 | ------------ | ---------------------------------------------------------------------- | -------- | ----------------------------------- |
@@ -243,10 +229,10 @@ seven attribute value types...
 
 <a name="api-v1alpha1-CloudEventBatch"></a>
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topic | [string](#string) |  |  |
-| event | [CloudEvent](#api-v1alpha1-CloudEvent) |  |  |
+| Field | Type                                   | Label | Description |
+| ----- | -------------------------------------- | ----- | ----------- |
+| topic | [string](#string)                      |       |             |
+| event | [CloudEvent](#api-v1alpha1-CloudEvent) |       |             |
 
 CloudEvent Protobuf Batch Format
 
@@ -271,21 +257,9 @@ CloudEvent Protobuf Batch Format
 | ----- | ----------------- | ----- | ----------- |
 | topic | [string](#string) |       |             |
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topic | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
+| Field | Type              | Label | Description |
+| ----- | ----------------- | ----- | ----------- |
+| topic | [string](#string) |       |             |
 
 <a name="api-v1alpha1-CloudEventService"></a>
 
@@ -296,21 +270,16 @@ CloudEvent Protobuf Batch Format
 | Publish     | [PublishRequest](#api-v1alpha1-PublishRequest)           | [.google.protobuf.Empty](#google-protobuf-Empty) |             |
 | Subscribe   | [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest) | [CloudEvent](#api-v1alpha1-CloudEvent) stream    |             |
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Publish | [PublishRequest](#api-v1alpha1-PublishRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| Subscribe | [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest) | [CloudEvent](#api-v1alpha1-CloudEvent) stream |  |
-
- 
-
-
+| Method Name | Request Type                                             | Response Type                                    | Description |
+| ----------- | -------------------------------------------------------- | ------------------------------------------------ | ----------- |
+| Publish     | [PublishRequest](#api-v1alpha1-PublishRequest)           | [.google.protobuf.Empty](#google-protobuf-Empty) |             |
+| Subscribe   | [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest) | [CloudEvent](#api-v1alpha1-CloudEvent) stream    |             |
 
 <a name="v1alpha1_health-proto"></a>
+
 <p align="right"><a href="#top">Top</a></p>
 
 ## v1alpha1/health.proto
-
-
 
 <a name="api-v1alpha1-HealthCheckRequest"></a>
 
@@ -320,15 +289,9 @@ CloudEvent Protobuf Batch Format
 | ------- | ----------------- | ----- | ----------- |
 | service | [string](#string) |       |             |
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| service | [string](#string) |  |  |
-
-
-
-
-
+| Field   | Type              | Label | Description |
+| ------- | ----------------- | ----- | ----------- |
+| service | [string](#string) |       |             |
 
 <a name="api-v1alpha1-HealthCheckResponse"></a>
 
@@ -338,17 +301,9 @@ CloudEvent Protobuf Batch Format
 | ------ | ------------------------------------------------------------------------------------ | ----- | ----------- |
 | status | [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus) |       |             |
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus) |  |  |
-
-
-
-
-
- 
-
+| Field  | Type                                                                                 | Label | Description |
+| ------ | ------------------------------------------------------------------------------------ | ----- | ----------- |
+| status | [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus) |       |             |
 
 <a name="api-v1alpha1-HealthCheckResponse-ServingStatus"></a>
 
@@ -361,18 +316,12 @@ CloudEvent Protobuf Batch Format
 | NOT_SERVING     | 2      |                    |
 | SERVICE_UNKNOWN | 3      | used only by Watch |
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| UNKNOWN | 0 |  |
-| SERVING | 1 |  |
-| NOT_SERVING | 2 |  |
-| SERVICE_UNKNOWN | 3 | used only by Watch |
-
-
- 
-
- 
-
+| Name            | Number | Description        |
+| --------------- | ------ | ------------------ |
+| UNKNOWN         | 0      |                    |
+| SERVING         | 1      |                    |
+| NOT_SERVING     | 2      |                    |
+| SERVICE_UNKNOWN | 3      | used only by Watch |
 
 <a name="api-v1alpha1-Health"></a>
 
@@ -383,18 +332,14 @@ CloudEvent Protobuf Batch Format
 | Check       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)        | if the requested service is unknown, the call will fail with status NOT_FOUND                                                                                                                                                                        |
 | Watch       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes |
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Check | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) | if the requested service is unknown, the call will fail with status NOT_FOUND |
-| Watch | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes
+| Method Name | Request Type                                           | Response Type                                                   | Description                                                                                                                                                                                                                                          |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Check       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)        | if the requested service is unknown, the call will fail with status NOT_FOUND                                                                                                                                                                        |
+| Watch       | [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest) | [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse) stream | performs a watch for the serving status of the requested service the server will immediately send back a message indicating the curren serving status it will then subsequently send a new message whenever the service&#39;s serving status changes |
 
-if the requested service is unknown when the call is received, the server will send a message setting the serving status to SERVICE_UNKNOWN but will *not* terminate the call if at some future point, the serving status of the service becomes known, the server will send a new message with the service&#39;s serving status
+if the requested service is unknown when the call is received, the server will send a message setting the serving status to SERVICE_UNKNOWN but will _not_ terminate the call if at some future point, the serving status of the service becomes known, the server will send a new message with the service&#39;s serving status
 
 if the call terminates with status UNIMPLEMENTED, then clients should assume this method is not supported and should not retry the call if the call terminates with any other status (including OK), clients should retry the call with appropriate exponential backoff |
-
- 
-
-
 
 <a name="v1alpha1_route_guide-proto"></a>
 
