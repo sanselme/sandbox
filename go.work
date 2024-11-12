@@ -2,5 +2,6 @@ go 1.23.2
 
 use (
 	./pkg/api
+	./pkg/helloclient/go
 	./pkg/hellogw
 )
