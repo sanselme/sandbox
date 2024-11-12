@@ -22,9 +22,10 @@ struct Greet: AsyncParsableCommand {
 
   func run() async throws {
     try await withThrowingDiscardingTaskGroup { group in
-      let client = GRPCClient(transport: try .http2NIOPosix(
-        target: .ipv4(host: "127.0.0.1", port: self.port),
-        config: .defaults(transportSecurity: .plaintext)))
+      let client = GRPCClient(
+        transport: try .http2NIOPosix(
+          target: .ipv4(host: "127.0.0.1", port: self.port),
+          config: .defaults(transportSecurity: .plaintext)))
 
       group.addTask {
         try await client.run()
