@@ -87,107 +87,17 @@ Here is the overall greeting service definition where we define all our endpoint
 
 CloudEvent Protobuf Format
 
-- [v1alpha1/cloudevent.proto](#v1alpha1_cloudevent-proto)
-
-  - [CloudEvent](#api-v1alpha1-CloudEvent)
-  - [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry)
-  - [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue)
-  - [CloudEventBatch](#api-v1alpha1-CloudEventBatch)
-  - [PublishRequest](#api-v1alpha1-PublishRequest)
-  - [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest)
-
-<a name="api-v1alpha1-CloudEvent"></a>
-
-- [v1alpha1/health.proto](#v1alpha1_health-proto)
-
-  - [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest)
-  - [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)
-
-  - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
-
-| Field        | Type                                                                   | Label    | Description                         |
-| ------------ | ---------------------------------------------------------------------- | -------- | ----------------------------------- |
-| id           | [string](#string)                                                      |          | Required Attributes                 |
-| source       | [string](#string)                                                      |          | URI-reference                       |
-| spec_version | [string](#string)                                                      |          |                                     |
-| type         | [string](#string)                                                      |          |                                     |
-| attributes   | [CloudEvent.AttributesEntry](#api-v1alpha1-CloudEvent-AttributesEntry) | repeated | Optional &amp; Extension Attributes |
-| binary_data  | [bytes](#bytes)                                                        |          |                                     |
-| text_data    | [string](#string)                                                      |          |                                     |
-| proto_data   | [google.protobuf.Any](#google-protobuf-Any)                            |          |                                     |
-
-- [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
-
-  - [Feature](#api-v1alpha1-Feature)
-  - [Point](#api-v1alpha1-Point)
-  - [Rectangle](#api-v1alpha1-Rectangle)
-  - [RouteNote](#api-v1alpha1-RouteNote)
-  - [RouteSummary](#api-v1alpha1-RouteSummary)
-
-  - [RouteGuide](#api-v1alpha1-RouteGuide)
-
-- [Scalar Value Types](#scalar-value-types)
-
-<a name="v1_hello-proto"></a>
-
-<a name="api-v1alpha1-CloudEvent-AttributesEntry"></a>
-
-## v1/hello.proto
-
-<a name="api-v1-HelloReply"></a>
-
-### HelloReply
-
-| Field | Type                                                                                     | Label | Description |
-| ----- | ---------------------------------------------------------------------------------------- | ----- | ----------- |
-| key   | [string](#string)                                                                        |       |             |
-| value | [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue) |       |             |
-
-| Field   | Type              | Label | Description |
-| ------- | ----------------- | ----- | ----------- |
-| message | [string](#string) |       |             |
-
-<a name="api-v1-HelloRequest"></a>
-
-### HelloRequest
-
-The request message containing the user&#39;s name
-
-| Field | Type              | Label | Description |
-| ----- | ----------------- | ----- | ----------- |
-| name  | [string](#string) |       |             |
-
-<a name="api-v1alpha1-CloudEvent-CloudEventAttributeValue"></a>
-
-### Greeter
-
-Here is the overall greeting service definition where we define all our endpoints
-
-| Method Name | Request Type                         | Response Type                    | Description      |
-| ----------- | ------------------------------------ | -------------------------------- | ---------------- |
-| SayHello    | [HelloRequest](#api-v1-HelloRequest) | [HelloReply](#api-v1-HelloReply) | Sends a greeting |
-
-<a name="v1alpha1_cloudevent-proto"></a>
-
-<p align="right"><a href="#top">Top</a></p>
-
-## v1alpha1/cloudevent.proto
-
-CloudEvent Protobuf Format
-
 - Required context attributes are explicitly represented.
 - Optional and Extension context attributes are carried in a map structure.
 - Data may be represented as binary, text, or protobuf messages.
 
-<a name="api-v1alpha1-CloudEventBatch"></a>
+<a name="api-v1alpha1-CloudEvent"></a>
 
 ### CloudEvent
 
 CloudEvent Protobuf Format
 
-| Field  | Type                                   | Label    | Description |
-| ------ | -------------------------------------- | -------- | ----------- |
-| events | [CloudEvent](#api-v1alpha1-CloudEvent) | repeated |             |
+-- CloudEvent Context Attributes
 
 | Field        | Type                                                                   | Label    | Description                         |
 | ------------ | ---------------------------------------------------------------------- | -------- | ----------------------------------- |
@@ -210,7 +120,8 @@ CloudEvent Protobuf Format
 | value | [CloudEvent.CloudEventAttributeValue](#api-v1alpha1-CloudEvent-CloudEventAttributeValue) |       |             |
 
 <a name="api-v1alpha1-CloudEvent-CloudEventAttributeValue"></a>
-<a name="api-v1alpha1-PublishRequest"></a>
+
+### CloudEvent.CloudEventAttributeValue
 
 The CloudEvent specification defines
 seven attribute value types...
@@ -227,10 +138,7 @@ seven attribute value types...
 
 <a name="api-v1alpha1-CloudEventBatch"></a>
 
-| Field | Type                                   | Label | Description |
-| ----- | -------------------------------------- | ----- | ----------- |
-| topic | [string](#string)                      |       |             |
-| event | [CloudEvent](#api-v1alpha1-CloudEvent) |       |             |
+### CloudEventBatch
 
 CloudEvent Protobuf Batch Format
 
@@ -255,18 +163,9 @@ CloudEvent Protobuf Batch Format
 | ----- | ----------------- | ----- | ----------- |
 | topic | [string](#string) |       |             |
 
-| Field | Type              | Label | Description |
-| ----- | ----------------- | ----- | ----------- |
-| topic | [string](#string) |       |             |
-
 <a name="api-v1alpha1-CloudEventService"></a>
 
 ### CloudEventService
-
-| Method Name | Request Type                                             | Response Type                                    | Description |
-| ----------- | -------------------------------------------------------- | ------------------------------------------------ | ----------- |
-| Publish     | [PublishRequest](#api-v1alpha1-PublishRequest)           | [.google.protobuf.Empty](#google-protobuf-Empty) |             |
-| Subscribe   | [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest) | [CloudEvent](#api-v1alpha1-CloudEvent) stream    |             |
 
 | Method Name | Request Type                                             | Response Type                                    | Description |
 | ----------- | -------------------------------------------------------- | ------------------------------------------------ | ----------- |
@@ -287,10 +186,6 @@ CloudEvent Protobuf Batch Format
 | ------- | ----------------- | ----- | ----------- |
 | service | [string](#string) |       |             |
 
-| Field   | Type              | Label | Description |
-| ------- | ----------------- | ----- | ----------- |
-| service | [string](#string) |       |             |
-
 <a name="api-v1alpha1-HealthCheckResponse"></a>
 
 ### HealthCheckResponse
@@ -299,20 +194,9 @@ CloudEvent Protobuf Batch Format
 | ------ | ------------------------------------------------------------------------------------ | ----- | ----------- |
 | status | [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus) |       |             |
 
-| Field  | Type                                                                                 | Label | Description |
-| ------ | ------------------------------------------------------------------------------------ | ----- | ----------- |
-| status | [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus) |       |             |
-
 <a name="api-v1alpha1-HealthCheckResponse-ServingStatus"></a>
 
 ### HealthCheckResponse.ServingStatus
-
-| Name            | Number | Description        |
-| --------------- | ------ | ------------------ |
-| UNKNOWN         | 0      |                    |
-| SERVING         | 1      |                    |
-| NOT_SERVING     | 2      |                    |
-| SERVICE_UNKNOWN | 3      | used only by Watch |
 
 | Name            | Number | Description        |
 | --------------- | ------ | ------------------ |

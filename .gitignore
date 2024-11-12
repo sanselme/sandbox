@@ -401,6 +401,7 @@ fastlane/test_output
 # Project files
 .*
 .env
+*.lock
 *.resolved
 *.sum
 !.*.json
