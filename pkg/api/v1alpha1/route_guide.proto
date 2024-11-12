@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package api.v1alpha1;
 
+import "google/api/annotations.proto";
+
 // Points are represented as latitude-longitude pairs in the E7 representation
 // (degrees multiplied by 10**7 and rounded to the nearest integer).
 // Latitudes should be in the range +/- 90 degrees and longitude should be in
@@ -58,7 +60,9 @@ message RouteSummary {
 // Interface exported by the server.
 service RouteGuide {
   // Obtains the feature at a given position.
-  rpc GetFeature(Point) returns (Feature);
+  rpc GetFeature(Point) returns (Feature) {
+    option (google.api.http) = {get: "/v1alpha1/sandbox/feature"};
+  }
 
   // Obtains the Features available within the given Rectangle. Results are
   // streamed rather than returned at once (e.g. in a response message with a

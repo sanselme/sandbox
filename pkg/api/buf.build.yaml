@@ -30,5 +30,3 @@ lint:
     - ENUM_ZERO_VALUE_SUFFIX
     - RPC_REQUEST_STANDARD_NAME
     - RPC_RESPONSE_STANDARD_NAME
-deps:
-  - buf.build/googleapis/googleapis

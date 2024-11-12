@@ -7,7 +7,7 @@ source scripts/environment.sh
 cache_dir=".cache/swagger-ui"
 output_dir="docs/openapi"
 swagger_ui_repo="https://github.com/swagger-api/swagger-ui.git"
-swagger_ui_version="${swagger_ui_version:-$1}"
+swagger_ui_version="${1:-5.18.2}"
 
 escape_str() {
   echo "$1" | sed -e 's/[]\/$*.^[]/\\&/g'
