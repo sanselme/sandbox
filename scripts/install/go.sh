@@ -11,7 +11,7 @@ fi
 
 # install sbctl
 if [[ -z $(command -v sbctl) ]]; then
-  go install github.com/foxboron/sbctl/cmd/sbctl@latest
+  go install github.com/foxboron/sbctl/cmd/sbctl@0.16
 fi
 
 go version

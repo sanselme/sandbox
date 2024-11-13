@@ -22,7 +22,16 @@ let package = Package(
                 .product(name: "GRPCNIOTransportHTTP2", package: "grpc-swift-nio-transport"),
                 .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
             ],
-            path: "v1"
+            path: "./v1"
+        ),
+        .target(
+            name: "v1alpha1",
+            dependencies: [
+                .product(name: "GRPCCore", package: "grpc-swift"),
+                .product(name: "GRPCNIOTransportHTTP2", package: "grpc-swift-nio-transport"),
+                .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
+            ],
+            path: "./v1alpha1"
         ),
         .target(
             name: "v1alpha1",
