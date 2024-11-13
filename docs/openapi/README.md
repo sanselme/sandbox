@@ -8,7 +8,6 @@
 
   - [HelloReply](#api-v1-HelloReply)
   - [HelloRequest](#api-v1-HelloRequest)
-
   - [Greeter](#api-v1-Greeter)
 
 - [v1alpha1/cloudevent.proto](#v1alpha1_cloudevent-proto)
@@ -19,16 +18,13 @@
   - [CloudEventBatch](#api-v1alpha1-CloudEventBatch)
   - [PublishRequest](#api-v1alpha1-PublishRequest)
   - [SubscriptionRequest](#api-v1alpha1-SubscriptionRequest)
-
   - [CloudEventService](#api-v1alpha1-CloudEventService)
 
 - [v1alpha1/health.proto](#v1alpha1_health-proto)
 
   - [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest)
   - [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)
-
   - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
-
   - [Health](#api-v1alpha1-Health)
 
 - [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
@@ -38,7 +34,6 @@
   - [Rectangle](#api-v1alpha1-Rectangle)
   - [RouteNote](#api-v1alpha1-RouteNote)
   - [RouteSummary](#api-v1alpha1-RouteSummary)
-
   - [RouteGuide](#api-v1alpha1-RouteGuide)
 
 - [Scalar Value Types](#scalar-value-types)

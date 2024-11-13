@@ -7,6 +7,6 @@ let package = Package(
   name: "sandbox",
   dependencies: [
     .package(path: "pkg/api"),
-    .package(path: "pkg/hellod"),
+    .package(path: "pkg/hello"),
   ]
 )

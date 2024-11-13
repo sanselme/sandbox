@@ -9,12 +9,8 @@
       "name": "CloudEventService"
     }
   ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {},
   "definitions": {
     "CloudEventCloudEventAttributeValue": {
