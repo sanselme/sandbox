@@ -2,29 +2,26 @@
   "swagger": "2.0",
   "info": {
     "title": "v1alpha1/health.proto",
-    "version": "version not set"
+    "version": "0.1.0"
   },
   "tags": [
     {
       "name": "Health"
     }
   ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
-    "/v1/sandbox/health": {
+    "/api/v1/sandbox/health": {
       "get": {
-        "summary": "if the requested service is unknown, the call will fail with status\nNOT_FOUND",
+        "summary": "Check health",
+        "description": "Check service health",
         "operationId": "Health_Check",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1alpha1HealthCheckResponse"
+              "$ref": "#/definitions/HealthCheckResponseServingStatus"
             }
           },
           "default": {
@@ -42,21 +39,53 @@
             "type": "string"
           }
         ],
-        "tags": [
-          "Health"
-        ]
+        "tags": ["Health"]
+      }
+    },
+    "/api/v1/sandbox/health/watch": {
+      "get": {
+        "summary": "Watch health",
+        "description": "Watch service health",
+        "operationId": "Health_Watch",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/HealthCheckResponseServingStatus"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1alpha1HealthCheckResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": ["Health"]
       }
     }
   },
   "definitions": {
     "HealthCheckResponseServingStatus": {
       "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "SERVING",
-        "NOT_SERVING",
-        "SERVICE_UNKNOWN"
-      ],
+      "enum": ["UNKNOWN", "SERVING", "NOT_SERVING", "SERVICE_UNKNOWN"],
       "default": "UNKNOWN",
       "title": "- SERVICE_UNKNOWN: used only by Watch"
     },
@@ -98,5 +127,9 @@
         }
       }
     }
+  },
+  "externalDocs": {
+    "description": "Health service",
+    "url": "https://github.com/sanselme/sandbox"
   }
 }

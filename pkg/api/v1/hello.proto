@@ -3,6 +3,32 @@ syntax = "proto3";
 package api.v1;
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {version: "0.1.0"};
+  external_docs: {
+    url: "https://github.com/sanselme/sandbox";
+    description: "Greeter service";
+  }
+  //schemes: HTTPS;
+};
+
+// Here is the overall greeting service definition where we define all our endpoints
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      post: "/api/v1/sandbox/hello"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Say hello"
+      description: "Sends a greeting"
+      tags: "Greeter"
+    };
+  }
+}
 
 // The request message containing the user's name
 message HelloRequest {
@@ -12,15 +38,4 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
-}
-
-// Here is the overall greeting service definition where we define all our endpoints
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      post: "/v1/sandbox/hello"
-      body: "*"
-    };
-  }
 }

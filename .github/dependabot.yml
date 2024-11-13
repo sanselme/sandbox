@@ -1,5 +1,10 @@
 version: 2
 updates:
+  # Maintain dependencies for Git submodules
+  - package-ecosystem: gitsubmodule
+    directory: /
+    schedule:
+      interval: daily
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
     directory: /
@@ -10,3 +15,31 @@ updates:
     directory: /
     schedule:
       interval: monthly
+  # Maintain dependencies for Swift
+  # note: swift has no workspace
+  - package-ecosystem: swift
+    directories:
+      - pkg/api
+      - pkg/hello
+    schedule:
+      interval: weekly
+  # Maintain dependencies for Rust
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+  # Maintain dependencies for Go
+  # note: dependabot does not support go workspace
+  - package-ecosystem: gomod
+    directories:
+      - docs/openapi
+      - pkg/api
+      - pkg/helloclient/go
+      - pkg/hellogw
+    schedule:
+      interval: weekly
+  # Maintain dependencies for Nodejs
+  # - package-ecosystem: npm
+  #   directory: /
+  #   schedule:
+  #     interval: weekly

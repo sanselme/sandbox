@@ -3,6 +3,73 @@ syntax = "proto3";
 package api.v1alpha1;
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {version: "0.1.0"};
+  external_docs: {
+    url: "https://github.com/sanselme/sandbox";
+    description: "Route Guide service";
+  }
+  //schemes: HTTPS;
+};
+
+// Interface exported by the server.
+service RouteGuide {
+  // Obtains the feature at a given position.
+  rpc GetFeature(Point) returns (Feature) {
+    option (google.api.http) = {
+      get: "/api/v1alpha1/sandbox/feature"
+      response_body: "location"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Feature at point"
+      description: "Obtains the feature at a given position"
+      tags: "Point"
+    };
+  }
+
+  // Obtains the Features available within the given Rectangle. Results are
+  // streamed rather than returned at once (e.g. in a response message with a
+  // repeated field), as the rectangle may cover a large area and contain a
+  // huge number of features.
+  rpc ListenFeatures(Rectangle) returns (stream Feature) {
+    option (google.api.http) = {
+      get: "/api/v1alpha1/sandbox/features"
+      response_body: "location"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Feature within rectangle"
+      description: "Obtains the feature within the given Rectangle"
+      tags: "Point"
+    };
+  }
+
+  // Accepts a stream of Points on a route being traversed, returning a
+  // RouteSummary when traversal is completed.
+  rpc RecordRoute(stream Point) returns (RouteSummary) {
+    option (google.api.http) = {get: "/api/v1alpha1/sandbox/summary"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Route summary"
+      description: "Stream of Points on a route bein traversed"
+      tags: "Summary"
+    };
+  }
+
+  // Accepts a stream of RouteNotes sent while a route is being traversed,
+  // while receiving other RouteNotes (e.g. from other users).
+  rpc Routechat(stream RouteNote) returns (stream RouteNote) {
+    option (google.api.http) = {
+      get: "/api/v1alpha1/sandbox/notes"
+      response_body: "location"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Route summary"
+      description: "Stream of RouteNotes on a route bein traversed"
+      tags: "Point"
+    };
+  }
+}
 
 // Points are represented as latitude-longitude pairs in the E7 representation
 // (degrees multiplied by 10**7 and rounded to the nearest integer).
@@ -55,26 +122,4 @@ message RouteSummary {
 
   // The duration of the traversal in seconds.
   int32 elapsed_time = 4;
-}
-
-// Interface exported by the server.
-service RouteGuide {
-  // Obtains the feature at a given position.
-  rpc GetFeature(Point) returns (Feature) {
-    option (google.api.http) = {get: "/v1alpha1/sandbox/feature"};
-  }
-
-  // Obtains the Features available within the given Rectangle. Results are
-  // streamed rather than returned at once (e.g. in a response message with a
-  // repeated field), as the rectangle may cover a large area and contain a
-  // huge number of features.
-  rpc ListenFeatures(Rectangle) returns (stream Feature);
-
-  // Accepts a stream of Points on a route being traversed, returning a
-  // RouteSummary when traversal is completed.
-  rpc RecordRoute(stream Point) returns (RouteSummary);
-
-  // Accepts a stream of RouteNotes sent while a route is being traversed,
-  // while receiving other RouteNotes (e.g. from other users).
-  rpc Routechat(stream RouteNote) returns (stream RouteNote);
 }

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/spf13/cobra"
@@ -39,9 +40,17 @@ var (
         log.Fatalln("failed to register gateway:", err)
       }
 
+      oa := getOpenAPIHandler()
+
       server := &http.Server{
         Addr: fmt.Sprintf(":%d", gwPort),
-        Handler: mux,
+        Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+          if strings.HasPrefix(r.URL.Path, "/api") {
+            mux.ServeHTTP(w, r)
+            return
+          }
+          oa.ServeHTTP(w, r)
+        }),
       }
 
       log.Printf("serving grpc-gateway on http://0.0.0.0:%d\n", gwPort)
