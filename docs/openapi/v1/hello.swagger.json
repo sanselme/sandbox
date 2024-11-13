@@ -2,23 +2,20 @@
   "swagger": "2.0",
   "info": {
     "title": "v1/hello.proto",
-    "version": "version not set"
+    "version": "0.1.0"
   },
   "tags": [
     {
       "name": "Greeter"
     }
   ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
-    "/v1/sandbox/hello": {
+    "/api/v1/sandbox/hello": {
       "post": {
-        "summary": "Sends a greeting",
+        "summary": "Say hello",
+        "description": "Sends a greeting",
         "operationId": "Greeter_SayHello",
         "responses": {
           "200": {
@@ -44,9 +41,7 @@
             }
           }
         ],
-        "tags": [
-          "Greeter"
-        ]
+        "tags": ["Greeter"]
       }
     }
   },
@@ -99,5 +94,9 @@
       },
       "title": "The request message containing the user's name"
     }
+  },
+  "externalDocs": {
+    "description": "Greeter service",
+    "url": "https://github.com/sanselme/sandbox"
   }
 }

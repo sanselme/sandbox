@@ -401,10 +401,8 @@ fastlane/test_output
 # Project files
 .*
 .env
-*.lock
-*.resolved
-*.sum
 !.*.json
+!.*.toml
 !.*.yaml
 !.commitlintrc
 !.devcontainer/
@@ -414,4 +412,6 @@ fastlane/test_output
 !.gitmodules
 !.shellcheckrc
 !.trunk/
+!*.lock
+!*.sum
 !example.env

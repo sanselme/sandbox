@@ -21,4 +21,4 @@ require (
 
 replace github.com/sanselme/sandbox/api v0.1.0 => ../api
 
-replace google.golang.org/genproto v0.0.0-20220822174746-9e6da59bd2fc => google.golang.org/genproto v0.0.0-20241021214115-324edc3d5d38
+replace github.com/sanselme/sandbox/openapi v0.1.0 => ../../docs/openapi

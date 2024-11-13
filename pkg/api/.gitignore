@@ -6,9 +6,13 @@
 !*.proto
 !buf.build.yaml
 !Cargo.toml
+!Cargo.toml.lock
 !go.mod
+!go.sum
 !package.json
+!Package.resolved
 !Package.swift
 
 # ...even if they are in subdirectories
 !*/
+.build/
