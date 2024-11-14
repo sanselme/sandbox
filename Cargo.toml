@@ -6,4 +6,5 @@ unused = "allow"       # debug: For experimental dev.
 resolver = "2"
 members = [
   "./pkg/api",
+  "pkg/helloclient/rust",
 ]

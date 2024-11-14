@@ -29,25 +29,25 @@ plugins:
   - local: protoc-gen-grpc-swift
     out: pkg/api
     opt: Visibility=Public
-  # - remote: buf.build/community/neoeinstein-prost:v0.3.1
-  #   out: pkg/api
-  #   opt:
-  #     - compile_well_known_types
-  #     - enable_type_names
-  #     - extern_path=.google.protobuf=::pbjson_types
-  #     - file_descriptor_set
-  # - remote: buf.build/community/neoeinstein-tonic:v0.4.0
-  #   out: pkg/api
-  #   opt:
-  #     - compile_well_known_types
-  #     - extern_path=.google.protobuf=::pbjson_types
-  # - remote: buf.build/community/neoeinstein-prost-serde:v0.3.0
-  #   out: pkg/api
-  # - remote: buf.build/community/neoeinstein-prost-crate:v0.4.1
-  #   out: pkg/api
-  #   opt:
-  #     - no_features
-  #     - include_file=lib.rs
+  - remote: buf.build/community/neoeinstein-prost:v0.3.1
+    out: pkg/api
+    opt:
+      - compile_well_known_types
+      - enable_type_names
+      - extern_path=.google.protobuf=::pbjson_types
+      - file_descriptor_set
+  - remote: buf.build/community/neoeinstein-tonic:v0.4.0
+    out: pkg/api
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
+  - remote: buf.build/community/neoeinstein-prost-serde:v0.3.0
+    out: pkg/api
+  - remote: buf.build/community/neoeinstein-prost-crate:v0.4.1
+    out: pkg/api
+    opt:
+      - no_features
+      - include_file=lib.rs
   # - remote: buf.build/protocolbuffers/js:v3.21.4
   #   out: pkg/api
   #   opt: import_style=commonjs_strict,binary
