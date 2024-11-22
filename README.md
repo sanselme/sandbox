@@ -7,12 +7,12 @@
 [ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/sanselme/sandbox
 [ci-badge]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml/badge.svg
 [ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
+[openapi-readme-link]: /docs/openapi/README.md
+[hacking-readme-link]: /hack/README.md
 
 ---
 
-[Protocol Documentation][openapi-readme-link]
-
-[openapi-readme-link]: /docs/openapi/README.md
+### [**_Open API |_**][openapi-readme-link] [**_Hacking_**][hacking-readme-link]
 
 ---
 
