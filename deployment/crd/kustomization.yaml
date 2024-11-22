@@ -1,0 +1,4 @@
+resources:
+  - https://github.com/kubernetes-csi/external-snapshotter/client/config/crd
+  - https://github.com/kubernetes-sigs/gateway-api/config/crd/experimental
+  # - remoteclustertemplate.yaml
