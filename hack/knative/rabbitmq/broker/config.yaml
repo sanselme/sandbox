@@ -1,0 +1,11 @@
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: RabbitmqBrokerConfig
+metadata:
+  name: default-config
+spec:
+  # vhost: you-rabbitmq-vhost
+  rabbitmqClusterReference:
+    name: rabbitmq
+    namespace: cloud
+  queueType: quorum

@@ -1,0 +1,18 @@
+---
+apiVersion: sources.knative.dev/v1alpha1
+kind: RabbitmqSource
+metadata:
+  name: rabbitmq-source
+spec:
+  # vhost: you-rabbitmq-vhost
+  rabbitmqClusterReference:
+    name: rabbitmq
+    namespace: cloud
+  rabbitmqResourcesConfig:
+    exchangeName: "eventing-rabbitmq-source"
+    queueName: "eventing-rabbitmq-source"
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
