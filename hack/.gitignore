@@ -6,7 +6,7 @@
 !*.example
 !boilerplate.txt
 !cluster
-!manifest
+!gateway
 !pod.yaml
 
 # ...even if they are in subdirectories
