@@ -9,8 +9,12 @@
       "name": "Health"
     }
   ],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/api/v1/sandbox/health": {
       "get": {
@@ -39,7 +43,9 @@
             "type": "string"
           }
         ],
-        "tags": ["Health"]
+        "tags": [
+          "Health"
+        ]
       }
     },
     "/api/v1/sandbox/health/watch": {
@@ -78,14 +84,21 @@
             "type": "string"
           }
         ],
-        "tags": ["Health"]
+        "tags": [
+          "Health"
+        ]
       }
     }
   },
   "definitions": {
     "HealthCheckResponseServingStatus": {
       "type": "string",
-      "enum": ["UNKNOWN", "SERVING", "NOT_SERVING", "SERVICE_UNKNOWN"],
+      "enum": [
+        "UNKNOWN",
+        "SERVING",
+        "NOT_SERVING",
+        "SERVICE_UNKNOWN"
+      ],
       "default": "UNKNOWN",
       "title": "- SERVICE_UNKNOWN: used only by Watch"
     },

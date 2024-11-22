@@ -3,6 +3,6 @@ go 1.23.2
 use (
 	./docs/openapi
 	./pkg/api
-	./pkg/helloclient/go
-	./pkg/hellogw
+	./pkg/hello/cli/go
+	./pkg/hello/gw
 )

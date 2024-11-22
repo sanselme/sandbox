@@ -38,5 +38,5 @@ uart_16550 = "0.3.1"
 volatile = "0.2.6"
 x86_64 = "0.14.2"
 
-[lints.rust]
-unsafe_code = "allow"
+# [lints.rust]
+# unsafe_code = "allow"

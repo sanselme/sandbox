@@ -9,8 +9,12 @@
       "name": "RouteGuide"
     }
   ],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/api/v1alpha1/sandbox/feature": {
       "get": {
@@ -47,7 +51,9 @@
             "format": "int32"
           }
         ],
-        "tags": ["Point"]
+        "tags": [
+          "Point"
+        ]
       }
     },
     "/api/v1alpha1/sandbox/features": {
@@ -108,7 +114,9 @@
             "format": "int32"
           }
         ],
-        "tags": ["Point"]
+        "tags": [
+          "Point"
+        ]
       }
     },
     "/api/v1alpha1/sandbox/notes": {
@@ -162,7 +170,9 @@
             "type": "string"
           }
         ],
-        "tags": ["Point"]
+        "tags": [
+          "Point"
+        ]
       }
     },
     "/api/v1alpha1/sandbox/summary": {
@@ -200,7 +210,9 @@
             "format": "int32"
           }
         ],
-        "tags": ["Summary"]
+        "tags": [
+          "Summary"
+        ]
       }
     }
   },
