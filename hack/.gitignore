@@ -6,7 +6,8 @@
 !*.example
 !boilerplate.txt
 !cluster
-!gateway/*
+!gateway/*.yaml
+!knative/*/*.yaml
 !pod.yaml
 
 # ...even if they are in subdirectories
