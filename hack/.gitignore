@@ -4,6 +4,7 @@
 # Except these files
 !.gitignore
 !*.example
+!*.md
 !boilerplate.txt
 !cluster
 !gateway/*.yaml
