@@ -1,7 +1,11 @@
 ---
 services:
+  # bind: ubuntu/bind9:9.18-24.04_beta
+  # frr: quay.io/frrouting/frr:10.2.0
+  # cloud-provider-kind: sanselme/cloud-provider-kind:v0.4.0
   sandbox:
     image: ghcr.io/anselmes/devcontainer:24.04
+    cgroup: host
     privileged: true
     stdin_open: true
     tty: true
@@ -9,12 +13,13 @@ services:
     working_dir: /home/devcontainer
     volumes:
       - .:/home/devcontainer
-    ports: []
-    # - 10022:22
-    # - 10080:80
-    # - 10443:443
-    # - 15900:5900
-    # - 16443:6443
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    ports:
+      - 10022:22
+      - 15900:5900
+      - 443:443
+      - 6443:6443
+      - 80:80
     networks:
       devcontainer: {}
 networks:
