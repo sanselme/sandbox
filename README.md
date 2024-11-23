@@ -2,10 +2,13 @@
 
 [![OpenSSF Scorecard][ossf-score-badge]][ossf-score-link]
 [![Contiuos Integration][ci-badge]][ci-link]
+[![CodeQL][codeql-badge]][codeql-link]
 
 [ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/sanselme/sandbox/badge
 [ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/sanselme/sandbox
 [ci-badge]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml/badge.svg
+[codeql-badge]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql/badge.svg
+[codeql-link]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql
 [ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
 [openapi-readme-link]: /docs/openapi/README.md
 [hacking-readme-link]: /hack/README.md
