@@ -1,0 +1,15 @@
+---
+osh:
+  harbor:
+    keystone: {}
+  cruiser:
+    ctl:
+      glance: {}
+      horizon: {}
+      swift: {}
+      designate: {}
+    cli:
+      cinder: {}
+      nova: {}
+      neutron: {}
+      octavia: {}

@@ -1,0 +1,80 @@
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloweb
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - # WebService
+          image: ghcr.io/sanselme/sandbox/helloweb:main # swift ignite
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hellogw
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - # gRPCGateway
+          image: ghcr.io/sanselme/sandbox/hellogw:main # go grpc gw
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hellosvc
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - # gRPCService
+          image: ghcr.io/sanselme/sandbox/hellod:main # swift grpc
+          ports:
+            - name: h2c
+              containerPort: 8080
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hellocu
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - # CloudEvent - CU
+          image: ghcr.io/sanselme/sandbox/helloctl:main # go/rust cloud event (go:ce,rs:ce+ws)
+          env:
+            - name: K_SINK
+              value: https://broker.sandbox.svc.cluster.local
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hellocdev
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - # WebSocket - CDEV
+          image: ghcr.io/sanselme/sandbox/hellosock:main # swift/rust web socket (s:ws,rs:ce+ws)
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: failer
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/knative-nightly/knative.dev/eventing-rabbitmq/cmd/failer@sha256:21b69f637e077c97f9a9a57072cf397d2d465af9c30f9a9bfb47965b15df3b0f
+          env:
+            - name: DEFAULT_RESPONSE_CODE
+              value: "200"

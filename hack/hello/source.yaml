@@ -1,0 +1,25 @@
+---
+apiVersion: sources.knative.dev/v1alpha1
+kind: GitHubSource
+metadata:
+  name: hellosrc
+  namespace: sandbox
+spec:
+  ownerAndRepository: <YOUR USER>/<YOUR REPO>
+  eventTypes:
+    - pull_request
+  accessToken:
+    secretKeyRef:
+      name: githubsecret
+      key: accessToken
+  secretToken:
+    secretKeyRef:
+      name: githubsecret
+      key: secretToken
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: hellocu
+# To use GitHub Enterprise you would need to add an entry for your githubAPIURL similar to the following example
+# githubAPIURL: "https://github.mycompany.com/api/v3/"

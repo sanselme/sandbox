@@ -1,0 +1,22 @@
+---
+spec:
+  build:
+    chart: []
+    # - name: ""
+    #   path: ""
+    config: []
+    # - name: ""
+    #   value: ""
+    container: []
+    # - name: ""
+    #   path: ""
+    #   platform: ""
+    #   files: []
+    repo: []
+    # - name: ""
+    #   secret: ""
+    #   url: ""
+    #   username: ""
+    runner: []
+    # - name: ""
+    #   config: ""

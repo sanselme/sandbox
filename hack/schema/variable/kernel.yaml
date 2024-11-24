@@ -1,0 +1,5 @@
+---
+spec:
+  kernel:
+    lm4: {}
+    linux: []

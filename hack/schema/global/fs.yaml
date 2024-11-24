@@ -1,0 +1,26 @@
+---
+fs:
+  - / # ro
+  - /arch
+  - /cache # cfs
+  - /cache/l1 # mfs
+  - /cache/l2 # ofs
+  - /cache/l3 # idfs
+  - /cdev
+  - /cdev/class
+  - /cdev/class/net
+  - /cdev/class/net/fw
+  - /cdev/class/net/gw
+  - /config
+  - /cu
+  - /cu/amd
+  - /cu/arm
+  - /cu/rv
+  - /env
+  - /lib
+  - /proc # rx,tx
+  - /site
+  - /site/cruiser
+  - /site/harbor
+  - /tmp # rw,ephemeral
+  - /var # rw,userdefined

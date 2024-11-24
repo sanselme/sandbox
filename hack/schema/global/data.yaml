@@ -1,0 +1,9 @@
+---
+data:
+  - etcd
+  - mariadb
+  - memcached
+  - mongo
+  - postgres
+  - rabbitmq
+  - redis

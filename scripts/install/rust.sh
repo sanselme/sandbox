@@ -10,7 +10,7 @@ if [[ -z $(command -v rustup) ]]; then
 fi
 
 # set rust toolchain
-if [[ -z $(command -v rustc) ]]; then
+if [[ -n $(command -v rustc) ]]; then
  rustup default stable
  rustup component add rust-src
 fi

@@ -1,0 +1,83 @@
+#cloud-config
+manage_etc_hosts: true
+package_update: true
+package_upgrade: true
+timezone: America/Toronto
+growpart:
+  mode: auto
+  ignore_growroot_disabled: false
+  devices: [/]
+users:
+  - default
+ssh_authorized_keys: []
+packages:
+  - apparmor
+  - ca-certificates
+  - conntrack
+  - curl
+  - gnupg
+  - libseccomp2
+write_files:
+  - path: /etc/environment
+    permissions: "644"
+    owner: root
+    content: |
+      PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+      EDITOR="vim"
+  - path: /usr/lib/systemd/system/user@.service.d/delegate.conf
+    permissions: "644"
+    owner: root
+    content: |
+      [Service]
+      Delegate=cpu cpuset io memory pids
+  - path: /opt/configure.sh
+    permissions: "755"
+    owner: root
+    content: |
+      #!/bin/bash
+      # SPDX-License-Identifier: GPL-3.0
+
+      set -eo pipefail
+
+      : "${LOCALE:="C.UTF-8"}"
+      : "${TIMEZONE:="America/Toronto"}"
+
+      # disable swap
+      swapoff -a && sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+
+      # set locale
+      localectl set-locale LANG="${LOCALE}"
+
+      # set timezone
+      timedatectl set-ntp true
+      timedatectl set-timezone "${TIMEZONE}"
+
+      # debug: disable firewall
+      # if command -v ufw >>/dev/null; then
+      #   ufw disable
+      # fi
+runcmd:
+  - /opt/configure.sh
+  - # cri
+    |
+    ARCH="$(dpkg --print-architecture)"
+    VERSION="2.0.0"
+    curl curl -fsSLo "/tmp/containerd-${VERSION}-linux-${ARCH}.tgz" https://github.com/containerd/containerd/releases/download/v${VERSION}/containerd-${VERSION}-linux-${ARCH}.tar.gz
+    sudo tar -xf "/tmp/containerd-${VERSION}-linux-${ARCH}.tgz" -C /usr/local/bin
+  - # crictl
+    |
+    ARCH="$(dpkg --print-architecture)"
+    VERSION="v1.31.1"
+    curl -fsSLo "/tmp/crictl-${VERSION}-linux-${ARCH}.tgz" https://github.com/kubernetes-sigs/cri-tools/releases/download/${VERSION}/crictl-${VERSION}-linux-${ARCH}.tar.gz
+    sudo tar -xf "/tmp/crictl-${VERSION}-linux-${ARCH}.tgz" -C /usr/local/bin
+    rm -f "/tmp/crictl-${VERSION}-linux-${ARCH}.tgz"
+  - # plugin
+    |
+    ARCH="$(dpkg --print-architecture)"
+    VERSION="1.6.0"
+    curl -fsSLo "/tmp/cni-plugins-linux-${ARCH}-${VERSION}.tgz.tgz" "https://github.com/containernetworking/plugins/releases/download/v${VERSION}/cni-plugins-linux-${ARCH}-${VERSION}.tgz"
+    sudo mkdir -p /opt/cni/bin
+    sudo tar -xf "cni-plugins-linux-${ARCH}-${VERSION}.tgz" -C /opt/cni/bin
+    rm "$TAR"
+bootcmd:
+  - stat -c %T -f /sys/fs/cgroup

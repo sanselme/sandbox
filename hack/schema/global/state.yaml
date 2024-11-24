@@ -1,0 +1,32 @@
+---
+static: |
+  # rot - read
+  static code
+dynamic: |
+  # black box - write - dev
+  static code
+  running environment
+staticallystatic: |
+  # verified - stable - ofs - enc+sign
+  static code
+  running environment
+  expected output == actual output
+staticallydynamic: |
+  # correct - main - src
+  static code
+  running environment
+  expected output ~= actual output
+dynamicallystatic: |
+  # environment dependant - archive - mfs - sign+ver
+  static code
+  running environment
+  expected output == actual output
+  swap environment
+  expected output ~= actual output
+dynamicallydynamic: |
+  # environment independant - lts - idfs - arc+enc+sign
+  static code
+  running environment
+  expected output == actual output
+  swap environment
+  expected output == actual output

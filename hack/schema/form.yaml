@@ -1,0 +1,6 @@
+---
+form:
+  - code
+  - exec
+  - input
+  - output

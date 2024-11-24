@@ -1,0 +1,17 @@
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: hellotgr
+  namespace: sandbox
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.sanselme.sandbox.hello
+      source: dev.sanselme.sandbox/hellosrc
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: hellocdev
