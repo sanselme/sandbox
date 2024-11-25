@@ -4,3 +4,9 @@
 [submodule "modules/tooling"]
 	path = modules/tooling
 	url = https://github.com/anselmes/tooling.git
+[submodule "modules/charts"]
+	path = modules/charts
+	url = https://github.com/anselmes/charts.git
+[submodule "modules/images"]
+	path = modules/images
+	url = https://github.com/anselmes/images.git
