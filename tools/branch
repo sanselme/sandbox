@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-3.0
+
+set -eo pipefail
+
+# note: variables
+ID="$(id -u)"
+UUID="$(uuidgen)"
+
+DATE="$(date +%s)"
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+# note: push to stash
+git stash push -m "stash-${ID}-${DATE}-${UUID}-${BRANCH}"
+
+# note: branch
+git switch "${1}"
+
+# note: sync
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+git fetch origin "${BRANCH}"
+git reset --soft FETCH_HEAD
+
+# note: pop from stash
+git stash list
+git stash pop "stash@{0}"

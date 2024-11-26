@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# Particularly
+*.png
+exception.log
+expectation.md
+
+# Except these files
+!.gitignore
+!*.example
+!*.md
+!branch
+!cache
+!scratch
+
+# ...even if they are in subdirectories
+!*/
