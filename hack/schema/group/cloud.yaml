@@ -1,0 +1,5 @@
+spec:
+  cloud:
+    openstack: []
+    vsphere: []
+    ssh: []
