@@ -1,0 +1,6 @@
+---
+app:
+  - kind
+  - kosmotron
+  - kubeadm
+  - minikube

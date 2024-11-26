@@ -1,0 +1,164 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0
+
+set -eo pipefail
+
+# note: crd
+kustomize build deployment/crd | kubectl apply -f -
+
+# todo: csi
+
+# note: cni
+cat <<eof | helm upgrade cilium \
+  --atomic \
+  --install cilium \
+  --repo https://helm.cilium.io/ \
+  --version 1.16.2 \
+  -n kube-system \
+  -f -
+---
+kubeProxyReplacement: true
+l2announcements:
+  enabled: true
+gatewayAPI:
+  enabled: true
+operator:
+  replicas: 1
+eof
+
+# note: certmanager
+cat <<eof | helm upgrade cert-manager \
+  --atomic \
+  --create-namespace \
+  --install cert-manager \
+  --repo https://charts.jetstack.io/ \
+  --version v1.16.0 \
+  -n cert-manager \
+  -f -
+---
+crds:
+  enabled: true
+config:
+  apiVersion: controller.config.cert-manager.io/v1alpha1
+  kind: ControllerConfiguration
+  enableGatewayAPI: true
+eof
+
+# note: clusterissuer
+cat <<eof | helm upgrade ca-clusterissuer \
+  --atomic \
+  --install oci://registry-1.docker.io/sanselmechart/ca-clusterissuer \
+  --version 0.2.0 \
+  -n cert-manager \
+  -f -
+---
+manifests:
+  clusterissuer: false
+  selfsigned: true
+eof
+
+# note: operator
+helm upgrade knative-operator \
+  --atomic \
+  --create-namespace \
+  --install oci://registry-1.docker.io/sanselmechart/knative-operator \
+  --version 0.3.0 \
+  -n operators
+cat <<eof | helm upgrade \
+  --atomic \
+  --install oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator \
+  --version 4.3.27 \
+  -n operators \
+  -f -
+---
+clusterOperator:
+  metrics:
+    service:
+      enabled: true
+    # serviceMonitor:
+    #   enabled: true
+    # podMonitor:
+    #   enabled: true
+msgTopologyOperator:
+  metrics:
+    service:
+      enabled: true
+    # serviceMonitor:
+    #   enabled: true
+    # podMonitor:
+    #   enabled: true
+useCertManager: true
+eof
+
+# note: resource
+cat <<eof | helm upgrade cni-resource \
+  --atomic \
+  --install oci://registry-1.docker.io/sanselmechart/cni-resource \
+  --version 0.1.0 \
+  -n kube-system \
+  -f -
+---
+cilium:
+  pool:
+    allowFirstLastIPs: "'No'"
+  advert:
+    l2:
+      enabled: true
+    bgp:
+      enabled: false
+  config:
+    cluster:
+      enabled: false
+    peer:
+      enabled: false
+eof
+
+# note: gateway
+kustomize build hack/gateway | kubectl apply -f -
+kustomize build hack/knative/net-gateway | kubectl apply -f -
+
+# note: cluster
+kustomize build hack/knative/rabbitmq/cluster | kubectl apply -f -
+
+# note: broker
+kustomize build hack/knative/rabbitmq/broker | kubectl apply -f -
+
+# note: source
+kustomize build hack/knative/rabbitmq/source | kubectl apply -f -
+
+# note: server
+cat <<eof | helm upgrade knative-serving \
+  --atomic \
+  --install oci://registry-1.docker.io/sanselmechart/knative-serving \
+  --version 0.3.0 \
+  -n knative \
+  -f -
+---
+ca-issuer:
+  enabled: true
+knative:
+  ingress:
+    type: gateway-api
+eof
+cat <<eof | helm upgrade knative-eventing \
+  --atomic \
+  --install oci://registry-1.docker.io/sanselmechart/knative-eventing \
+  --version 0.3.0 \
+  -n knative \
+  -f -
+---
+sources:
+  # ceph:
+  #   enabled: true
+  github:
+    enabled: true
+  # fixme: failing due to rbac
+  # rabbitmq:
+  #   enabled: true
+  redis:
+    enabled: true
+eof
+kustomize build hack/knative/backstage | kubectl apply -f -
+
+# note: service
+kustomize build hack/knative/rabbitmq | kubectl apply -f -

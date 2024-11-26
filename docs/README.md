@@ -6,26 +6,26 @@
 - [v1/hello.proto](#v1_hello-proto)
     - [HelloReply](#api-v1-HelloReply)
     - [HelloRequest](#api-v1-HelloRequest)
-  
+
     - [Greeter](#api-v1-Greeter)
-  
+
 - [v1alpha1/health.proto](#v1alpha1_health-proto)
     - [HealthCheckRequest](#api-v1alpha1-HealthCheckRequest)
     - [HealthCheckResponse](#api-v1alpha1-HealthCheckResponse)
-  
+
     - [HealthCheckResponse.ServingStatus](#api-v1alpha1-HealthCheckResponse-ServingStatus)
-  
+
     - [Health](#api-v1alpha1-Health)
-  
+
 - [v1alpha1/route_guide.proto](#v1alpha1_route_guide-proto)
     - [Feature](#api-v1alpha1-Feature)
     - [Point](#api-v1alpha1-Point)
     - [Rectangle](#api-v1alpha1-Rectangle)
     - [RouteNote](#api-v1alpha1-RouteNote)
     - [RouteSummary](#api-v1alpha1-RouteSummary)
-  
+
     - [RouteGuide](#api-v1alpha1-RouteGuide)
-  
+
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -66,11 +66,11 @@ The request message containing the user&#39;s name
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="api-v1-Greeter"></a>
@@ -82,7 +82,7 @@ Here is the overall greeting service definition where we define all our endpoint
 | ----------- | ------------ | ------------- | ------------|
 | SayHello | [HelloRequest](#api-v1-HelloRequest) | [HelloReply](#api-v1-HelloReply) | Sends a greeting |
 
- 
+
 
 
 
@@ -122,7 +122,7 @@ Here is the overall greeting service definition where we define all our endpoint
 
 
 
- 
+
 
 
 <a name="api-v1alpha1-HealthCheckResponse-ServingStatus"></a>
@@ -138,9 +138,9 @@ Here is the overall greeting service definition where we define all our endpoint
 | SERVICE_UNKNOWN | 3 | used only by Watch |
 
 
- 
 
- 
+
+
 
 
 <a name="api-v1alpha1-Health"></a>
@@ -157,7 +157,7 @@ if the requested service is unknown when the call is received, the server will s
 
 if the call terminates with status UNIMPLEMENTED, then clients should assume this method is not supported and should not retry the call if the call terminates with any other status (including OK), clients should retry the call with appropriate exponential backoff |
 
- 
+
 
 
 
@@ -254,11 +254,11 @@ A RouteSummary is received in response to a RecordRoute rpc.
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="api-v1alpha1-RouteGuide"></a>
@@ -273,7 +273,7 @@ Interface exported by the server.
 | RecordRoute | [Point](#api-v1alpha1-Point) stream | [RouteSummary](#api-v1alpha1-RouteSummary) | Accepts a stream of Points on a route being traversed, returning a RouteSummary when traversal is completed. |
 | Routechat | [RouteNote](#api-v1alpha1-RouteNote) stream | [RouteNote](#api-v1alpha1-RouteNote) stream | Accepts a stream of RouteNotes sent while a route is being traversed, while receiving other RouteNotes (e.g. from other users). |
 
- 
+
 
 
 
@@ -296,4 +296,3 @@ Interface exported by the server.
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-

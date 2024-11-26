@@ -7,7 +7,7 @@ let package = Package(
   name: "hello",
   platforms: [.macOS("15.0")],
   products: [
-    .executable(name: "hello", targets: ["ui"]),
+    .executable(name: "hello", targets: ["web"]),
     .executable(name: "hellocli", targets: ["client"]),
     .executable(name: "hellod", targets: ["server"]),
     .executable(name: "helloctl", targets: ["controller"]),
@@ -47,7 +47,7 @@ let package = Package(
       ]
     ),
     .executableTarget(
-      name: "ui",
+      name: "web",
       dependencies: [
         .product(name: "v1", package: "api"),
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
