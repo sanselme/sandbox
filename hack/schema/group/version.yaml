@@ -1,0 +1,9 @@
+spec:
+  version:
+    "-1": null
+    "-2": null
+    main: {}
+    stable: {}
+    lts: {}
+    archived: []
+    discarded: []

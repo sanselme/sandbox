@@ -1,0 +1,18 @@
+spec:
+  os:
+    - name: ubuntu
+      type: service
+    - name: vyos
+      type: gateway
+    - name: panos
+      type: firewall
+    - name: macos
+      type: management
+      client:
+        tool: []
+    - name: ios
+      type: client
+    - name: watchos
+      type: client
+    - name: tvos
+      type: client

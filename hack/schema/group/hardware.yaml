@@ -1,0 +1,11 @@
+spec:
+  hardware:
+    cdev:
+      gw: {}
+      fw: {}
+      sw: []
+      hv: []
+    cunit:
+      - type: riscv64
+      - type: arm64
+      - type: amd64
