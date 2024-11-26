@@ -1,0 +1,19 @@
+---
+pre:
+  # pre-run
+  - 1.cloud-config
+  - 1.cloud-image
+  - 2.available-capabilities
+  - 2.enabled-capabilities
+  - 3.available features
+  - 3.enabled features
+  - 3.available extensions
+  - 3.enabled extensions
+  - 3.available addons
+  - 3.enabled addons
+dos:
+  clos: {} # cli
+  gos: {} # git
+  os: {}
+# post-run
+post: []
