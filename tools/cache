@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-3.0
+
+set -eo pipefail
+
+# note: variables
+ID="$(id -u)"
+UUID="$(uuidgen)"
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+DATE="$(date +%s)"
+
+CACHE="/Users/schubert/Library/Mobile Documents/com~apple~CloudDocs/cloudos/cache"
+
+# note: init cache
+if [[ ! -d "${CACHE}" ]]; then
+  mkdir -p "${CACHE}"
+fi
+git init --bare "${CACHE}"
+git add .
+git commit -m "init cache"
+
+# note: add cache
+git remote add cache "file://${CACHE}"
+
+# note: write to cache
+git push cache "${BRANCH}"
