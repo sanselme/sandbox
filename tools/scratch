@@ -1,0 +1,197 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0
+
+set -eo pipefail
+
+if [[ "${DEBUG}" -eq 1 ]]; then
+  set -x
+fi
+
+# note: libs
+blockfs="rbd/var/run/xo"
+cachefs="git/src/commit"
+filefs="cephfs/etc/rw"
+memfs="ram/proc/trx"
+objectfs="rgw/var/lib/ro"
+scratchfs="/tmp/rw"
+squashfs="root/none"
+
+# note: mounts
+adm="/tmp"
+dev="/dev"
+fs="/etc"
+git="/src"
+ram="/proc"
+rgw="/var/lib"
+root="/"
+
+# note: rbac
+adm=("/tmp:ro" "/etc:wo")
+dev=("/dev:rwx" "/proc:trx")
+svc=("/src:commit" "/proc:trx" "/var/lib:ro" "/var/run:xo" "/etc:ro" "/tmp:wo")
+
+# note: groups
+groups=("root" "git" "ram" "rgw" "rbd" "fs" "dev" "adm")
+
+# note: users
+users=("devcontainer" "adm" "svc")
+
+# note: init
+# loadenv
+env="/etc/environment"
+if [[ -f "${env}" ]]; then
+  source "${env}"
+fi
+# genconf
+conf="/etc/config.yaml"
+if [[ -f "${conf}" ]]; then
+  cat "${conf}"
+fi
+# loadimg
+img="${IMG:-"default"}"
+cmd="${CMD:-"default"}"
+
+# note: context
+# initctx
+ctx="${CTX:-"default"}"
+execsvc=""
+
+# note: function
+init() {
+  arg=${*}
+  case "${arg}" in
+    "/dev:rwx /proc:trx")
+      echo "DEV - load dev"
+      read="/dev"
+      rx="/proc"
+      tx="/proc"
+      write="/dev"
+      export read rx tx write
+      echo "DEV - dev loaded"
+      return
+      ;;
+    "/tmp:ro /etc:wo")
+      echo "ADM - call adm"
+      read="/tmp"
+      write="/etc"
+      export read write
+      return
+      ;;
+    "/src:commit /proc:trx /var/lib:ro /var/run:xo /etc:ro /tmp:wo")
+      echo "ENV LOAD - conf: ${conf} tx: ${tx} rx: ${rx}"
+      echo "SVC - hello svc"
+      commit="/src"
+      lib="/var/lib"
+      read="/etc"
+      run="/var/run"
+      write="/tmp"
+      echo "SVC INIT - lib: ${lib} run: ${run}"
+      export commit read write
+      echo "SVC - return from svc"
+      ;;
+    *)
+      echo "DEFAULT - hello from init with ${arg}"
+      ;;
+  esac
+}
+
+initdev() {
+  init "${dev[*]}"
+  # note: debug
+  if [[ "${DEBUG}" -eq 1 ]]; then
+    env | grep read
+    env | grep write
+    env | grep tx
+    env | grep rx
+  fi
+  echo "DEV INIT - ${dev[*]}"
+}
+
+initadm() {
+  init "${adm[*]}"
+  # note: debug
+  if [[ "${DEBUG}" -eq 1 ]]; then
+    env | grep read
+    env | grep write
+    env | grep tx
+    env | grep rx
+  fi
+  echo "ADM INIT - ${adm[*]}"
+}
+
+initsvc() {
+  init "${svc[*]}"
+  # note: debug
+  if [[ "${DEBUG}" -eq 1 ]]; then
+    env | grep read
+    env | grep write
+    env | grep tx
+    env | grep rx
+  fi
+  echo "SVC - ${svc[*]}"
+}
+
+initsys() {
+  # note: verify environment
+  if [[ ! -f "${env}" ]]; then
+    echo "SYS - missing environment"
+    export env="/tmp/environment"
+    touch "${env}"
+    source "${env}"
+    echo "SYS - using local environment"
+  fi
+  # note: verify config
+  if [[ ! -f "${conf}" ]]; then
+    echo "SYS - missing configuration"
+    export conf="/tmp/config.yaml"
+    touch "${conf}"
+    echo "SYS - using local configuration"
+  fi
+  # note: debug
+  if [[ "${DEBUG}" -eq 1 ]]; then
+    echo """
+env: ${env}
+conf: ${conf}
+"""
+  fi
+}
+
+callmain() {
+  initsys
+  initdev
+  initadm
+  initsvc
+  if [[ -z "${ctx}" ]]; then
+    echo "callmain - missing context"
+    return
+  fi
+  if [[ -z "${img}" ]]; then
+    echo "callmain - missing image"
+    return
+  fi
+  if [[ -z "${cmd}" ]]; then
+    echo "callmain - missing command"
+    return
+  fi
+  if [[ -n "$(command -v execsvc)" ]]; then
+    execsvc -ctx "${ctx}" -img "${img}" -cmd "${cmd}"
+  fi
+  main
+  # note: debug
+  if [[ "${DEBUG}" -eq 1 ]]; then
+  echo """
+ctx: ${ctx}
+img: ${img}
+cmd: ${cmd}
+"""
+  fi
+  exit 0
+}
+
+# note: main
+# define main
+main() {
+  echo "EXEC MAIN - hello"
+}
+# exec main
+callmain
