@@ -10,7 +10,7 @@
 [codeql-badge]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql/badge.svg
 [codeql-link]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql
 [ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
-[openapi-readme-link]: /docs/openapi/README.md
+[openapi-readme-link]: /docs/README.md
 [hacking-readme-link]: /hack/README.md
 
 ---
