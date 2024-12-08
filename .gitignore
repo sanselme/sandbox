@@ -159,6 +159,9 @@ fabric.properties
 # Project files
 .*
 .env
+*.gz
+*.tar
+*.tgz
 !.*.json
 !.*.yaml
 !.commitlintrc

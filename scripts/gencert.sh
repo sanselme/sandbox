@@ -1,1 +1,1 @@
-../modules/tooling/scripts/gencert.sh
+../modules/toolchain/scripts/gencert.sh
