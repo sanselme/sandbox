@@ -1,1 +1,1 @@
-../modules/tooling/scripts/install.sh
+../modules/toolchain/scripts/install.sh
