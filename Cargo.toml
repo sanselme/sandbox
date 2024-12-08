@@ -5,7 +5,7 @@ unused = "allow"       # debug: For experimental dev.
 [workspace]
 resolver = "2"
 members = [
-  "pkg/api",
-  "pkg/hello/lang/rs",
-  "pkg/lib",
+  "api",
+  "pkg/linux",
+  # "lib",
 ]

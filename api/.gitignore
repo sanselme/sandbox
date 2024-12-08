@@ -1,0 +1,10 @@
+*
+
+!v1/
+!v1/*
+
+!.gitignore
+!buf.build.yaml
+!Cargo.toml
+!go.mod
+!Package.swift

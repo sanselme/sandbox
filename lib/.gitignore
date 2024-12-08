@@ -1,2 +1,12 @@
 *
+
+!oa/
+!Sources/
+!Sources/**
+
 !.gitignore
+!*.go
+!*.mod
+!*.rs
+!*.swift
+!*.toml
