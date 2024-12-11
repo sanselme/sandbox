@@ -17,8 +17,11 @@ import (
 )
 
 var (
+  grpcAddress string
   grpcPort int
+  gwAddress string
   gwPort int
+
   rootCmd = &cobra.Command {
     Use: "hellogw",
     Short: "gRPC-Gateway proxy for the gRPC Greeter service",
@@ -26,7 +29,7 @@ var (
       // create a client connection to the gRPC server
       // this is where the gRPC-Gatewy proxies requests
       conn, err := grpc.NewClient(
-        fmt.Sprintf("0.0.0.0:%d", grpcPort),
+        fmt.Sprintf("%s:%d", grpcAddress, grpcPort),
         grpc.WithTransportCredentials(insecure.NewCredentials()),
       )
       if err != nil {
@@ -43,7 +46,7 @@ var (
       oa := getOpenAPIHandler()
 
       server := &http.Server{
-        Addr: fmt.Sprintf(":%d", gwPort),
+        Addr: fmt.Sprintf("%s:%d", gwAddress, gwPort),
         Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
           if strings.HasPrefix(r.URL.Path, "/api") {
             mux.ServeHTTP(w, r)
@@ -53,7 +56,7 @@ var (
         }),
       }
 
-      log.Printf("serving grpc-gateway on http://0.0.0.0:%d\n", gwPort)
+      log.Printf("serving grpc-gateway on http://%s:%d\n", gwAddress, gwPort)
       log.Fatalln(server.ListenAndServe())
     },
   }
@@ -65,6 +68,8 @@ func Execute() error {
 
 // todo: add tls
 func init() {
-  rootCmd.PersistentFlags().IntVarP(&grpcPort, "grpc", "", 8080, "port of the gRPC server")
-  rootCmd.PersistentFlags().IntVarP(&gwPort, "gw", "", 80, "port of the gRPC-Gateway server")
+  rootCmd.PersistentFlags().IntVarP(&grpcPort, "grpc-port", "", 8080, "port of the gRPC server")
+  rootCmd.PersistentFlags().IntVarP(&gwPort, "gw-port", "", 80, "port of the gRPC-Gateway server")
+  rootCmd.PersistentFlags().StrinVarP(&grpcAddress, "grpc-address", "", "127.0.0.1", "address of the gRPC server")
+  rootCmd.PersistentFlags().StrinVarP(&gwAddress, "gw-address", "", "127.0.0.1", "address of the gRPC-Gateway server")
 }

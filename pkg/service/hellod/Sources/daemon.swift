@@ -14,13 +14,16 @@ import GRPCNIOTransportHTTP2
 struct HelloDaemon: AsyncParsableCommand {
   static let configuration = CommandConfiguration(abstract: "Starts a greeter server.")
 
+  @Option(help: "The address to listen on")
+  var address: String = "127.0.0.1"
+
   @Option(help: "The port to listen on")
   var port: Int = 8080
 
   func run() async throws {
     let server = GRPCServer(
       transport: .http2NIOPosix(
-        address: .ipv4(host: "127.0.0.1", port: self.port),
+        address: .ipv4(host: self.address, port: self.port),
         transportSecurity: .plaintext
       ),
       services: [Greeter()]
