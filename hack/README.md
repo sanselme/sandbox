@@ -1,26 +1,8 @@
 # hacking
 
-## cluster
-
 ```bash
-kind create cluster --config config/kind.yaml
-kustomize build deployment/crd | kubectl apply -f -
-
-docker container run --rm \
-  --network kind \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  sanselme/cloud-provider-kind
-
-# docker container run --rm \
-#   --name kind-proxy \
-#   --network kind \
-#   -p 1080:1080 \
-#   serjs/go-socks5-proxy@sha256:aad36c623f16850d7cea0171d1aa79d706129191db9e270b6dfd7db6b552c734
-# export ALL_PROXY=socks5://localhost:1080
-
 # crds
-kustomize build "https://github.com/kubernetes-sigs/gateway-api/config/crd/experimental?ref=v1.2.0" | kubectl apply -f -
-kustomize build "https://github.com/kubernetes-csi/external-snapshotter/client/config/crd?ref=v8.1.0" | kubectl apply -f -
+kustomize build deployment/crd | kubectl apply -f -
 ```
 
 ## cni
@@ -106,6 +88,23 @@ eof
 ## gateway
 
 ```bash
+# envoy gateway (if not using cilium, eg. minikube)
+helm upgrade envoy-gateway \
+  --atomic \
+  --install oci://docker.io/envoyproxy/gateway-helm \
+  --version v1.2.3 \
+  -n kube-system
+cat <<eof | kubectl apply -f -
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: envoy
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+eof
+
+# gateways
 kustomize build hack/gateway | kubectl apply -f -
 ```
 
@@ -151,17 +150,14 @@ sources:
   #   enabled: true
   github:
     enabled: true
-  # fixme: failing due to rbac
-  # rabbitmq:
-  #   enabled: true
+  rabbitmq:
+    enabled: true
   redis:
     enabled: true
 eof
 
 # backstage
 kustomize build hack/knative/backstage | kubectl apply -f -
-
-# resource
 ```
 
 ## rabbitmq

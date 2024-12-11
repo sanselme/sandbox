@@ -6,8 +6,8 @@
 - [ ] macos # swiftui
 - [ ] tvos # swiftui
 - [ ] watchos # swiftui
-- [x] web # swift ignite
-- [x] cli # swift
+- [ ] web # swift ignite
+- [ ] cli # swift
 
 ## bpf
 
@@ -25,12 +25,8 @@
 
 ## service
 
-- [ ] ce # go cloudevent (clients - knative source)
+- [x] ce # go cloudevent (clients - knative source)
 - [x] grpc # swift grpc (services - knative service)
-
-## socket
-
-- [ ] socket # swift
 
 ## embedded
 

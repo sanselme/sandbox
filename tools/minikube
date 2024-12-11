@@ -4,10 +4,8 @@
 set -eo pipefail
 
 : "${CPUS:=4}"
-: "${DISK_SIZE:="64GiB"}"
 : "${MEMORY:="16GiB"}"
-: "${PSP:="config/psp.yaml"}"
-: "${RBAC:="config/rbac.yaml"}"
+: "${DISK_SIZE:="64GiB"}"
 
 # note:
 # - minikube starts services that may be available on the Internet. Please ensure that you have a firewall to protect your host from unexpected access. For instance:
@@ -26,7 +24,6 @@ set -eo pipefail
 # ref:
 # - https://minikube.sigs.k8s.io/docs/drivers/none/
 
-# todo: minikube vm
 if grep -E -q 'vmx|svm' /proc/cpuinfo >/dev/null 2>&1; then
   export DRIVER="kvm2"
   export OPT="--profile=kubevirt --kvm-gpu=false --hidden=true --kvm-network='' --network='' --kvm-qemu-uri=qemu:///system"
@@ -35,40 +32,36 @@ else
 fi
 
 # note: minikube cluster
-sudo minikube config set cpus "${CPUS}"
-sudo minikube config set disk-size "${DISK_SIZE}"
-sudo minikube config set driver "${DRIVER}"
-sudo minikube config set memory "${MEMORY}"
+minikube config set cpus "${CPUS}"
+minikube config set memory "${MEMORY}"
+minikube config set disk-size "${DISK_SIZE}"
 minikube start \
-  --addons=pod-security-policy \
-  --container-runtime=containerd \
-  --docker-opt=containerd=/var/run/containerd/containerd.sock \
   --driver="${DRIVER}" \
-  --extra-config=apiserver.enable-admission-plugins=PodSecurityPolicy
-kubectl apply -f "${RBAC}"
-kubectl apply -f "${PSP}"
+  --container-runtime=containerd \
+  --docker-opt=containerd=/var/run/containerd/containerd.sock
+
+# note: metallb
+METALLB_IP_PREFIX_RANGE=$(minikube ip | sed -r 's/(.*)./\1/')
+cat ~/.minikube/profiles/minikube/config.json \
+| jq '.KubernetesConfig.LoadBalancerStartIP="'${METALLB_IP_PREFIX_RANGE}64'"' \
+| jq '.KubernetesConfig.LoadBalancerEndIP="'${METALLB_IP_PREFIX_RANGE}127'"' \
+> ~/.minikube/profiles/minikube/config.json.tmp && mv -f ~/.minikube/profiles/minikube/config.json.tmp ~/.minikube/profiles/minikube/config.json
+minikube addons enable metallb
+# minikube addons configure metallb
 
 # note: addons
-# todo: custom images
-# fixme: gadget
-# minikube addons enable inspektor-gadget
-# gvisor
 minikube addons enable gvisor
-# headlamp
 minikube addons enable headlamp
-kubectl -n headlamp create token headlamp
 minikube addons enable metrics-server
-# fixme: repo
-# minikube addons enable registry
-# minikube addons enable registry-aliases
-# snapshots
+minikube addons enable registry
+minikube addons enable registry-aliases
 minikube addons enable volumesnapshots
 
-# todo: kvirt
-if grep -E -q 'vmx|svm' /proc/cpuinfo >/dev/null 2>&1; then
-  minikube config -p kubevirt set memory "${MEMORY}"
-  minikube start -p kubevirt
-fi
+# fixme: kubevirt
+# if grep -E -q 'vmx|svm' /proc/cpuinfo >/dev/null 2>&1; then
+#   minikube config -p kubevirt set memory "${MEMORY}"
+#   minikube start -p kubevirt
+# fi
 
-# todo: minikube tunnel
-# todo: cmd <start|delete>
+# note: post
+kubectl -n headlamp create token headlamp

@@ -6,6 +6,6 @@ unused = "allow"       # debug: For experimental dev.
 resolver = "2"
 members = [
   "api",
-  "pkg/linux",
-  # "lib",
+  "lib",
+  "pkg/kernel/linux",
 ]

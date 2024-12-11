@@ -1,8 +1,8 @@
 go 1.23.2
 
 use (
-	// lib
 	api
 	docs/openapi
+	lib
 	pkg/gateway
 )

@@ -1,8 +1,6 @@
 *
 
-!oa/
-!Sources/
-!Sources/**
+!utils/
 
 !.gitignore
 !*.go
