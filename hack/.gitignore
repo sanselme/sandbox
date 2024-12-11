@@ -9,6 +9,7 @@
 !cluster
 !gateway/*.yaml
 !hello/**/*.yaml
+!httproute.yaml
 !knative/**/*.yaml
 !pod.yaml
 !schema/**/*.yaml
