@@ -1,12 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0
-//
-//  BridgingHeader.h
-//  helloesp
-//
-//  Created by Schubert Anselme on 2024-11-11.
-//
+
+// note: C standard library
 #include <stdio.h>
 
+// note: ESP IDF
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"

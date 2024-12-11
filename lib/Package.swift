@@ -5,7 +5,15 @@ import PackageDescription
 
 let package = Package(
   name: "lib",
-  products: [],
+  products: [
+    .library(name: "utils", targets: ["utils"])
+  ],
   dependencies: [],
-  targets: []
+  targets: [
+    .target(
+      name: "utils",
+      dependencies: [],
+      path: "./utils"
+    )
+  ]
 )
