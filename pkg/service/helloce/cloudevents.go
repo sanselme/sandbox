@@ -8,6 +8,40 @@ import (
 	"log"
 
 	cloudevents "github.com/cloudevents/sdk-go/v2"
+	"github.com/kelseyhightower/envconfig"
+	"github.com/spf13/cobra"
+)
+
+var (
+  rootCmd = &cobra.Command {
+    Use: "helloce",
+    Short: "CloudEvents service",
+    Run: func(cmd *cobra.Command, args []string) {
+      client, err := cloudevents.NewDefaultClient()
+      if err != nil {
+        log.Fatal(err.Error())
+      }
+
+      r := Receiver{client: client}
+      if err := envconfig.Process("", &r); err != nil {
+        log.Fatal(err.Error())
+      }
+
+      // Depending on whether targeting data has been supplied,
+      // we will either reply with our response or send it on to
+      // an event sink.
+      var receiver interface{} // the SDK reflects on the signature.
+      if r.Target == "" {
+        receiver = r.ReceiveAndReply
+      } else {
+        receiver = r.ReceiveAndSend
+      }
+
+      if err := client.StartReceiver(context.Background(), receiver); err != nil {
+        log.Fatal(err)
+      }
+    },
+  }
 )
 
 type Receiver struct {
@@ -69,6 +103,11 @@ func (recv *Receiver) ReceiveAndReply(ctx context.Context, event cloudevents.Eve
 	}
 
 	return &r, nil
+}
+
+// Execute runs the root command.
+func Execute() error {
+  return rootCmd.Execute()
 }
 
 // handle shared the logic for producing the Response event from the Request.

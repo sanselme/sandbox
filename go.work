@@ -5,4 +5,5 @@ use (
 	docs/openapi
 	lib
 	pkg/gateway
+  pkg/service/helloce
 )
