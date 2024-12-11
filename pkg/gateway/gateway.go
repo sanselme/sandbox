@@ -70,6 +70,6 @@ func Execute() error {
 func init() {
   rootCmd.PersistentFlags().IntVarP(&grpcPort, "grpc-port", "", 8080, "port of the gRPC server")
   rootCmd.PersistentFlags().IntVarP(&gwPort, "gw-port", "", 80, "port of the gRPC-Gateway server")
-  rootCmd.PersistentFlags().StrinVarP(&grpcAddress, "grpc-address", "", "127.0.0.1", "address of the gRPC server")
-  rootCmd.PersistentFlags().StrinVarP(&gwAddress, "gw-address", "", "127.0.0.1", "address of the gRPC-Gateway server")
+  rootCmd.PersistentFlags().StringVarP(&grpcAddress, "grpc-address", "", "127.0.0.1", "address of the gRPC server")
+  rootCmd.PersistentFlags().StringVarP(&gwAddress, "gw-address", "", "127.0.0.1", "address of the gRPC-Gateway server")
 }

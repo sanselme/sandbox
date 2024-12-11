@@ -5,8 +5,9 @@ import PackageDescription
 
 let package = Package(
   name: "api",
+  platforms: [.macOS("15.0")],
   products: [
-    .library(name: "v1", targets: ["v1"]),
+    .library(name: "v1", targets: ["v1"])
   ],
   dependencies: [
     .package(url: "https://github.com/grpc/grpc-swift-nio-transport.git", from: "1.0.0-alpha.1"),
@@ -22,6 +23,6 @@ let package = Package(
         .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
       ],
       path: "./v1"
-    ),
+    )
   ]
 )
