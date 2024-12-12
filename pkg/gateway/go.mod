@@ -18,7 +18,3 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241118233622-e639e219e697 // indirect
 	google.golang.org/protobuf v1.35.2 // indirect
 )
-
-replace github.com/sanselme/workspace/api v0.1.0 => ../../api
-
-replace github.com/sanselme/workspace/openapi v0.1.0 => ../../docs/openapi
