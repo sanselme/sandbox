@@ -6,8 +6,8 @@
 - [ ] macos # swiftui
 - [ ] tvos # swiftui
 - [ ] watchos # swiftui
-- [ ] web # swift ignite
-- [ ] cli # swift
+- [x] web # swift ignite
+- [x] cli # swift
 
 ## bpf
 
@@ -16,16 +16,13 @@
 ## api
 
 - [x] gateway # go grpc-gateway (knative service)
+- [x] openapi # go embedded (public api - embedded)
 
 ## library
 
-## openapi
-
-- [x] openapi # go embedded (public api - embedded)
-
 ## service
 
-- [x] ce # go cloudevent (clients - knative source)
+- [x] ce # go cloudevent (iot - knative source)
 - [x] grpc # swift grpc (services - knative service)
 
 ## embedded
