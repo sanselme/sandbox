@@ -10,12 +10,17 @@
 [codeql-badge]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql/badge.svg
 [codeql-link]: https://github.com/sanselme/sandbox/actions/workflows/github-code-scanning/codeql
 [ci-link]: https://github.com/sanselme/sandbox/actions/workflows/cicd.yml
-[openapi-readme-link]: /docs/README.md
 [hacking-readme-link]: /hack/README.md
+[cli-readme-link]: /pkg/client/cli/README.md
+[gw-readme-link]: /pkg/gateway/README.md
+[openapi-readme-link]: /docs/README.md
+[svc-ce-readme-link]: /pkg/service/helloce/README.md
+[svc-daemon-readme-link]: /pkg/service/hellod/README.md
+[web-readme-link]: /pkg/client/web/README.md
 
 ---
 
-### [**_Open API |_**][openapi-readme-link] [**_Hacking_**][hacking-readme-link]
+### [**_Hacking |_**][hacking-readme-link] [**_Web Client |_**][web-readme-link] [**_Open API |_**][openapi-readme-link] [**_Gateway |_**][gw-readme-link] [**_CloudEvent |_**][svc-ce-readme-link] [**_CLI |_**][cli-readme-link] [**_Service_**][svc-daemon-readme-link]
 
 ---
 
