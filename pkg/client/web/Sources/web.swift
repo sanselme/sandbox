@@ -7,14 +7,15 @@
 //
 
 import ArgumentParser
+import Foundation
 import Ignite
 
 @main
 struct Web: ParsableCommand {
   static let configuration = CommandConfiguration(abstract: "Hello web client")
 
-  func run() async throws {
-    let web = await Hello()
+  static func main() async {
+    let web = Hello()
 
     do {
       try await web.publish()
