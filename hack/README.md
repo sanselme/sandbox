@@ -103,8 +103,9 @@ metadata:
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
 eof
+kustomize build hack/gateway | sed -e 's/cilium/envoy/g' | kubectl apply -f -
 
-# gateways
+# cilium gateways
 kustomize build hack/gateway | kubectl apply -f -
 ```
 
@@ -122,6 +123,7 @@ helm upgrade knative-operator \
 # serving
 cat <<eof | helm upgrade knative-serving \
   --atomic \
+  --create-namespace \
   --install oci://registry-1.docker.io/sanselmechart/knative-serving \
   --version 0.3.0 \
   -n knative \
@@ -130,14 +132,54 @@ cat <<eof | helm upgrade knative-serving \
 ca-issuer:
   enabled: true
 knative:
+  domain: svc.kube.local
   ingress:
     type: gateway-api
 eof
 
 # net-gateway
 kustomize build hack/knative/net-gateway | kubectl apply -f -
+# todo: update config-gateway
+# external-gateways defines the Gateway to be used for external traffic
+# external-gateways: |
+#   - class: envoy
+#     gateway: kube-system/knative
+#     service: kube-system/envoy-kube-system-knative-d5294fcd
+#     supported-features:
+#     - HTTPRouteRequestTimeout
+# local-gateways defines the Gateway to be used for cluster local traffic
+# local-gateways: |
+#   - class: envoy
+#     gateway: kube-system/knative
+#     service: kube-system/envoy-kube-system-knative-d5294fcd
+#     supported-features:
+#     - HTTPRouteRequestTimeout
 
 # eventing
+cat <<eof | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rabbitmq-clusterrole
+rules:
+  - apiGroups: ["rabbitmq.com"]
+    resources: ["bindings", "bindings/status", "exchanges", "exchanges/status", "queues", "queues/status", "rabbitmqclusters"]
+    verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+eof
+cat <<eof | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rabbitmq-clusterrolebinding
+subjects:
+  - kind: ServiceAccount
+    name: knative-operator
+    namespace: operators
+roleRef:
+  kind: ClusterRole
+  name: rabbitmq-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+eof
 cat <<eof | helm upgrade knative-eventing \
   --atomic \
   --install oci://registry-1.docker.io/sanselmechart/knative-eventing \
@@ -164,7 +206,7 @@ kustomize build hack/knative/backstage | kubectl apply -f -
 
 ```bash
 # operator
-cat <<eof | helm upgrade \
+cat <<eof | helm upgrade rabbitmq-operator \
   --atomic \
   --install oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator \
   --version 4.3.27 \
