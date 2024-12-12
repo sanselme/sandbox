@@ -3,16 +3,23 @@
 package main
 
 import (
+	apiv1 "api/v1"
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	cloudevents "github.com/cloudevents/sdk-go/v2"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/spf13/cobra"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 var (
+  grpcPort int
+  grpcAddress string
+
   rootCmd = &cobra.Command {
     Use: "helloce",
     Short: "CloudEvents service",
@@ -111,7 +118,26 @@ func Execute() error {
 }
 
 // handle shared the logic for producing the Response event from the Request.
-// todo: send to hellod
 func handle(req Request) Response {
-	return Response{Message: fmt.Sprintf("Hello, %s", req.Name)}
+  conn, err := grpc.NewClient(fmt.Sprintf("%s:%d", grpcAddress, grpcPort), grpc.WithTransportCredentials(insecure.NewCredentials()))
+  if err != nil {
+    log.Fatalln("failed to dial server:", err)
+  }
+  defer conn.Close()
+
+  client := apiv1.NewGreeterClient(conn)
+  ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+  defer cancel()
+
+  r, err := client.SayHello(ctx, &apiv1.HelloRequest{Name: req.Name})
+  if err != nil {
+    log.Fatalln("failed to send request:", err)
+  }
+
+	return Response{Message: r.Message}
+}
+
+func init() {
+  rootCmd.PersistentFlags().IntVarP(&grpcPort, "grpc-port", "", 8080, "port of the gRPC server")
+  rootCmd.PersistentFlags().StringVarP(&grpcAddress, "grpc-address", "", "127.0.0.1", "address of the gRPC server")
 }
