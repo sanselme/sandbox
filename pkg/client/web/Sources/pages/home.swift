@@ -9,10 +9,23 @@
 import Foundation
 import Ignite
 
-struct Home: StaticLayout {
+struct Home: StaticPage {
   var title = "Home"
 
-  var body: some HTML {
+  func body(context: PublishingContext) async -> [BlockElement] {
     Text("Welcome to hello web!").font(.title1)
+    Accordion {
+      Item("Greeter") {
+        Text("todo: add greeter input")
+        Divider()
+        Text {
+          Button("Send")
+            .role(.primary)
+            .onClick(actions: {})  // todo: add onclick action
+        }
+      }
+    }
+    .openMode(.individual)
+    .margin(.bottom, .extraLarge)
   }
 }
