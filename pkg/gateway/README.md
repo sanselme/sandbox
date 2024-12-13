@@ -62,4 +62,10 @@ eof
 
 ## Usage
 
-[OpenAPI](http://hello-gateway:8080)
+```bash
+curl http://hello-gateway:8080 \
+  -H "content-type: application/json" \
+  -X POST \
+  -d '{"name":""}'
+# {"message":"Hello, stranger"}
+```

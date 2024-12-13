@@ -8,7 +8,7 @@
 ./tools/minikube
 
 # crds
-kustomize build deployment/crd | kubectl apply -f -
+kubectl apply -k build deployment/crd
 ```
 
 ## cni
@@ -121,10 +121,10 @@ metadata:
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
 eof
-kustomize build hack/gateway | sed -e 's/cilium/envoy/g' | kubectl apply -f -
+sed -e 's/cilium/envoy/g' build hack/gateway | kubectl apply -k -
 
 # cilium gateways
-kustomize build hack/gateway | kubectl apply -f -
+kubectl apply -k build hack/gateway
 ```
 
 ## knative
@@ -159,7 +159,7 @@ knative:
 eof
 
 # net-gateway
-kustomize build hack/knative/net-gateway | kubectl apply -f -
+kubectl apply -k build hack/knative/net-gateway
 # todo: update config-gateway
 # external-gateways defines the Gateway to be used for external traffic
 # external-gateways: |
@@ -222,7 +222,7 @@ sources:
 eof
 
 # backstage
-kustomize build hack/knative/backstage | kubectl apply -f -
+kubectl apply -k build hack/knative/backstage
 ```
 
 ## rabbitmq
@@ -258,14 +258,30 @@ useCertManager: true
 eof
 
 # cluster
-kustomize build hack/knative/rabbitmq/cluster | kubectl apply -f -
+kubectl apply -k hack/knative/rabbitmq/cluster
 
 # broker
-kustomize build hack/knative/rabbitmq/broker | kubectl apply -f -
+kubectl apply -k hack/knative/rabbitmq/broker
 
 # source
-kustomize build hack/knative/rabbitmq/source | kubectl apply -f -
+kubectl apply -k hack/knative/rabbitmq/source
 
 # service
-kustomize build hack/knative/rabbitmq | kubectl apply -f -
+kubectl apply -k hack/knative/rabbitmq
+```
+
+## libvirt
+
+```bash
+source scripts/environment.sh
+
+# create cloudinit iso
+sudo -E createiso /var/lib/libvirt/boot/cloudinit.iso hack/meta-data hack/user-data hack/network-config
+
+# create volume
+sudo -E createvol /var/lib/libvirt/images/sandbox.qcow2 noble-server-cloudimg-arm64.img
+
+# create vm
+sudo -E virsh define hack/vm.xml
+sudo -E virsh start sandbox
 ```
