@@ -3,10 +3,8 @@
 ## Build and Run
 
 ```bash
-swift build -c release --static-swift-stdlib --package-path pkg/client/helloweb
-pkg/client/helloweb/.build/release/hellod
-cd pkg/client/helloweb/Build
-python3 -m http.server -d . -p 8080
+swift run --package-path pkg/client/helloweb
+python3 -m http.server -d pkg/client/helloweb/Build -p http/2.0 8080
 ```
 
 ## Docker
@@ -14,12 +12,8 @@ python3 -m http.server -d . -p 8080
 [Dockerfile](https://github.com/anselmes/images/blob/hello/build/img/hello/Dockerfile.webclient)
 
 ```bash
-# build container image
-git clone https://github.com/anselmes/images --single-branch --depth 1 --branch hello
-docker buildx build --platform linux/amd64,linux/arm64,linux/riscv64 -f build/img/hello/Dockerfile.webclient -t helloweb:0.1.0 .
-
 # run container
-docker container run --rm -p 8080:80 -it helloweb:0.1.0
+docker container run --rm -p 8080:80 -v ./pkg/client/helloweb/Build:/usr/share/nginx/html -it nginx:1.27.3
 ```
 
 ## Kubernetes
