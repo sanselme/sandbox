@@ -1,4 +1,5 @@
 ---
+# web client
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -8,9 +9,31 @@ spec:
   template:
     spec:
       containers:
-        - # WebService
-          image: ghcr.io/sanselme/sandbox/helloweb:main # swift ignite
+        - image: ghcr.io/sanselme/sandbox/helloweb@sha256:acb02972ad79afd19b392c97f4806a44c5c0962d6ede4380174feb2286d71057 # 0.1.0
+          env:
+            - name: URL
+              value: https://helloweb.sandbox.svc.kube.local
+          ports:
+            - containerPort: 80
 ---
+# iot endpoint
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloce
+  namespace: sandbox
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/sanselme/sandbox/helloce@sha256:b34cab15e1d7fca10b3fe15ea7c6c581e95511014e531f95b46db025a2035a65 # 0.1.0
+          env:
+            - name: K_SINK
+              value: http://broker-ingress.knative.svc.cluster.local
+          ports:
+            - containerPort: 80
+---
+# openapi
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -20,9 +43,11 @@ spec:
   template:
     spec:
       containers:
-        - # gRPCGateway
-          image: ghcr.io/sanselme/sandbox/hellogw:main # go grpc gw
+        - image: ghcr.io/sanselme/sandbox/hellogw@sha256:30b3a5bd195fa490045be64cbce1f3d6d054f18740b088cae53c9416347c4a58 # 0.1.0
+          ports:
+            - containerPort: 80
 ---
+# service
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -32,39 +57,12 @@ spec:
   template:
     spec:
       containers:
-        - # gRPCService
-          image: ghcr.io/sanselme/sandbox/hellod:main # swift grpc
+        - image: ghcr.io/sanselme/sandbox/hellod@sha256:d5216645b2e1cb7d4993c3258aae5955028cd3189fdf375d04adc7cbcad9b4e1 # 0.1.0
           ports:
             - name: h2c
               containerPort: 8080
 ---
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: hellocu
-  namespace: sandbox
-spec:
-  template:
-    spec:
-      containers:
-        - # CloudEvent - CU
-          image: ghcr.io/sanselme/sandbox/helloctl:main # go/rust cloud event (go:ce,rs:ce+ws)
-          env:
-            - name: K_SINK
-              value: https://broker.sandbox.svc.cluster.local
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: hellocdev
-  namespace: sandbox
-spec:
-  template:
-    spec:
-      containers:
-        - # WebSocket - CDEV
-          image: ghcr.io/sanselme/sandbox/hellosock:main # swift/rust web socket (s:ws,rs:ce+ws)
----
+# failer
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
