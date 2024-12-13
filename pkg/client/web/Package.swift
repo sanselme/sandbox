@@ -11,7 +11,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
-    .package(url: "https://github.com/twostraws/Ignite.git", branch: "main"),
+    .package(url: "https://github.com/twostraws/Ignite.git", from: "0.2.2"),
   ],
   targets: [
     .executableTarget(
