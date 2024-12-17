@@ -1,14 +1,16 @@
-obj=hello
-obj-m += hello.o
+KDIR = /lib/modules/$(shell uname -r)/build
+KMOD = hello
+
+obj-m += $(KMOD).o
 
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+	make -C $(KDIR) M=$(PWD) modules
 
 load:
-	sudo insmod hello.ko
+	sudo insmod $(KMOD).ko
 
 unload:
-	sudo rmmod hello
+	sudo rmmod $(KMOD)
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	make -C $(KDIR) M=$(PWD) clean
