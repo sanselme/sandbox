@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: GPL-2.0
 
 #![no_std]
 #![feature(allocator_api, global_asm)]
@@ -10,7 +10,7 @@ module! {
   name: "hello",
   author: "Schubert Anselme <schubert@anselm.es",
   description: "Linux Kernel Module",
-  license: "GPL v3",
+  license: "GPL v2",
   params: {},
 }
 
