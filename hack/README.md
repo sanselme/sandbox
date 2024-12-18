@@ -106,7 +106,9 @@ eof
 ## gateway
 
 ```bash
-# envoy gateway (if not using cilium, eg. minikube)
+kubectl apply -k build hack/gateway
+
+# envoy gateway (if not using cilium)
 helm upgrade envoy-gateway \
   --atomic \
   --install oci://docker.io/envoyproxy/gateway-helm \
@@ -122,9 +124,6 @@ spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
 eof
 sed -e 's/cilium/envoy/g' build hack/gateway | kubectl apply -k -
-
-# cilium gateways
-kubectl apply -k build hack/gateway
 ```
 
 ## knative
@@ -268,20 +267,4 @@ kubectl apply -k hack/knative/rabbitmq/source
 
 # service
 kubectl apply -k hack/knative/rabbitmq
-```
-
-## libvirt
-
-```bash
-source scripts/environment.sh
-
-# create cloudinit iso
-sudo -E createiso /var/lib/libvirt/boot/cloudinit.iso hack/meta-data hack/user-data hack/network-config
-
-# create volume
-sudo -E createvol /var/lib/libvirt/images/sandbox.qcow2 noble-server-cloudimg-arm64.img
-
-# create vm
-sudo -E virsh define hack/vm.xml
-sudo -E virsh start sandbox
 ```
