@@ -1,10 +1,8 @@
 {
   "name": "SandBox",
-  "dockerComposeFile": [
-    "${localWorkspaceFolder}/compose-dev.yaml"
-  ],
+  "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
   "service": "sandbox",
-  "workspaceFolder": "/home/devcontainer",
+  "workspaceFolder": "/home/devcontainer/workspace",
   "postCreateCommand": "${containerWorkspaceFolder}/scripts/configure.sh",
   "remoteUser": "devcontainer"
 }
