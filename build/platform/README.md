@@ -1,0 +1,5 @@
+# Platform
+
+## DE1: EP2C20F484C7N
+
+## DE10: 5CSXFC6D6F31C6N
