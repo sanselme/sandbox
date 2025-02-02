@@ -3,20 +3,11 @@
 ## cluster
 
 ```bash
-kind create cluster --config config/kind.yaml
-kustomize build deployment/crd | kubectl apply -f -
+# kind cluster
+./tools/kind
 
-docker container run --rm \
-  --network kind \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  sanselme/cloud-provider-kind
-
-# docker container run --rm \
-#   --name kind-proxy \
-#   --network kind \
-#   -p 1080:1080 \
-#   serjs/go-socks5-proxy@sha256:aad36c623f16850d7cea0171d1aa79d706129191db9e270b6dfd7db6b552c734
-# export ALL_PROXY=socks5://localhost:1080
+# minikube cluster
+./tools/minikube
 
 # crds
 kustomize build "https://github.com/kubernetes-sigs/gateway-api/config/crd/experimental?ref=v1.2.0" | kubectl apply -f -
@@ -29,17 +20,24 @@ kustomize build "https://github.com/kubernetes-csi/external-snapshotter/client/c
 # cilium
 cat <<eof | helm upgrade cilium \
   --atomic \
-  --install cilium \
-  --repo https://helm.cilium.io/ \
-  --version 1.16.2 \
+  --install \
+  --version 1.16.4 \
+  --wait \
   -n kube-system \
+  oci://registry-1.docker.io/sanselmechart/cilium \
   -f -
 ---
+k8sServiceHost: localhost
+k8sServicePort: 6443
 kubeProxyReplacement: true
-l2announcements:
-  enabled: true
+ipam:
+  mode: kubernetes
 gatewayAPI:
   enabled: true
+  gatewayClass:
+    create: "true"
+  hostNetwork:
+    enabled: true
 operator:
   replicas: 1
 eof
@@ -47,9 +45,11 @@ eof
 # cni resource
 cat <<eof | helm upgrade cni-resource \
   --atomic \
-  --install oci://registry-1.docker.io/sanselmechart/cni-resource \
+  --install \
   --version 0.1.0 \
+  --wait \
   -n kube-system \
+  oci://registry-1.docker.io/sanselmechart/cni-resource \
   -f -
 ---
 cilium:
@@ -57,7 +57,7 @@ cilium:
     allowFirstLastIPs: "'No'"
   advert:
     l2:
-      enabled: true
+      enabled: false
     bgp:
       enabled: false
   config:
@@ -75,10 +75,11 @@ eof
 cat <<eof | helm upgrade cert-manager \
   --atomic \
   --create-namespace \
-  --install cert-manager \
-  --repo https://charts.jetstack.io/ \
-  --version v1.16.0 \
+  --install \
+  --version v1.16.2 \
+  --wait \
   -n cert-manager \
+  oci://registry-1.docker.io/sanselmechart/cert-manager \
   -f -
 ---
 crds:
@@ -86,7 +87,8 @@ crds:
 config:
   apiVersion: controller.config.cert-manager.io/v1alpha1
   kind: ControllerConfiguration
-  enableGatewayAPI: true
+  featureGates:
+    ExperimentalGatewayAPISupport: true
 eof
 
 # cluster-issuer
@@ -94,6 +96,7 @@ cat <<eof | helm upgrade ca-clusterissuer \
   --atomic \
   --install oci://registry-1.docker.io/sanselmechart/ca-clusterissuer \
   --version 0.2.0 \
+  --wait \
   -n cert-manager \
   -f -
 ---
@@ -116,16 +119,20 @@ kustomize build hack/gateway | kubectl apply -f -
 helm upgrade knative-operator \
   --atomic \
   --create-namespace \
-  --install oci://registry-1.docker.io/sanselmechart/knative-operator \
+  --install \
   --version 0.3.0 \
-  -n operators
+  --wait \
+  -n operators \
+  oci://registry-1.docker.io/sanselmechart/knative-operator
 
 # serving
 cat <<eof | helm upgrade knative-serving \
   --atomic \
-  --install oci://registry-1.docker.io/sanselmechart/knative-serving \
+  --install \
   --version 0.3.0 \
+  --wait \
   -n knative \
+  oci://registry-1.docker.io/sanselmechart/knative-serving \
   -f -
 ---
 ca-issuer:
@@ -141,9 +148,11 @@ kustomize build hack/knative/net-gateway | kubectl apply -f -
 # eventing
 cat <<eof | helm upgrade knative-eventing \
   --atomic \
-  --install oci://registry-1.docker.io/sanselmechart/knative-eventing \
+  --install \
   --version 0.3.0 \
+  --wait \
   -n knative \
+  oci://registry-1.docker.io/sanselmechart/knative-eventing \
   -f -
 ---
 sources:
@@ -170,9 +179,11 @@ kustomize build hack/knative/backstage | kubectl apply -f -
 # operator
 cat <<eof | helm upgrade \
   --atomic \
-  --install oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator \
+  --install \
   --version 4.3.27 \
+  --wait \
   -n operators \
+  oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator \
   -f -
 ---
 clusterOperator:

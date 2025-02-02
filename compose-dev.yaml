@@ -10,9 +10,9 @@ services:
     stdin_open: true
     tty: true
     user: root # note: required for /sbin/init
-    working_dir: /home/devcontainer
+    working_dir: /home/devcontainer/workspace
     volumes:
-      - .:/home/devcontainer
+      - .:/home/devcontainer/workspace
       - /sys/fs/cgroup:/sys/fs/cgroup
     ports:
       - 10022:22

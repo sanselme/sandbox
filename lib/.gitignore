@@ -1,8 +1,14 @@
 *
 
+!asm/
+!asm/**
 !oa/
+!rtl/
+!rtl/**
 !Sources/
 !Sources/**
+!utils/
+!utils/**
 
 !.gitignore
 !*.go

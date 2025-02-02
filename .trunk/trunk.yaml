@@ -7,44 +7,44 @@ cli:
 plugins:
   sources:
     - id: trunk
-      ref: v1.6.5
+      ref: v1.6.6
       uri: https://github.com/trunk-io/plugins
 # Many linters and tools depend on runtimes - configure them here. (https://docs.trunk.io/runtimes)
 runtimes:
   enabled:
     - go@1.21.0
-    - node@18.12.1
+    - node@18.20.5
     - python@3.10.8
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
   enabled:
-    - buf-lint@1.47.0
-    - clippy@1.65.0
-    - gofmt@1.20.4
-    - golangci-lint@1.62.0
-    - osv-scanner@1.9.1
-    - oxipng@9.1.2
-    - rustfmt@1.65.0
-    - taplo@0.9.3
-    - shellcheck@0.10.0
-    - shfmt@3.6.0
-    - trufflehog-git@3.83.6
-    - gitleaks@8.21.2
     - actionlint@1.7.4
+    - buf-lint@1.47.0
     - checkov@3.2.293
+    - clippy@1.65.0
     - dotenv-linter@3.3.0
     - git-diff-check
+    - gitleaks@8.21.2
+    - gofmt@1.20.4
+    - golangci-lint@1.62.0
     - markdownlint@0.42.0
+    - osv-scanner@1.9.1
+    - oxipng@9.1.2
     - prettier@3.3.3
+    - rustfmt@1.65.0
+    - shellcheck@0.10.0
+    - shfmt@3.6.0
+    - taplo@0.9.3
+    - trufflehog-git@3.83.6
     - trufflehog@3.83.6
     - yamllint@1.35.1
 actions:
   disabled:
+    - trufflehog-pre-commit
     - trunk-check-pre-push
     - trunk-fmt-pre-commit
   enabled:
     - commitlint
     - submodule-init-update
-    - trufflehog-pre-commit
     - trunk-announce
     - trunk-upgrade-available
