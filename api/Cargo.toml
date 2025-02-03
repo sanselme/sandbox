@@ -14,7 +14,7 @@ default = []
 pbjson = "0.7.0"
 pbjson-types = "0.7.0"
 prost = "0.13.1"
-serde = "1.0.208"
+serde = "1.0.217"
 tonic = "0.12.1"
 
 [lints]
