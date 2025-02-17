@@ -13,7 +13,7 @@ default = []
 [dependencies]
 pbjson = "0.7.0"
 pbjson-types = "0.7.0"
-prost = "0.13.1"
+prost = "0.13.5"
 serde = "1.0.208"
 tonic = "0.12.1"
 
