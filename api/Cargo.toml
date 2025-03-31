@@ -15,7 +15,7 @@ pbjson = "0.7.0"
 pbjson-types = "0.7.0"
 prost = "0.13.1"
 serde = "1.0.208"
-tonic = "0.12.1"
+tonic = "0.13.0"
 
 [lints]
 workspace = true
