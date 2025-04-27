@@ -227,7 +227,7 @@ bin-release/
 # vendor/
 
 # Go workspace file
-go.work
+# go.work
 go.work.sum
 
 # env file
@@ -244,7 +244,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
 dist/
 downloads/
@@ -425,6 +424,7 @@ cython_debug/
 *.gz
 *.tar
 *.tgz
+.vscode/
 !.*.json
 !.*.yaml
 !.commitlintrc
@@ -437,3 +437,4 @@ cython_debug/
 !.shellcheckrc
 !.trunk/
 !example.env
+!go.mod
