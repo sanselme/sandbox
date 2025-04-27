@@ -1,9 +1,0 @@
-go 1.23.2
-
-use (
-	api
-	docs/openapi
-	lib
-	pkg/gateway
-  pkg/service/helloce
-)

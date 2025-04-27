@@ -1,4 +1,0 @@
----
-status:
-  - server: {} # stateless
-  - client: {} # statefull

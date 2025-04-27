@@ -1,7 +1,0 @@
----
-cm:
-  - ca
-  - cloudflare
-  - pdns
-  - rfc2136
-  - self-signed

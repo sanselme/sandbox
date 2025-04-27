@@ -1,6 +1,0 @@
----
-phases:
-  - init:config
-  - enroll:cloudinit
-  - commission:kubernetes
-  - deploy:workload

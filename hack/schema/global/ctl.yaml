@@ -1,5 +1,0 @@
----
-controller:
-  - embedded: {}
-  - subsystem:
-      controller: {}

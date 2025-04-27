@@ -1,5 +1,0 @@
----
-runner:
-  - capi
-  - gvisor
-  - vm

@@ -1,0 +1,78 @@
+/**
+ * @file hello.proto
+ * @brief Defines the Greeter gRPC service and associated messages for sending greetings.
+ *
+ * This file specifies the `Greeter` service with a single RPC method, `SayHello`,
+ * which takes a user's name as input and returns a greeting message. The service
+ * is annotated with HTTP and OpenAPI options to expose it as a RESTful API and
+ * generate OpenAPI documentation.
+ *
+ * @syntax proto3
+ * @package api.v1
+ *
+ * Imports:
+ * - google/api/annotations.proto: Provides HTTP binding annotations for gRPC methods.
+ * - protoc-gen-openapiv2/options/annotations.proto: Adds OpenAPI (Swagger) options for documentation.
+ *
+ * OpenAPI Options:
+ * - API Version: 0.1.0
+ * - External Documentation: https://github.com/sanselme/sandbox
+ *
+ * Service: Greeter
+ * - RPC: SayHello
+ *   - HTTP Method: POST
+ *   - Endpoint: /api/v1/sandbox/hello
+ *   - Request Body: Serialized JSON
+ *   - OpenAPI Metadata:
+ *     - Summary: "Say hello"
+ *     - Description: "Sends a greeting"
+ *     - Tags: "Greeter"
+ *
+ * Messages:
+ * - HelloRequest: Represents the request payload containing the user's name.
+ * - HelloReply: Represents the response payload containing the greeting message.
+ */
+
+syntax = "proto3";
+
+package api.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {version: "0.1.0"};
+  external_docs: {
+    url: "https://github.com/sanselme/sandbox";
+    description: "Greeter service";
+  }
+  //schemes: HTTPS;
+};
+
+// Here is the overall greeting service definition where we define all our endpoints
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      post: "/api/v1/sandbox/hello"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Say hello"
+      description: "Sends a greeting"
+      tags: "Greeter"
+    };
+  }
+}
+
+// The request message containing the user's name
+message HelloRequest {
+  // The user's name
+  string name = 1;
+}
+
+// The request message containing the user's name
+message HelloReply {
+  // The response message containing the greetings
+  string message = 1;
+}

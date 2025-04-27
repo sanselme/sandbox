@@ -1,4 +1,0 @@
----
-exec:
-  loader: {} # prerun
-  runner: {} # postrun

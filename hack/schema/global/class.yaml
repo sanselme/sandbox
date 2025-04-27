@@ -1,8 +1,0 @@
----
-class:
-  - cruiser
-  - harbor
-  - os-harbor
-  - raft (iot)
-  - skiff (allinone)
-  - vs-harbor

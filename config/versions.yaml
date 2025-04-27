@@ -45,16 +45,32 @@ binary:
     archs:
       - amd64
       - arm64
+  - name: cfssl
+    enabled: true
+    type: executable
+    url: https://github.com/cloudflare/cfssl/releases/download/v${version}/cfssl_${version}_${os}_${arch}
+    version: 1.6.5
+    archs:
+      - amd64
+      - arm64
+  - name: cfssljson
+    enabled: true
+    type: executable
+    url: https://github.com/cloudflare/cfssl/releases/download/v${version}/cfssljson_${version}_${os}_${arch}
+    version: 1.6.5
+    archs:
+      - amd64
+      - arm64
 package:
   add: []
   # - name: ""
-  #   enabled: false
+  #   enabled: true
   #   keyring: ""
   #   repo: ""
   #   type: apt
   remove: []
   # - name: containerd
-  #   enabled: false
+  #   enabled: true
   #   type: apt
   group:
     - name: default
@@ -95,7 +111,7 @@ package:
         - docker-compose
         - docker-doc
         - docker.io
-        - podman-docker
+        # - podman-docker
         - runc
     - name: toolchain
       enabled: true
@@ -146,7 +162,7 @@ package:
         - python3-dev
         - python3-pip
         - python3-venv
-        - repo
+        # - repo
         - tzdata
         - unzip
         - uuid-dev
