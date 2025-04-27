@@ -1,9 +1,0 @@
----
-vyos:
-  - bgprt
-  - dhcp
-  - dns
-  - igw
-  - ntp
-  - tftp
-  - vpngw

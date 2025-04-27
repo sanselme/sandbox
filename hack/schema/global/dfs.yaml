@@ -1,6 +1,0 @@
----
-dfs:
-  - cfs # cache
-  - idfs # icloud
-  - mfs # mem
-  - ofs # obj

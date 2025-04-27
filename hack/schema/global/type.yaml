@@ -1,5 +1,0 @@
----
-type:
-  - clustered:pod
-  - namespaced:vm
-  - system:kernel
