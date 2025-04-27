@@ -4,3 +4,9 @@
 [submodule "modules/toolchain"]
   path = modules/toolchain
   url = https://github.com/anselmes/toolchain.git
+[submodule "modules/googleapis"]
+	path = modules/googleapis
+	url = https://github.com/googleapis/googleapis.git
+[submodule "modules/grpc-gateway"]
+	path = modules/grpc-gateway
+	url = https://github.com/grpc-ecosystem/grpc-gateway.git
