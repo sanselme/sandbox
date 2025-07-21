@@ -36,7 +36,7 @@ checksum = "c1fd03a028ef38ba2276dce7e33fcd6369c158a1bca17946c4b1b701891c1ff7"
 name = "api"
 version = "0.1.0"
 dependencies = [
- "pbjson",
+ "pbjson 0.8.0",
  "pbjson-types",
  "prost",
  "serde",
@@ -510,6 +510,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "pbjson"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "898bac3fa00d0ba57a4e8289837e965baa2dee8c3749f3b11d45a64b4223d9c3"
+dependencies = [
+ "base64 0.22.1",
+ "serde",
+]
+
+[[package]]
 name = "pbjson-build"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -529,7 +539,7 @@ checksum = "e54e5e7bfb1652f95bc361d76f3c780d8e526b134b85417e774166ee941f0887"
 dependencies = [
  "bytes",
  "chrono",
- "pbjson",
+ "pbjson 0.7.0",
  "pbjson-build",
  "prost",
  "prost-build",
