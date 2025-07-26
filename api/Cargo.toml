@@ -11,9 +11,9 @@ default = []
 ## @@protoc_insertion_point(features)
 
 [dependencies]
+prost = "0.14.1"
 pbjson = "0.8.0"
 pbjson-types = "0.8.0"
-prost = "0.13.1"
 serde = "1.0.219"
 tonic = "0.13.1"
 
